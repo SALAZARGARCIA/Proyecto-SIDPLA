@@ -1,0 +1,470 @@
+/*reseteo universal*/
+*{
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+article, figcaption,figure,footer,header,hgroup,nav,section{
+	display: block;
+}
+
+
+body{
+	background: #212121 url(../img/fondo.jpg);
+	color: #FFF;
+	font-family: Helvetica,Verdana,Arial;
+	font-size: 1em;
+}
+a{
+	color:#FFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+a:hover{
+	color: #FC7C3D;
+}
+
+header,section#contenido,footer{
+	background: rgba(150,150,0,0.7);
+	margin: 0 auto;
+	max-width: 90%;
+	text-align: center;
+}
+header h1,nav{
+	display: inline-block;
+	max-width: 100%;
+	vertical-align: middle;
+}
+nav ul{
+	list-style: none;
+}
+nav li{
+	display: inline-block;
+	padding: 0.1em;
+	vertical-align: top;
+
+}
+nav a{
+	background: #FFF;
+	border: 0.1em solid #FC7C3D;
+	border-radius: 0.25em;
+	box-shadow: 0 0 10px 0.5px;
+	color: #5E0525;
+	display: block;
+	font-family: Helvetica, Verdana;
+	font-size: 1.2em;
+	padding: 0.2em;
+	-webkit-transition:all 0.5s ease-in;
+	transition:all 0.5s ease-in;
+}
+nav a:hover{
+	background: #FC7C3D;
+	border: 0.1em solid #5E0525;
+	border-radius: 0.25em;
+	color: #FFF;
+	-webkit-transition:all 0.5s ease-out;
+	transition:all 0.5s ease-out;
+}
+figcaption{
+	font-size: 0.85em;
+	padding: 0.25em;
+	text-align: center;
+
+}
+h2,h3{
+	color: #212121;
+	font-family: Arial, Helvetica, Verdana;
+}
+h3{
+	background: #e2e7f1;
+	border-radius: 1em;
+	box-shadow: 0.25em 0.25em rgba(255,153,0,0.5);
+	margin-bottom: 0.5em;
+	padding-left: 0.5em;
+}
+hr{
+	border:1px dashed #212121;
+	margin: 1em 0;
+}
+audio,iframe,img,video{
+	max-width: 100%;
+}
+
+section#principal,aside{
+	background: #5E0525;
+	border-radius: 0.5em;
+	box-shadow: 0 0 10px 0.5px;
+	display: inline-block;
+	margin: 0 auto;
+	margin-bottom: 0.25em;
+	max-width: 100%;
+	padding: 0.25em;
+	vertical-align: top;
+	width: 65%;
+}
+article#slider{
+	border-radius: 0.5em;
+	margin: 0.5em;
+	padding: 0.5em;
+	text-align: left;
+	width: 95%;
+
+}
+aside{
+	width: 30%;
+
+}
+section#productos-destacados{
+	margin: 0 auto;
+	width: 100%;
+
+}
+article#producto1,article#producto2,article#producto3{
+	background: #f1f1f1;
+	border:0.3em solid #FC7C3D;
+	border-radius: 0.5em;
+	max-width: 90%;
+	min-height: 300px;
+	padding: 0.5em;
+	text-align: justify;
+	width: 55%;
+	color: #212121;
+	display: inline-block;
+	margin-bottom: 0.25em;
+
+}
+article#producto1,article#producto2,article#producto3{
+	width: 30.55%;
+	vertical-align: top;
+	text-align: center;
+}
+footer{
+	background: rgba(0, 0, 0, 0.7);
+	color: #FFF;
+	font-size: 0.85em;
+	padding: 0.75em 0;
+}
+div#leermas{
+	margin-top: 1em;
+	text-align: right;
+}
+.enviar{
+	background: #5E0525;
+	border-radius: 0.25em;
+	border:0.1em solid #ce0027;
+	color: #FFF;
+	font-family: "calibri";
+	font-size: 1.25em;
+	margin-top: 5em;
+	padding: 0.25em;
+	-webkit-transition:all 0.5s ease-in;
+	transition:all 0.5s ease-in;
+	
+}
+.enviar:hover{
+	background: #FC7C3D;
+	border-radius: 0.25em;
+	color: #212121;
+	cursor: pointer;
+	-webkit-transition:all 0.5s ease-out;
+	transition:all 0.5s ease-out;
+}
+article#descripcion-acerca,article#multimedia-acerca{
+	background: #f1f1f1;
+	border-radius: 0.5em;
+	color: #212121;
+	display: inline-block;
+	margin: 0 auto;
+	margin-bottom: 0.5em;
+	max-width: 100%;
+	min-height: 543px;
+	padding: 0.5em;
+	text-align: justify;
+	vertical-align: top;
+	width: 70%;
+}
+article#multimedia-acerca{
+	text-align: center;
+	width: 25%;
+}
+
+section#pizzamarker{
+	box-shadow: rgba(200,200,200,0.1) 0px 5px 30px inset;
+	margin: auto;
+	padding: 0.2em;
+	width: 100%;
+
+}
+section#pizzamarker section{
+	background: #f1f1f1;
+	border-radius: 0.5em;
+	display: inline-block;
+	color: #212121;
+	vertical-align: top;
+}
+#pizzamarker #pizzas{
+	margin: 0;
+	padding: 0;
+	width: 68%;
+}
+#pizzamarker #pizzas article{
+	background: #EAAE4E;
+	border-radius: 0.3em;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 0.9em;
+	height: 270px;
+	margin: 0.5% 0% 0% 1%;
+	padding: 0.5em 0;
+	vertical-align: top;
+	transition:all 1s linear;
+	width: 30%;
+}
+#pizzamarker #pizzas article:hover{
+	background: #FFF !important;
+	-webkit-transform:scale(1.2) rotate(-365deg);
+	transform:scale(1.2) rotate(-365deg);
+}
+#pizzamarker #pizzas article:nth-child(even){
+	background: #FC7C3D;
+}
+
+/*para sucursales*/
+section#sucursales{
+	box-shadow: rgba(200,200,200,0.1) 0px 5px 30px inset;
+	margin: auto;
+	padding: 0.2em;
+	width: 100%;
+
+}
+section#sucursales section{
+	background: #f1f1f1;
+	border-radius: 0.5em;
+	display: inline-block;
+	color: #212121;
+	vertical-align: top;
+}
+#sucursales #sucursal{
+	margin: 0;
+	padding: 0;
+	width: 68%;
+}
+#sucursales #sucursal article{
+	background: #EAAE4E;
+	border-radius: 0.3em;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 0.9em;
+	height: 270px;
+	margin: 0.5% 0% 1% 1%;
+	padding: 0.5em 0;
+	vertical-align: top;
+	transition:all 1s linear;
+	width: 30%;
+}
+#sucursales #sucursal article:hover{
+	background: #FFF !important;
+	box-shadow: 0px 0px 5px #212121;
+	border-radius: 2em 0 2em 0;
+
+
+}
+#sucursales #sucursal article:nth-child(even){
+	background: #FC7C3D;
+}
+
+/*Contactos*/
+form{
+	widows: 100%;
+}
+form div{
+	margin: 0.5em;
+}
+iframe{
+	border-radius: 0.5em;
+}
+input[type="email"],input[type="text"],textarea{
+	background: #5E0525;
+	border-radius: 0.25em;
+	color: #FFF;
+	font-size: 1em;
+	padding: 0.25em;
+	width: 95%;
+}
+input[type="email"]:focus,input[type="text"]:focus,textarea:focus{
+	background: #EAAE4E;
+}
+input[type="submit"]{
+	background: #5E0525;
+	border-radius: 0.25em;
+	border: 0.1em solid #ce0027;
+	color: #FFF;
+	font-family: "calibri";
+	font-size: 1.25em;
+	margin-top: 2em;
+	padding: 0.25em;
+	-webkit-transition: all 0.5s ease-in;
+	transition: all 0.5s ease-in;
+}
+input[type="submit"]:hover{
+	background: #FC7C3D;
+	border-radius: 0.25em;
+	color: #212121;
+	cursor: pointer;
+	-webkit-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+}
+label{
+	cursor: pointer;
+	color: #212121;
+}
+legend{
+	color: #EAAE4E;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+textarea{
+	resize:none;
+}
+section#contacto,section#mapa{
+	background: #f1f1f1;
+	border-radius: 0.5em;
+	display: inline-block;
+	margin:auto;
+	min-width: 350px;
+	padding: 0.5em;
+	text-align: justify;
+	vertical-align: top;
+	width: 55%;
+}
+section#mapa{
+	width: 35%;
+	text-align: center;
+}
+article#info-contacto, article#contactos{
+	border:0.2em solid #EAAE4E;
+	color: #212121;
+	border-radius: 0.5em;
+	margin: 0.5em;
+	min-width: 144px;
+	padding: 0.5em;
+}
+span.datos-contacto{
+	color: #EAAE4E;
+	margin-left: 1em;
+}
+
+
+
+
+/*Media query son codicionales dentro css*/
+/*Ancho minimo de 1081*/
+@media screen and (min-width: 1081px){
+	header h1{
+		text-align: left;
+		width: 35%;
+
+	}
+	nav{
+		text-align: right;
+		width: 60%;
+	}
+
+
+
+}
+/*Ancho maximo de 1080*/
+@media screen and (max-width: 1080px){
+	nav li{
+		font-size: 1.3em;
+	}
+	
+	article#slider{
+		width: 90%;
+	}
+	
+	aside{
+		width: 20%;
+	}
+
+	article#descripcion-acerca, article#multimedia-acerca{
+		width: 90%;
+	}
+	article#productos,#img-servicios,article#productos-destacados{
+		width: 45%;
+	}
+	article#producto1,article#producto2,article#producto3{
+		width: 30%;
+	}
+
+}
+/*Ancho maximo de 800*/
+@media screen and (max-width: 800px){
+	nav li{
+		font-size: 0.95em;
+	}
+	
+	article#slider{
+		width:88%;
+
+	}
+	#img-productos,article#nuestros-servicios,article#producto1{
+		display: block;
+		margin: 0 0 0.25em 0;
+		width: 95%;
+	}
+	#img-productos{
+		width: 98%;
+	}
+	article#producto2, article#producto3{
+		width: 45%;
+	}
+/*para sucursales*/
+#pizzamarker #pizzas article,#sucursales #sucursal article {
+	display: block;
+	width: 95%;
+}
+/*para sucursales*/
+#pizzamarker #pizzas, #sucursales #sucursal{
+	padding: 0.5em;
+	margin-bottom: 0.2em;
+	width: 90%;
+}
+/*contactos*/
+section#contacto,section#mapa{
+	display: block;
+	width: 95%;
+}
+section#contacto{
+	margin-bottom: 0.2em;
+}
+form{
+	width: 100%;
+}
+
+
+
+	
+
+}
+
+/*Ancho minimo de 600*/
+@media screen and (max-width: 600px){
+	nav li{
+		display: inline-block;
+		margin: 0;
+		width: 98%;
+	}
+	section#principal,article#producto2{
+		margin-bottom: 0.2em;
+	}
+	section#principal,aside,article#productos,article#producto2,article#producto3{
+		display: block;
+		width: 95%;
+	}
+	#img-producto{
+		display: none;
+	}
+	
+
+}

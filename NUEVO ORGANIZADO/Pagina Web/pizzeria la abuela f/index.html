@@ -1,0 +1,124 @@
+<html lang="es">
+<head>
+	<title>pizzeria la abuela</title>
+	<meta charset="utf-8" />
+	<meta name="description" content="Bienvenidos a mi tu mejor lugar donde encontraras las mejores pizzas a bajo precio" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="author" type="text/plain" href="humans.txt" />
+	<link rel="stylesheet" href="css/flexslider.css"/>
+	<link rel="stylesheet" href="css/style.css" />
+	<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js></script>
+	<!--[endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><!--esta direccion es para que jquery se vaya actualizando automaticamente con la ultima version.-->
+	<script src="js/jquery.flexslider.js"></script>
+	
+	<script>
+		$(window).load(function(){
+			$('.flexslider').flexslider();
+		});
+	</script>
+
+</head> 
+<body>
+<center>
+	<header>
+          
+		<h1>
+			<a href="index.html">
+				<img src="img/logo.png" width="200" height="150"><br> Pizzeria la abuela 
+			</a>
+		</h1>
+		<nav>
+			<ul>
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="acerca.html">Acerca</a></li>
+				<li><a href="productos.html">Productos</a></li>
+				<li><a href="contactos.html">Contactos</a></li>
+                                <li><a href="inicio sesion.html">Inicio sesión</a></li>
+                                <li><a href="registro.php">Registro</a></li>
+			</ul>
+		</nav>
+	</header>
+    
+	<section id="contenido">
+		<section id="principal">
+			<article id="slider">
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+								<img src="img/slide-0.png">
+							<p class="flex-caption">Descripcion de la imagen</p>
+						</li>
+						<li>
+							<img src="img/slide-0.png">
+                                                        <p class="flex-caption">Descripcion de la imagen</p>
+						</li>
+						<li>
+							<img src="img/slide-0.png">
+                                                        <p class="flex-caption">Descripcion de la imagen</p>
+						</li>
+						
+					</ul>
+					
+				</div>
+				
+			</article>
+			
+		</section>
+		<aside>
+			<article id="productos">
+				<figure id="img-producto">
+					<img src="img/oferta2.png" alt="rica pizza">
+					<figcaption>Combo la abuela</figcaption>
+				</figure>
+				<figure id="img-producto">
+					<img src="img/oferta.png" alt="rica pizza">
+                                        <figcaption> Combo 3 familiar</figcaption>
+				</figure>
+			</article>
+		</aside>
+
+		<section id="productos-destacados">
+			<article id="producto1">
+				<img src="img/grandcheese.jpg" class="fade">
+				<p class="justificado">
+					Enamorate de nuestra unicas pizzas especialidad. La combinacion perfecta de los ingredientes que tanto te gustan
+				</p>
+				<div id="leermas">
+					<a href="#" class="enviar">Leer mas</a>
+					
+				</div>
+			</article>
+				<article id="producto2">
+				<img src="img/hawaiana.jpg" class="fade">
+				<p class="justificado">
+					Enamorate de nuestra unicas pizzas especialidad. La combinacion perfecta de los ingredientes que tanto te gustan
+				</p>
+				<div id="leermas">
+					<a href="#" class="enviar">Leer mas</a>
+					
+				</div>
+			</article>
+			<article id="producto3">
+				<img src="img/fullextras.jpg" class="fade">
+				<p class="justificado">
+					Enamorate de nuestra unicas pizzas especialidad. La combinacion perfecta de los ingredientes que tanto te gustan
+				</p>
+				<div id="leermas">
+					<a href="#" class="enviar">Leer mas</a>
+					
+				</div>
+			</article>
+			
+		</section>
+		
+	</section>
+	<footer>
+	 pie de pagina
+	</footer>
+
+</body>
+</html>
