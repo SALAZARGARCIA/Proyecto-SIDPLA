@@ -9,7 +9,7 @@
 <body>
 	<header>
 	<?php
-		include("menuprincipal.php");
+		include("header.php");
 		?>
 	</header>
 	<section id="contenido">

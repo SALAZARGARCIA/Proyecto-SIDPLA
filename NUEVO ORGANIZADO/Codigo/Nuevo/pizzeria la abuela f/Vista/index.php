@@ -8,7 +8,7 @@
 <center>
 	<header>
 		<?php
-		include("menuprincipal.php");
+		include("header.php");
 		?>
 	</header>
     
@@ -39,6 +39,7 @@
 			
 		</section>
 		
+
 		<aside>
 			<article id="productos">
 				<figure id="img-producto">
@@ -54,6 +55,8 @@
 <BR>
 				<BR>
 				<BR>
+				
+				
 		<section id="productos-destacados">
 			<article id="producto1">
 				<img src="img/grandcheese.jpg" class="fade">

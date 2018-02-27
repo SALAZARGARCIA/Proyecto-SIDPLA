@@ -5,24 +5,22 @@ include("../modelo/clases.php"); //Trae el archivo clases.php en cual se creara 
 if(isset($_POST["registrar"])) { // Verifica si el botón oprimido es el de registro
 
 
-
-$Num_Doc=$_REQUEST['Num_Doc']; // Captura de valor de campos de formulario
-$Tipo_Doc=$_REQUEST['Tipo_Doc'];
-$Nom=$_REQUEST['Nom'];
-$Nom2=$_REQUEST['Nom2'];
-$Ape=$_REQUEST['Ape']; // Captura de valor de campos de formulario
-$Ape2=$_REQUEST['Ape2'];
-$Usu=$_REQUEST['Usu'];
+$doc=$_REQUEST['doc'];
+$tdoc=$_REQUEST['tdoc'];
+$nom1=$_REQUEST['nom1'];
+$nom2=$_REQUEST['nom2'];
+$ape1=$_REQUEST['ape1'];
+$ape2=$_REQUEST['ape2'];
+$usu=$_REQUEST['usu']; // Captura de valor de campos de formulario
 $pass=$_REQUEST['pass'];
-$Tel=$_REQUEST['Tel']; // Captura de valor de campos de formulario
-$Cel=$_REQUEST['Cel'];
-$Dir=$_REQUEST['Dir'];
-$Correo=$_REQUEST['Correo'];
-
 $pass = password_hash($pass,PASSWORD_DEFAULT); //Encriptación de la contraseña digitada
+$tel=$_REQUEST['tel'];
+$cel=$_REQUEST['cel'];
+$direc=$_REQUEST['direc'];
+$correo=$_REQUEST['correo'];
 
 $objeto= new clases; // Creación de un objeto de la clase clases del archivo clases.php
-$res=$objeto->verifica($Usu); //Llamada mediante el objeto creado del método “verifica” con el parámetro usuario
+$res=$objeto->verifica($usu); //Llamada mediante el objeto creado del método “verifica” con el parámetro usuario
 //el resultado del método se asigna a la variable $res
 if($res->num_rows == 1) //Verifica cuantos registro hay en el valor retornado $res (num_rows)
 {
@@ -30,12 +28,11 @@ header("location:../vista/registro2.php?dato1=no"); //si es = a 1, el usuario ya
 }
 else
 {
-$res=$objeto->registro($Num_Doc,$Tipo_Doc,$Nom,$Nom2,$Ape,$Ape2,$Usu,$pass,$Tel,$Cel,$Dir,$Correo); //Si no es = 1 , llama al método “resgistro” con 4 parámetros
+$res=$objeto->registro($doc,$nom1,$nom2,$ape1,$ape2,$usu,$pass,$tel,$cel,$direc,$correo,$tdoc); //Si no es = 1 , llama al método “resgistro” con 4 parámetros
 header("location:../vista/registro2.php?dato=no"); //Redirige a página registro sin errores
 }
 $objeto->CloseDB(); // Cierra conexión a base de datos
 }
-
 if(isset($_POST["enviar"]))
 {
 $loginNombre = $_REQUEST["usu"];
@@ -54,15 +51,15 @@ $actor = $res->fetch_array(); // Obtiene una fila de resultados como un array as
 if (password_verify($loginPassword,$actor["Pass_login"]))
 {
 session_start();
-$_SESSION["session"]= $actor["Primer_nombre_per"]." ".$actor["Primer_apellido_per"];
+$_SESSION["session"]= $actor["Primer_Nombre_per"]." ".$actor["Primer_Apellido_per"];
 $_SESSION["validar"]="true";
-if($actor["idrol"]=2)
+if($actor["rol_Rol"]="CLIENTE")
 {
-header("location:../vista/index.php"); //Redirige a página de usuario
+header("location:../VISTA/index.php"); //Redirige a página de usuario
 }
 else
 {
-header("location:../vista/index.php"); //Redirige a página de administrador
+header("location:../pagina_administrador.php"); //Redirige a página de administrador
 }
 }
 else // Si el password no es correcto
@@ -72,7 +69,4 @@ header("location:../vista/inicio_sesion.php?error=si");
 }
 $objeto->CloseDB();
 }
-
-
-
 ?>

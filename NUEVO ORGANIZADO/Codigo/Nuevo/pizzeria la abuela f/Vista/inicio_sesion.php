@@ -10,7 +10,7 @@
 <center>
 <header>
 	<?php
-		include("menuprincipal.php");
+		include("header.php");
 		?>
 	</header>
 
@@ -26,6 +26,11 @@
 <!-- Contenedor ejercicio-->
 <div class="row">
 <div class="col-sm-12 col-md-12">
+
+
+<section id="contenido">
+		<section id="hola">
+		<CENTER>
 
 <form name="areat" action="../controlador/controler1.php" method="post">
 <table class="" style="" align="center">
@@ -45,6 +50,8 @@
 <tr><td style="color:#F00"><?php if(isset($_REQUEST['error'])) { echo "Usuario o contraseña incorrecta";}?></td></tr>
 </table>
 </form>
+<CENTER>
+</SECTION>
 </div>
 </div>
 </div>
