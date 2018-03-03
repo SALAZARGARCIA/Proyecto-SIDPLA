@@ -3,14 +3,14 @@
 │-------------------------------------------------------------------*/																	 
  DELIMITER //
  CREATE PROCEDURE Eliminar_Producto(
- IN Cod_ProductoDL INT
+ IN Cod_Producto INT
  )
  BEGIN
  
- DELETE FROM PRODUCTO WHERE Cod_Producto=Cod_ProductoDL;
+ DELETE FROM PRODUCTO WHERE Cod_Producto=Cod_Producto;
 
 
- DELETE FROM PRODUCTO_HAS_TAMAÑO WHERE Producto_Cod_Producto=Cod_ProductoDL;
+ DELETE FROM PRODUCTO_HAS_TAMAÑO WHERE Producto_Cod_Producto=Cod_Producto;
 
  END//
  
@@ -23,7 +23,7 @@
 │-------------------------------------------------------------------*/																	 
  DELIMITER //
  CREATE PROCEDURE Eliminar_Persona(
- IN OLDNum_Documento_per VARCHAR(15)
+ IN OLDNum_Documento_per INT
  )
  BEGIN
  

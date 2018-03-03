@@ -7,11 +7,11 @@
  IN Nom_prod VARCHAR(45),
  IN Desc_prod VARCHAR(100),
  IN Foto_prod VARCHAR(70),
- IN Tipo_producto VARCHAR(50),
- IN Stok_min INT(11),
- IN Stok_max INT(11),
- IN Cantidad_exist INT(11),
- IN tamaño VARCHAR(50),
+ IN Tipo_producto INT,
+ IN Stok_min INT,
+ IN Stok_max INT,
+ IN Cantidad_exist INT,
+ IN Cod_tamaño INT,
  IN Valor_prod DECIMAL(10,2)
  )
  BEGIN
@@ -20,7 +20,7 @@
  Foto_prod,Tipo_producto,Stok_min,Stok_max,Cantidad_exist
  );
 
- INSERT INTO PRODUCTO_HAS_TAMAÑO VALUES (Cod_Producto,tamaño,
+ INSERT INTO PRODUCTO_HAS_TAMAÑO VALUES (Cod_Producto,Cod_tamaño,
  Valor_prod);
 
  END//
@@ -28,7 +28,7 @@
  DELIMITER ;
 /*             											             │
 │-------------------------------------------------------------------*/
-call Insertar_Producto(123,"caca", "popo", "null", "PIZZA", null, null, null, "PEQUEÑA", 200.00);
+
 /*-----------------------------------------------------------------------------------------------------------*/
 
 /*-------------------------------------------------------------------│
@@ -37,6 +37,7 @@ call Insertar_Producto(123,"caca", "popo", "null", "PIZZA", null, null, null, "P
  DELIMITER //
  CREATE PROCEDURE Insertar_Persona(
  IN Num_Documento_per VARCHAR(15),
+ IN Cod_tipo_doc INT,
  IN Primer_Nombre_per VARCHAR(45),
  IN Segundo_Nombre_per VARCHAR(45),
  IN Primer_Apellido_per VARCHAR(45),
@@ -45,26 +46,25 @@ call Insertar_Producto(123,"caca", "popo", "null", "PIZZA", null, null, null, "P
  IN Pass_login VARCHAR(45),
  IN Tel_per BIGINT(15),
  IN Cel_per BIGINT(15),
- IN Direc_per VARCHAR(60),
+ IN Direc_per VARCHAR(45),
  IN Correo_per VARCHAR(45),
- IN tipo_doc VARCHAR(45),
- IN rol_Rol VARCHAR(45)
+ IN Rol_Cod_rol INT
  )
  BEGIN
  
- INSERT INTO PERSONA VALUES (Num_Documento_per,
+ INSERT INTO PERSONA VALUES (Num_Documento_per, Cod_tipo_doc,
  	Primer_Nombre_per, Segundo_Nombre_per, Primer_Apellido_per,
  	Segundo_Apellido_per, Usuario_login, Pass_login, Tel_per,Cel_per,
- 	Direc_per, Correo_per,tipo_doc);
- INSERT INTO ROL_has_PERSONA VALUES(rol_Rol,Num_Documento_per,
- 	tipo_doc,1);
+ 	Direc_per, Correo_per);
+ INSERT INTO ROL_has_PERSONA VALUES(Rol_Cod_rol,Num_Documento_per,
+ 	Cod_tipo_doc,1);
 
  END//
  
  DELIMITER ;
 /*             											             │
 │-------------------------------------------------------------------*/
-call Insertar_Persona("8000085", "caca", "popo", "chichi", "caca2", "popo2", "123123", 123123,123123,"casa","cooreo@ass","CEDULA DE CIUDADANIA", "EMPLEADO");
+
 /*-----------------------------------------------------------------------------------------------------------*/
 
 /*-------------------------------------------------------------------│
@@ -72,7 +72,7 @@ call Insertar_Persona("8000085", "caca", "popo", "chichi", "caca2", "popo2", "12
 │-------------------------------------------------------------------*/																	 
  DELIMITER //
  CREATE PROCEDURE Insertar_Opinion(
- IN Opinion VARCHAR(250),
+ IN Opinion VARCHAR(200),
  IN Num_Documento_per VARCHAR(15)
  )
  BEGIN
@@ -85,7 +85,7 @@ call Insertar_Persona("8000085", "caca", "popo", "chichi", "caca2", "popo2", "12
  DELIMITER ;
 /*             											             │
 │-------------------------------------------------------------------*/
-call Insertar_Opinion("hola bb", "1033815398");
+
 /*-----------------------------------------------------------------------------------------------------------*/
 
 /*-------------------------------------------------------------------│
@@ -93,40 +93,40 @@ call Insertar_Opinion("hola bb", "1033815398");
 │-------------------------------------------------------------------*/
  DELIMITER //
  CREATE PROCEDURE Insertar_Tipo_Doc(
- IN tipo_docMD VARCHAR(45)
+ IN Descripcion_tipo_doc VARCHAR(45)
  )
  BEGIN
 
- INSERT INTO Tipo_Doc 
- VALUES(tipo_docMD,1);
+ INSERT INTO Tipo_Doc (Descripcion_tipo_doc) 
+ VALUES(Descripcion_tipo_doc);
 
  END//
 
  DELIMITER ;
 /*             											             │
 │-------------------------------------------------------------------*/
-call Insertar_Tipo_Doc("popo");
+
 /*-------------------------------------------------------------------│
 │               PROCEDIMIENTO ALMACENADO INGRESAR ROL                │
 │-------------------------------------------------------------------*/
  DELIMITER //
  CREATE PROCEDURE Insertar_ROL(
- IN RolMD VARCHAR(45)
+ IN Descripcion_ROL VARCHAR(20)
  )
  BEGIN
 
- INSERT INTO rol VALUES(RolMD,1);
+ INSERT INTO Rol (Desc_rol) VALUES(Descripcion_ROL);
 
  END//
 
  DELIMITER ;
 /*             											             │
 │-------------------------------------------------------------------*/
-call insertar_rol("cacarol");
+
 /*-------------------------------------------------------------------│
 │         PROCEDIMIENTO ALMACENADO INGRESAR FORMA DE PAGO            │
 │-------------------------------------------------------------------*/
- /*DELIMITER //
+ DELIMITER //
  CREATE PROCEDURE Insertar_Forma_Pago(
  IN Desc_fpago VARCHAR(45)
  )
@@ -146,12 +146,12 @@ call insertar_rol("cacarol");
 │-------------------------------------------------------------------*/																	 
  DELIMITER //
  CREATE PROCEDURE Insertar_Pizzeria(
- IN NIT_Pizzeria BIGINT(20),
+ IN NIT_Pizzeria BIGINT,
  IN Nom_Pizzeria VARCHAR(45),
  IN Dir_Pizzeria VARCHAR(50),
- IN Tel_Pizzeria BIGINT(15),
- IN Cel_pzzeria BIGINT(15),
- IN Logo_pizzeria VARCHAR(70)
+ IN Tel_Pizzeria BIGINT,
+ IN Cel_pzzeria BIGINT,
+ IN Logo_pizzeria VARCHAR(70),
  )
  BEGIN
  
@@ -163,18 +163,18 @@ call insertar_rol("cacarol");
  DELIMITER ;
 /*             											             │
 │-------------------------------------------------------------------*/
-call Insertar_Pizzeria(999,"pizzeriapro","callefalsa123", 555555, 666,"null");
+
 
 /*-------------------------------------------------------------------│
 │               PROCEDIMIENTO ALMACENADO INGRESAR TAMAÑO             │
 │-------------------------------------------------------------------*/
  DELIMITER //
  CREATE PROCEDURE Insertar_Tamaño(
- IN tamañoMD VARCHAR(45)
+ IN Descripcion_tamaño VARCHAR(45)
  )
  BEGIN
 
- INSERT INTO TAMAÑO (tamaño) VALUES (tamañoMD);
+ INSERT INTO TAMAÑO (Desc_tamaño) VALUES (Descripcion_tamaño);
 
  END//
 
@@ -187,18 +187,18 @@ call Insertar_Pizzeria(999,"pizzeriapro","callefalsa123", 555555, 666,"null");
 │-------------------------------------------------------------------*/
  DELIMITER //
  CREATE PROCEDURE Insertar_Tipo_Prod(
- IN Tipo_prodMD VARCHAR(50)
+ IN Desc_tipo_prod VARCHAR(25)
  )
  BEGIN
 
- INSERT INTO Tipo_producto VALUES (tipo_prodMD,1);
+ INSERT INTO Tipo_producto (Desc_tipo_prod) VALUES (Desc_tipo_prod);
 
  END//
 
  DELIMITER ;
 /*             											             │
 │-------------------------------------------------------------------*/
-call Insertar_Tipo_Prod("empanada");
+
 /*-------------------------------------------------------------------│
 │       PROCEDIMIENTO ALMACENADO INGRESAR DOMICILIO AUN NO           │
 │-------------------------------------------------------------------*/																	 
@@ -213,8 +213,8 @@ call Insertar_Tipo_Prod("empanada");
  IN Estado_Domicilio INT,
  IN NIT_Pizzeria BIGINT,
  IN Observacion_Dom VARCHAR(123),
-
-
+ IN Cod_Forma_Pago INT,
+ IN Monto DECIMAL(10,3),
  IN Producto_Cod_producto INT,
  IN Cantidad INT(5),
  IN Valor_subtotal INT 

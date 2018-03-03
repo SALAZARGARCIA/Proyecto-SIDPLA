@@ -1,0 +1,25 @@
+body{
+	background: #212121 url(../img/fondo.jpg);
+	font-family: Helvetica,Verdana,Arial;
+	font-size: 1em;
+}
+
+header,section#contenido,footer{
+	/*background: rgba(250,150,0,0.7);*/
+	margin: 0 auto;
+	max-width: 80%;
+	text-align: center;
+}
+
+section#principal,aside{
+	background: rgba(250,150,0,0.5	); /*color de marcosa de imagenes*/ 
+	border-radius: 0.5em;
+	box-shadow: 0 0 10px 0.5px;
+	display: inline-block;
+	margin: 0 auto;
+	margin-bottom: 0.25em;
+	max-width: 100%;
+	padding: 0.25em;
+	vertical-align: top;
+	width: 75%;
+}

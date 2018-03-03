@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content="WB DataDic" />
-    <meta name="description" content="sidpla2 Data Dictionary." />
-    <title>sidpla2 Data Dictionary</title>
+    <meta name="description" content="sidpla Data Dictionary." />
+    <title>sidpla Data Dictionary</title>
     <style type="text/css">
     table{
         width: 100%;
@@ -51,9 +51,9 @@
 </head>
 <body>
 <div id="title-sect">
-<h1>sidpla2<br> Data Dictionay</h1>
+<h1>sidpla<br> Data Dictionay</h1>
 <p>
-<em>2017-12-07</em>
+<em>2018-02-27</em>
 </p>
 <p class="proj-desc">
 <em></em>
@@ -814,7 +814,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>tamaño_tamaño1</td>
+    <td>tamaño_tamaño</td>
     <td>VARCHAR(50)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
