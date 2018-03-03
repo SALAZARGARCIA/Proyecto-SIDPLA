@@ -6,9 +6,7 @@
  )
  BEGIN
  
- SELECT T1.Cod_Producto, T1.Nom_prod,T1.Desc_prod,T1.Foto_prod, T1.Stok_min,T1.Stok_max,T1.Cantidad_exist,
-  T2.Valor_prod, T2.valor_prod, T4.tamaño, T1.tipo_prod FROM PRODUCTO AS T1 INNER JOIN PRODUCTO_HAS_TAMAÑO AS T2 ON (T1.Cod_Producto=T2.Producto_Cod_Producto)
-  INNER JOIN Tamaño AS T4 ON (T2.tamaño_Tamaño=T4.Tamaño) WHERE T4.estado_tamaño="1";
+ SELECT * FROM PRODUCTO;
  
 
  END//
@@ -17,7 +15,6 @@
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Consulta_Producto;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                      PROCEDIMIENTO ALMACENADO OBTENER PRODUCTO                                                        │
@@ -28,9 +25,7 @@ CALL Consulta_Producto;
  )
  BEGIN
  
-SELECT T1.Cod_Producto, T1.Nom_prod,T1.Desc_prod,T1.Foto_prod, T1.Stok_min,T1.Stok_max,T1.Cantidad_exist,
-  T2.Valor_prod, T2.valor_prod, T4.tamaño, T1.tipo_prod FROM PRODUCTO AS T1 INNER JOIN PRODUCTO_HAS_TAMAÑO AS T2 ON (T1.Cod_Producto=T2.Producto_Cod_Producto)
-  INNER JOIN Tamaño AS T4 ON (T2.tamaño_Tamaño=T4.Tamaño) WHERE T1.Cod_Producto=Cod_ProductoMD and T4.estado_tamaño="1";
+SELECT * FROM PRODUCTO; WHERE Cod_Producto=Cod_ProductoMD;
  
 
  END//
@@ -39,7 +34,6 @@ SELECT T1.Cod_Producto, T1.Nom_prod,T1.Desc_prod,T1.Foto_prod, T1.Stok_min,T1.St
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Obtener_Producto();
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                      PROCEDIMIENTO ALMACENADO LISTAR PERSONA                                                            │
@@ -48,10 +42,7 @@ CALL Obtener_Producto();
  CREATE PROCEDURE Listar_Persona()
  BEGIN
  
- SELECT T1.Num_Documento_per, T2.tipo_doc,T3.rol,T4.Estado_r_has_p,T1.Primer_Nombre_per,T1.Segundo_Nombre_per,T1.Primer_Apellido_per,
- T1.Segundo_Apellido_per,T1.Usuario_login,T1.Pass_login, T1.Tel_per, T1.Cel_per, T1.Direc_per, T1.Correo_per FROM PERSONA AS T1 INNER JOIN Tipo_Doc AS T2
- ON (T1.tipo_doc=T2.tipo_doc) INNER JOIN ROL_has_Persona AS T4 ON (T1.Num_Documento_per=T4.Persona_Num_Documento_per) INNER JOIN ROL AS T3 
- ON (T3.rol=T4.Rol_rol);
+ SELECT * FROM PERSONA;
  
 
  END//
@@ -59,7 +50,7 @@ CALL Obtener_Producto();
  DELIMITER ;
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
-call Listar_Persona;
+
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                      PROCEDIMIENTO ALMACENADO OBTENER PERSONA                                                           │
 │--------------------------------------------------------------------------------------------------------------------------------------------------------*/																	 
@@ -69,10 +60,8 @@ call Listar_Persona;
  )
  BEGIN
  
- SELECT T1.Num_Documento_per, T2.tipo_doc,T3.rol,T4.Estado_r_has_p,T1.Primer_Nombre_per,T1.Segundo_Nombre_per,T1.Primer_Apellido_per,
- T1.Segundo_Apellido_per,T1.Usuario_login,T1.Pass_login, T1.Tel_per, T1.Cel_per, T1.Direc_per, T1.Correo_per FROM PERSONA AS T1 INNER JOIN Tipo_Doc AS T2
- ON (T1.tipo_doc=T2.tipo_doc) INNER JOIN ROL_has_Persona AS T4 ON (T1.Num_Documento_per=T4.Persona_Num_Documento_per) INNER JOIN ROL AS T3 
- ON (T3.rol=T4.Rol_rol) WHERE T1.Num_Documento_per=Num_Documento_perMD;
+ SELECT * FROM persona WHERE Num_Documento_per=Num_Documento_perMD;
+
  
 
  END//
@@ -80,7 +69,6 @@ call Listar_Persona;
  DELIMITER ;
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
-call Obtener_Persona("1033815398");
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                      PROCEDIMIENTO ALMACENADO CONSULTAR OPINIONES                                                        │
@@ -92,7 +80,7 @@ DELIMITER //
  BEGIN
 
  SELECT T2.Cod_Opinion,T2.Opinion, T1.Num_Documento_per, T1.Primer_Nombre_per, T1.Primer_Apellido_per, T1.Correo_per FROM Opinion AS T2 INNER JOIN PERSONA 
- AS T1 ON (T2.Num_Documento_per=T1.Num_Documento_per); 
+ AS T1 ON (T2.persona_Num_Documento_per=T1.Num_Documento_per and T2.persona_tipo_doc=T1.tipo_doc); 
 
  END//
  
@@ -101,7 +89,6 @@ DELIMITER //
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Consulta_Opinion;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                      PROCEDIMIENTO ALMACENADO OBTENER OPINIONES                                                        │
@@ -114,8 +101,8 @@ IN Num_Documento_perMD VARCHAR(15)
  
  BEGIN
 
- SELECT T2.Cod_Opinion,T2.Opinion, T1.Num_Documento_per, T1.Primer_Nombre_per, T1.Primer_Apellido_per, T1.Correo_per FROM Opinion AS T2 INNER JOIN PERSONA 
- AS T1 ON (T2.Num_Documento_per=T1.Num_Documento_per) WHERE T1.Num_Documento_per=Num_Documento_perMD; 
+SELECT T2.Cod_Opinion,T2.Opinion, T1.Num_Documento_per, T1.Primer_Nombre_per, T1.Primer_Apellido_per, T1.Correo_per FROM Opinion AS T2 INNER JOIN PERSONA 
+ AS T1 ON (T2.persona_Num_Documento_per=T1.Num_Documento_per and T2.persona_tipo_doc=T1.tipo_doc) WHERE T1.Num_Documento_per=Num_Documento_perMD; 
 
  END//
  
@@ -124,7 +111,6 @@ IN Num_Documento_perMD VARCHAR(15)
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Obtener_Opinion("1033815398");
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                PROCEDIMIENTO ALMACENADO CONSULTAR TIPOS DE DOCUMENTO                                                    │
@@ -144,7 +130,6 @@ DELIMITER //
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Consulta_Tipo_Doc;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                PROCEDIMIENTO ALMACENADO CONSULTAR ROL                                                  │
@@ -164,27 +149,6 @@ DELIMITER //
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Consulta_Rol;
-
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------│
-│                                                PROCEDIMIENTO ALMACENADO CONSULTAR FORMAS DE PAGO                                                        │
-│--------------------------------------------------------------------------------------------------------------------------------------------------------*/	
-
-/*DELIMITER //
- CREATE PROCEDURE Consulta_Forma_Pago()
- 
- BEGIN
-
- SELECT * FROM Forma_Pago; 
-
- END//
- 
- DELIMITER ;
-
-/*             											                                                                                                 │
-│-------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-CALL Consulta_Forma_Pago;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                               PROCEDIMIENTO ALMACENADO CONSULTAR PIZZERIAS                                                              │
@@ -204,7 +168,6 @@ DELIMITER //
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Consulta_Pizzeria;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                PROCEDIMIENTO ALMACENADO CONSULTAR TAMAÑOS                                                               │
@@ -224,7 +187,6 @@ DELIMITER //
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Consulta_Tamaños;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                            PROCEDIMIENTO ALMACENADO CONSULTAR TIPOS DE PRODUCTO                                                         │
@@ -244,7 +206,6 @@ DELIMITER //
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-CALL Consulta_Tipo_producto;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------│
 │                                                   PROCEDIMIENTO ALMACENADO CONSULTAR DOMICILIO                                                          │
@@ -264,4 +225,21 @@ DELIMITER //
 
 /*             											                                                                                                 │
 │-------------------------------------------------------------------------------------------------------------------------------------------------------*/
-call Consulta_Domicilio;
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------│
+│                                                PROCEDIMIENTO ALMACENADO CONSULTAR FORMAS DE PAGO                                                        │
+│--------------------------------------------------------------------------------------------------------------------------------------------------------*/	
+
+/*DELIMITER //
+ CREATE PROCEDURE Consulta_Forma_Pago()
+ 
+ BEGIN
+
+ SELECT * FROM Forma_Pago; 
+
+ END//
+ 
+ DELIMITER ;
+
+/*             											                                                                                                 │
+│-------------------------------------------------------------------------------------------------------------------------------------------------------*/

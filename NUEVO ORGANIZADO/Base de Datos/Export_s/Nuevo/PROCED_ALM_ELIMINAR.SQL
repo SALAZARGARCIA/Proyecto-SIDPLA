@@ -9,9 +9,6 @@
  
  DELETE FROM PRODUCTO WHERE Cod_Producto=Cod_ProductoDL;
 
-
- DELETE FROM PRODUCTO_HAS_TAMAÑO WHERE Producto_Cod_Producto=Cod_ProductoDL;
-
  END//
  
  DELIMITER ;
@@ -29,11 +26,12 @@
  
  DELETE FROM PERSONA WHERE Num_Documento_per=OLDNum_Documento_per;
 
-
- DELETE FROM ROL_HAS_PERSONA WHERE Persona_Num_Documento_per=OLDNum_Documento_per;
-
  END//
  
  DELIMITER ;
 /*             											             │
 │-------------------------------------------------------------------*/
+
+/* 
+NO SE HACEN MAS PROCEDIMIENTOS PARA ELIMINAR, YA QUE EN ALGUNAS 
+TABLAS SE ACTUALIZA EL ESTADO Y EN LAS OTRAS NO ES CONVENIENTE*/
