@@ -22,6 +22,8 @@ $correo=$_REQUEST['correo'];
 $objeto= new clases; // Creación de un objeto de la clase clases del archivo clases.php
 $res=$objeto->verifica($usu); //Llamada mediante el objeto creado del método “verifica” con el parámetro usuario
 //el resultado del método se asigna a la variable $res
+echo ("Hasta aqui");
+
 if($res->num_rows == 1) //Verifica cuantos registro hay en el valor retornado $res (num_rows)
 {
 header("location:../vista/registro2.php?dato1=no"); //si es = a 1, el usuario ya existe

@@ -9,7 +9,9 @@ include "php/conection.php";
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </head>
 <body>
 <div class="container">
@@ -22,7 +24,7 @@ include "php/conection.php";
 /*
 * Esta es la consula para obtener todos los productos de la base de datos.
 */
-$products = $con->query("select * from product");
+$products = $con->query("select * from producto");
 if(isset($_SESSION["cart"]) && !empty($_SESSION["cart"])):
 ?>
 <section id="contenido">
@@ -30,9 +32,10 @@ if(isset($_SESSION["cart"]) && !empty($_SESSION["cart"])):
 <table class="table table-bordered">
 <thead>
 	<th>Cantidad</th>
-	<th>Producto</th>
-	<th>Foto</th>
+	<th>Nombre</th>
 	<th>Descripcion</th>
+	<th>Foto</th>
+	<th>Tamaño</th>
 	<th>Precio Unitario</th>
 	<th>Total</th>
 	<th></th>
@@ -42,28 +45,27 @@ if(isset($_SESSION["cart"]) && !empty($_SESSION["cart"])):
 * Apartir de aqui hacemos el recorrido de los productos obtenidos y los reflejamos en una tabla.
 */
 foreach($_SESSION["cart"] as $c):
-$products = $con->query("select * from product where id=$c[product_id]");
+$products = $con->query("select * from producto where Cod_producto=$c[product_id]");
 $r = $products->fetch_object();
 	?>
 <tr>
 <th><?php echo $c["q"];?></th>
-	<td><?php echo $r->name;?></td>
-	<td>Foto</td>
-	<td>Descripcion del producto</td>
-	<td>$ <?php echo $r->price; ?></td>
-	<td>$ <?php echo $c["q"]*$r->price; ?></td>
+	<td><?php echo $r->Nom_prod;?></td>
+	<td><?php echo $r->Desc_prod;?></td>
+	<td><?php echo $r->Foto_prod;?></td>
+	<td><?php echo $r->tamaño_tamaño;?></td>
+	<td>$ <?php echo $r->Valor_unitario; ?></td>
+	<td>$ <?php echo $c["q"]*$r->Valor_unitario; ?></td>
 	<td style="width:260px;">
 	<?php
 	$found = false;
-	foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->id){ $found=true; break; }}
+	foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->Cod_producto){ $found=true; break; }}
 	?>
 		<a href="php/delfromcart.php?id=<?php echo $c["product_id"];?>" class="btn btn-danger">Eliminar</a>
 	</td>
 </tr>
 <?php endforeach; ?>
 </table>
-</section>
-</section>
 
 <form class="form-horizontal" method="post" action="./php/process.php">
   <div class="form-group">
@@ -84,7 +86,6 @@ $r = $products->fetch_object();
 	<p class="alert alert-warning">El carrito esta vacio.</p>
 <?php endif;?>
 <br><br><hr>
-<p>Powered by <a href="http://evilnapsis.com/" target="_blank">Evilnapsis</a></p>
 
 		</div>
 	</div>

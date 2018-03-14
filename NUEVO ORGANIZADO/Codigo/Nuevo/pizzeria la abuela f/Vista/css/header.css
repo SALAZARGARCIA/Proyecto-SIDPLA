@@ -12,7 +12,7 @@
 .sobre {
  position:absolute;
  top:120px;
- left:480px;
+ left:220px;
  border:none;
 }
 #headerie{
@@ -21,7 +21,7 @@ list-style-type: none;
 
  position:absolute;
  top:60px;
- left:1145px;
+ left:880px;
  border:none;
  
 
@@ -31,16 +31,23 @@ font-family:ArtBrush;
 	
 }
 
+div#contenedor {
+	margin: 0 auto;
+  width: 1020px;
+}
+
 #navegador{
  list-style-type: none;
  text-align: center;
 
  position:absolute;
  top:125px;
- left:510px;
+ left:245px;
  border:none;
 
 }
+
+
 
 #navegador li{
    display: inline;
@@ -59,5 +66,78 @@ font-family:ArtBrush;
 #navegador li a:hover{
    
    color: #ffffff;
-   background-color:#999;
+   
 }
+
+
+
+
+
+#navegadorg{
+
+  font-size:20px;
+    margin:auto;
+	width:650px;
+	font-family:ArtBrush;
+}
+ul, ol {
+	
+	list-style:none;
+}
+
+#navegadorg{
+
+ position:absolute;
+ top:120px;
+ left:245px;
+ border:none;
+
+}
+
+
+.navegadorg1 li a {
+	
+	
+	color:#fff;
+	text-decoration:none;
+	padding:10px 15px;
+	display:block;
+}
+.navegadorg1 li a:hover{
+	
+	background-color:#FA5C5C;
+	
+}
+.navegadorg1 > li {
+	float:left;
+}
+
+
+
+.navegadorg1 li ul{
+	background-color:red;
+	display:none;
+	position:absolute;
+	min-width:140apx;
+}
+
+.navegadorg1 li:hover > ul {
+	
+	display:block;
+}
+
+.navegadorg1 li ul li {
+	
+	position:relative;
+	
+	
+}
+
+.navegadorg1 li ul li ul{
+	
+	right:-140px;
+	top:0;
+	
+}
+
+

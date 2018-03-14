@@ -12,24 +12,43 @@
 		include("menugerente.php");
 		?>
 	</header>
-    
-	<section id="contenido">
-		<section id="principal">
-			<article id="slider">
+    <br>
+	<br>
+<center>
+<table class="tdgerente">
+<tr>
+
+								<td class="tdgerente1">
+								<a href="Opiniones.php" > <img src="../img/LogoIngresos.jpg" ><br><h1>...</h1></a>
+						
+								</td>
+								<td class="tdgerente1">
+									<a href="Opiniones.php"> <img src="../img/LogoProductos.jpg"  ><br><h1>...</h1></a>
+								</td>
+								<td class="tdgerente1">
+								<a href="Opiniones.php"> <img src="../img/LogoPersona.jpg" ><br><h1>...</h1></a>
+								</td>	
+
+							
+								
+							
+		
+								
+							
 			
 			
-				<div class="flexslider">
-					<ul class="slides">
-						<li>
-						</li>
-					</ul>
-				</div>
+		
 				
-			</article>
-			
-		</section>
-		
-		
+				
+				
+
+</td>
+
+</tr>
+</table>
+</center>
+		<br>
+		<br	>
 	<footer>
 	 pie de pagina
 	</footer>

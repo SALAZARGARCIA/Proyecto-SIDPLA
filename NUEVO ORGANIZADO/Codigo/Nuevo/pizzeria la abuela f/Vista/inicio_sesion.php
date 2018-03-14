@@ -16,25 +16,16 @@
 
 <br><br><br>
 
-<div class="container">
- <div class="row">
-
- <div class="col-sm-10 col-md-10"> <!--Columna de 10 espacios para contenido central e imágenes -->
-<div class="panel panel-default">
-<div class="panel-heading">
-</div>
-<!-- Contenedor ejercicio-->
-<div class="row">
-<div class="col-sm-12 col-md-12">
-
-
-<section id="contenido">
-		<section id="hola">
+<table class ="reg">
+<tr>
+<td>
+<br>
+ 
 		<CENTER>
 
 <form name="areat" action="../controlador/controler1.php" method="post">
-<table class="" style="" align="center">
-<tr><td style="color:red; font-family:Tahoma, Geneva, sans-serif" align="center">INICIO DE SESION</td></tr>
+<table class="popo" style="" align="center">
+<tr><td style=" font-family: ArtBrush, Geneva, sans-serif" align="center">INICIO DE SESION</td></tr>
 <tr><td style="padding:5px"></td></tr><tr><td><div class="input-group input-group-sm">
 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 <input type="text" name="usu" class="form-control" placeholder="Nombre de Usuario" >
@@ -50,13 +41,16 @@
 <tr><td style="color:#F00"><?php if(isset($_REQUEST['error'])) { echo "Usuario o contraseña incorrecta";}?></td></tr>
 </table>
 </form>
+
+
+</td>
+</tr>
+</table>
+
+
 <CENTER>
 </SECTION>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 
 
 

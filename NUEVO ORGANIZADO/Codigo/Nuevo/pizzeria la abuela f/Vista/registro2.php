@@ -3,6 +3,8 @@
 <head>
 <?php
 		include("llamadoestilos.php");
+		include("../modelo/database.php");
+		$con = database::conectar();
 		?>
 </head> 
 
@@ -16,22 +18,34 @@
 
 <br><br><br>
 
-<div id="letras">
-
-	<section id="contenido">
-		<section id="hola">
-			<article id="slider">
-<p align="center">Registro</p>
+<table class ="reg">
+<tr>
+<td>
 <center>
+<br>
+<br>
+<p align="center">Registro</p>
+<br>
+<br>
+
+
 <form name="areat" action="../controlador/controler1.php" method="post">
 
-<table class="" style="" align="center" width="400">
+<table class="hola" style="" align="center" width="400">
 <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Numero de Documento</h4></td><td>
 <input class="form-control input-sm" type="text" name="doc" class="form-control" placeholder="Numero de Documento" required></td></tr>
 <tr><td style="padding:2px"></td></tr>
 
 <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Tipo Documento</h4></td><td>
-<input class="form-control input-sm" type="text" name="tdoc" class="form-control" placeholder="Tipo Documento" required></td></tr>
+<select class="form-control" name="tdoc">
+		<?php
+			foreach ($con->query('SELECT * from tipo_doc where estado_tipo_doc=1') as $row)
+			{
+				echo '<option value="' . $row['tipo_doc'] . '">' . $row['tipo_doc'] . '</option>';;
+			}
+		?>
+		</select>
+<!--<input class="form-control input-sm" type="text" name="tdoc" class="form-control" placeholder="Tipo Documento" required></td></tr>-->
 <tr><td style="padding:2px"></td></tr>
 
 <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Nombre</h4></td><td>
@@ -95,6 +109,10 @@ class='alert alert-warning'>"."Este Usuario Ya Se Encuentra Registrado, Intenta 
 </form>
 </div>
 </center>
+
+</td>
+</tr>
+</table>
 
 </div>
 </body>

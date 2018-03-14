@@ -21,10 +21,12 @@ $ruta="";
 </head> 
 
 <body>
+<div id="contenedor">
 
 <div id="header">
 <img class="sobre" src="rojo.png" width="740px" height="36px"/><img src="principal.png" vspace="16" width="1000px" height="180px"/>
 <div id="navegador">
+
 
 				<li><a href="index.php">Inicio</a></li>
 				<li><a href="acerca.php">Acerca</a></li>
@@ -43,5 +45,8 @@ $ruta="";
 				if(isset($_SESSION["session"])){ echo $_SESSION["session"];} else{echo "Registro";}?></a></li>
 </div>
 				</div>
+				
+				
+</div>
 </body>
 </html>
