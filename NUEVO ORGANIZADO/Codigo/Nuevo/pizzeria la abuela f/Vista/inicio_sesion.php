@@ -23,20 +23,26 @@
  
 		<CENTER>
 
-<form name="areat" action="../controlador/controler1.php" method="post">
-<table class="popo" style="" align="center">
-<tr><td style=" font-family: ArtBrush, Geneva, sans-serif" align="center">INICIO DE SESION</td></tr>
-<tr><td style="padding:5px"></td></tr><tr><td><div class="input-group input-group-sm">
+<form  c name="areat" action="../controlador/controler1.php" method="post">
+
+<table class="hola" style="" align="center" width="400">
+<P>INICIO DE SESION</P><br><br>
+
+
+
+<tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"> <h4>Nombre de Usuario</h4></td><td>
+<div class="input-group input-group-sm">
 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 <input type="text" name="usu" class="form-control" placeholder="Nombre de Usuario" >
 </div></td></tr>
-<tr><td style="padding:2px"></td></tr>
-<tr><td><div class="input-group input-group-sm">
+
+<tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Contraseña</h4></td>
+<td><div class="input-group input-group-sm">
 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 <input type="password" name="pass" class="form-control" placeholder="Contraseña" >
 </div></td></tr>
 <tr><td style="padding:4px"></td></tr>
-<tr><td align="center"><input type="submit" name="enviar" class="" width="300px"></td></td>
+<tr><td align="center"><input type="submit" name="enviar" class="" width="300px"></td></tr>
 <tr><td style="padding:4px"></td></tr>
 <tr><td style="color:#F00"><?php if(isset($_REQUEST['error'])) { echo "Usuario o contraseña incorrecta";}?></td></tr>
 </table>

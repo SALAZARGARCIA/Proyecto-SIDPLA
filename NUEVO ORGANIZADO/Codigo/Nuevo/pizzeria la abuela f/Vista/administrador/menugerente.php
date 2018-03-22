@@ -33,8 +33,12 @@ $ruta="";
 <div id="navegadorg">
 <ul class="navegadorg1">
 
+				<li><a href="productos.php">Listas</a>
+				<ul>
 				<li><a href="productos.php">Productos</a></li>
 				<li><a href="Personas.php">Personas</a></li>
+				</ul>
+				</li>
 				<li><a href="Pizzeria.php">Pizzeria</a></li>
 				<li><a href="Tamanio.php">Tamaño</a></li>
                 <li><a href="Opiniones.php">Opiniones</a></li>
@@ -42,7 +46,8 @@ $ruta="";
 				
 				
 				<li><a href="administrador.php">mas</a>	
-				<ul>			
+				<ul>
+				<li><a  href="Nuevo registro.php?action=ver&m=1">Nuevo producto</a></li>
 				<li><a href="Tipo productos.php">Tipo productos</a></li>
 				<li><a href="Verdomicilios.php">Ver domicilios</a>
 				<ul>
@@ -58,8 +63,9 @@ $ruta="";
 </div>
 <div id="headerie">
 
-				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../controlador/salir.php';} else {
-				echo $ruta.'inicio_sesion.php';}?>"><span class="glyphicon glyphicon-log-out"></span> <?php
+				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../../controlador/salir.php';} else {
+				echo $ruta.'inicio_sesion.php';}?>">
+				<?php
 				if(isset($_SESSION["session"])){ echo "Salir";} else{echo "Ingresar";}?></a></li>
 				
 				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../controlador/salir.php';} else {

@@ -17,7 +17,8 @@ $ruta="";
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<link rel="stylesheet" href="css/header.css" />
+	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet"href="fonts/style.css">
 </head> 
 
 <body>
@@ -28,16 +29,16 @@ $ruta="";
 <div id="navegador">
 
 
-				<li><a href="index.php">Inicio</a></li>
+				<li><span class="icon-home"><a href="index.php">Inicio</a></li>
 				<li><a href="acerca.php">Acerca</a></li>
 				<li><a href="productos.php">Productos</a></li>
 				<li><a href="contactos.php">Contactos</a></li>
-
+				<li><a href="contactos.php"><span class="icon-shopping-basket"></a></li>
 </div>
 <div id="headerie">
 
 				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../controlador/salir.php';} else {
-				echo $ruta.'inicio_sesion.php';}?>"><span class="glyphicon glyphicon-log-out"></span> <?php
+				echo $ruta.'inicio_sesion.php';}?>"></span> <?php
 				if(isset($_SESSION["session"])){ echo "Salir";} else{echo "Ingresar";}?></a></li>
 				
 				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../controlador/salir.php';} else {

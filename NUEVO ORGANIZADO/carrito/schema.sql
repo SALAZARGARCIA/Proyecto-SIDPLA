@@ -20,9 +20,12 @@ create table cart(
 );
 
 create table cart_product (
-	id int not null auto_increment primary key,
+	id int not null auto_increment,
 	product_id int not null,
 	q float,
-	cart_id int not null
+	cart_id int not null,
+	PRIMARY KEY (product_id,id,cart_id),
+	CONSTRAINT FK_product_id FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE CASCADE ON UPDATE CASCADE, 
+	CONSTRAINT FK_cart_id FOREIGN KEY (cart_id) REFERENCES cart (id) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
