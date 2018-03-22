@@ -20,21 +20,26 @@ include "../MODELO/conection.php";
 		include("header.php");
 		?>
 	</header>
+	<br>
 	
-	<table class="reg1">
+	
+	<table class="reg">
 <tr>
 <td>
-<center>
-<center>
+
+
 							<section id="principal">
 			<article id="slider">
 				<div class="flexslider">
-				<CENTER>
+				
 					<ul class="slides">
 						<li>
+							<div id="div_form">
+							
+		<center>			
 			<h1>Carrito</h1>
+		<table class="listar1" >	
 			
-			<br><br>
 <?php
 /*
 * Esta es la consula para obtener todos los productos de la base de datos.
@@ -45,9 +50,8 @@ if(isset($_SESSION["cart"]) && !empty($_SESSION["cart"])):
 <section id="contenido">
 <section id="principal">
 
-
-<table class="listar">
 <thead>
+<tr>
 	<th>Cantidad</th>
 	<th>Nombre</th>
 	<th>Descripcion</th>
@@ -56,6 +60,7 @@ if(isset($_SESSION["cart"]) && !empty($_SESSION["cart"])):
 	<th>Precio Unitario</th>
 	<th>Total</th>
 	<th></th>
+	</tr>
 </thead>
 <?php 
 /*
@@ -65,8 +70,9 @@ foreach($_SESSION["cart"] as $c):
 $products = $con->query("select * from producto where Cod_producto=$c[product_id]");
 $r = $products->fetch_object();
 	?>
-<center>
+<tr>
 <th><?php echo $c["q"];?></th>
+
 	<td><?php echo $r->Nom_prod;?></td>
 	<td><?php echo $r->Desc_prod;?></td>
 	<td><?php echo $r->Foto_prod;?></td>
@@ -79,9 +85,12 @@ $r = $products->fetch_object();
 	foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->Cod_producto){ $found=true; break; }}
 	?>
 		<a href="../Controlador/delfromcart.php?id=<?php echo $c["product_id"];?>" class="btn btn-danger">Eliminar</a>
-	</td>
-</tr>
+	</td><br>
+
+
 <?php endforeach; ?>
+</td>
+</tr>
 </table>
 
 <form class="form-horizontal" method="post" action="../Controlador/controler1.php">
@@ -99,18 +108,16 @@ $r = $products->fetch_object();
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" name="registrarVenta" class="btn btn-primary">Procesar Venta</button>
+      <button type="submit" name="registrarVenta" class="comprar" >Confirmar compra</button>
     </div>
   </div>
 </form>
 
 
-
-<?php else:?>
+<?php else:?><br>
 	<p class="alert alert-warning">El carrito esta vacio.</p>
 	<br><br><hr>
 <?php endif;?>
-
 
 
 

@@ -29,7 +29,22 @@ if(!empty($_POST)){
 				$_SESSION["cart"] = $cart;
 			}
 		}
-		print "<script>window.location='../Vista/productos.php';</script>";
+		if($puto==pizza){
+			print "<script>window.location='../Vista/productosPizza.php';</script>";
+			}
+		else if($puto==bebida){
+			print "<script>window.location='../Vista/productosBebida.php';</script>";
+			}
+		else if($puto==acompañante){
+			print "<script>window.location='../Vista/productosAcompañante.php';</script>";
+			}
+		else if($puto==ensalada){
+			print "<script>window.location='../Vista/productosEnsalada.php';</script>";
+			}
+		else if($puto==pasta){
+			print "<script>window.location='../Vista/productosPasta.php';</script>";
+			}
+		
 	}
 }
 

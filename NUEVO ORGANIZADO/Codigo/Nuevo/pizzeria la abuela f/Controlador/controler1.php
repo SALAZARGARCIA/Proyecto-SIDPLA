@@ -51,7 +51,7 @@ unset($_SESSION["cart"]);
 }
 print "<script>alert('Venta procesada exitosamente');window.location='../Vista/productos.php';</script>";
 }else{
-	print "<script>alert('Regístrate or inicia sesión bebe.');window.location='../Vista/inicio_sesion.php';</script>";
+	print "<script>alert('Regístrate o inicia sesión.');window.location='../Vista/inicio_sesion.php';</script>";
 }
 }
 
@@ -76,6 +76,7 @@ $correo=$_REQUEST['correo'];
 $objeto= new clases; // Creación de un objeto de la clase clases del archivo clases.php
 $res=$objeto->verifica($usu); //Llamada mediante el objeto creado del método “verifica” con el parámetro usuario
 //el resultado del método se asigna a la variable $res
+echo ("Hasta aqui");
 
 if($res->num_rows == 1) //Verifica cuantos registro hay en el valor retornado $res (num_rows)
 {
@@ -111,7 +112,6 @@ session_start();
 $_SESSION["session"]= $actor["Primer_Nombre_per"]." ".$actor["Primer_Apellido_per"];
 $_SESSION["idp"]= $actor["Num_Documento_per"];
 $_SESSION["tdp"]= $actor["tipo_doc"];
-$_SESSION["rolp"]= $actor["rol_Rol"];
 if($actor["rol_Rol"]=="CLIENTE")
 {
 header("location:../VISTA/index.php"); //Redirige a página de usuario
@@ -122,7 +122,7 @@ header("location:../Vista/administrador/administrador.php"); //Redirige a págin
 }
 else if($actor["rol_Rol"]=="EMPLEADO")
 {
-header("location:../vista/empleado/empleado.php");
+echo "En construccion";
 }
 }
 else // Si el password no es correcto

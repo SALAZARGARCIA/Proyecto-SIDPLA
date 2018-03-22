@@ -10,10 +10,13 @@ $db = database::conectar();
 if(isset($_REQUEST['action'])){
 	switch ($_REQUEST['action']) {
 		case 'actualizar':
+		$Ruta_imagen = "MEDIA/";
+        $Ruta_imagen = $Ruta_imagen . basename(  $_FILES['Foto_prod']['name']);
+        move_uploaded_file( $_FILES['Foto_prod']['tmp_name'], $Ruta_imagen);
 			$producto->__SET('Cod_producto',	 $_REQUEST['Cod_producto']);
 			$producto->__SET('Nom_prod', 		 $_REQUEST['Nom_prod']);
 			$producto->__SET('Desc_prod', 		 $_REQUEST['Desc_prod']);
-			$producto->__SET('Foto_prod', 		 $_REQUEST['Foto_prod']);
+			$producto->__SET('Foto_prod', 		 $_FILES['Foto_prod']['name']);
 			$producto->__SET('Stok_min', 		 $_REQUEST['Stok_min']);
 			$producto->__SET('Stok_max', 		 $_REQUEST['Stok_max']);
 			$producto->__SET('Cantidad_exist',   $_REQUEST['Cantidad_exist']);
@@ -27,10 +30,13 @@ if(isset($_REQUEST['action'])){
 			break;
 
 		case 'registrar':
+		$Ruta_imagen = "MEDIA/";
+        $Ruta_imagen = $Ruta_imagen . basename( $_FILES['Foto_prod']['name']);
+        move_uploaded_file($_FILES['Foto_prod']['tmp_name'], $Ruta_imagen);
 			$producto->__SET('Cod_producto',	 $_REQUEST['Cod_producto']);
 			$producto->__SET('Nom_prod', 		 $_REQUEST['Nom_prod']);
 			$producto->__SET('Desc_prod', 		 $_REQUEST['Desc_prod']);
-			$producto->__SET('Foto_prod', 		 $_REQUEST['Foto_prod']);
+			$producto->__SET('Foto_prod', 		 $_FILES['Foto_prod']['name']);
 			$producto->__SET('Stok_min', 		 $_REQUEST['Stok_min']);
 			$producto->__SET('Stok_max', 		 $_REQUEST['Stok_max']);
 			$producto->__SET('Cantidad_exist',   $_REQUEST['Cantidad_exist']);
@@ -97,7 +103,7 @@ if(isset($_REQUEST['action'])){
 <div id="div_form">
 <?php if( !empty($_GET['m']) && !empty($_GET['action']) ){ ?>
 
-<form action="#" method="post">
+<form enctype="multipart/form-data" action="#" method="post">
 
 	<br><br><label for="Cod_producto">Codigo</label>
 	<input type="text" name="Cod_producto" placeholder="Codigo Producto" required>
@@ -109,7 +115,7 @@ if(isset($_REQUEST['action'])){
 	<input type="text" name="Desc_prod" placeholder="Descripcion Producto" required>
 
 	<br><br><label for="Foto_prod">Foto</label>
-	<input type="text" name="Foto_prod" placeholder="Foto Producto" required>
+	<input type="file" name="Foto_prod" placeholder="Foto Producto" required>
 
 	<br><br><label for="Stok_min">Stok Min</label>
 	<input type="text" name="Stok_min" placeholder="Stok Min" required>
@@ -176,7 +182,7 @@ if(isset($_REQUEST['action'])){
 <input type="text" name="Desc_prod" value="<?php echo $producto->__GET('Desc_prod'); ?>" placeholder="Descripcion" required>
 
 <br><br><label for="Foto_prod">Foto</label>
-<input type="text" name="Foto_prod" value="<?php echo $producto->__GET('Foto_prod'); ?>" placeholder="Foto" required>
+<input type="file" name="Foto_prod" value="<?php echo $producto->__GET('Foto_prod'); ?>" placeholder="Foto" required>
 
 <?php if($producto->__GET('tipo_producto_tipo_prod') == 'BEBIDA'){ ?>
 <br><br><label for="Stok_min">Stok Min</label>
@@ -249,7 +255,7 @@ if($query->rowCount()>0):?>
 		<td><?php echo $r->__GET('Cod_producto'); ?></td>
 		<td><?php echo $r->__GET('Nom_prod'); ?></td>
 		<td><?php echo $r->__GET('Desc_prod'); ?></td>
-		<td><?php echo $r->__GET('Foto_prod'); ?></td>
+		<td><?php echo "<img src='MEDIA/".$r->__GET('Foto_prod')."'>"; ?></td>
 		<td><?php echo $r->__GET('Stok_min'); ?></td>
 		<td><?php echo $r->__GET('Stok_max'); ?></td>
 		<td><?php echo $r->__GET('Cantidad_exist'); ?></td>

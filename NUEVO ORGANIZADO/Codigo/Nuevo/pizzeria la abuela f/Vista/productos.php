@@ -17,44 +17,45 @@
 		?>
 	</header>
 	
-	<table class="reg">
+	<table class="reg1" >
 <tr>
 <td>
 <center>
 
 			<h1>Productos</h1>
 			
-			<br>
+<table class="tmenu1" ><tr><td>			<br>
 <?php
 /*
 * Esta es la consula para obtener todos los productos de la base de datos.
 */
 $products = $con->query("select * from producto");
 ?>
-<table class="listar">
+
 <?php 
 /*
 * Apartir de aqui hacemos el recorrido de los productos obtenidos y los reflejamos en una tabla.
 */
+$x=0;
 while($r=$products->fetch_object()):?>
 
-	<table class="tmenu" ><td>
-	<center>
-	
-	<tr><td><?php echo $r->Nom_prod;?></td></tr>
-	<tr><td><img src="<?php echo $r->Foto_prod;?>" width="190px" height="120px"> </td></tr>
-	<tr><td><?php echo $r->Desc_prod;?></td></tr>
-<tr><td><?php echo $r->tamaño_tamaño;?></td></tr>
-	<tr><td>$ <?php echo $r->Valor_unitario; ?></td></tr>
-	<tr>
 	<td>
+
+	
+	<?php echo $r->Nom_prod;?><br>
+	<img src="administrador/MEDIA/<?php echo $r->Foto_prod;?>" width="190px" height="120px"> 
+	
+<?php echo $r->tamaño_tamaño;?><br>
+	$ <?php echo $r->Valor_unitario; ?><br>
+	
+	
 	<?php
 	$found = false;
 
 	if(isset($_SESSION["cart"])){ foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->Cod_producto){ $found=true; break; }}}
 	?>
-	<?php if($found):?>
-		<a href="cart.php" class="btn btn-info">Agregado</a>
+	<?php if($found):?><br>
+		<a href="cart.php" class="comprar">Agregado</a>
 	
 	<?php else:?>
 	<form class="form-inline" method="post" action="../Controlador/addtocart.php">
@@ -62,27 +63,35 @@ while($r=$products->fetch_object()):?>
 	  <div class="form-group">
 	    <input type="number" name="q" value="1" style="width:100px;" min="1" class="form-control" placeholder="Cantidad">
 	  </div>
-	  <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+	  <button type="submit" class="comprar">Agregar al carrito</button>
 	</form>	
-	<?php endif; ?>
-	</td>
-	</tr>	
+	
+	
+	
+	<?php endif; 
+	$x+=1;
+	if($x==4){
+		echo "<tr><td>";
+		
+		
+		$x=0;
+	}
+	
+	?>
 
-<?php endwhile; ?></table>
-</table>
+<?php endwhile; ?></td> </tr></table>
+	
 
 		</div>
 	</div>
 </div>
-
+</td>
+</tr>
+</table>
 			
 		</section>
 		
-	</section>
-	</center>
-	</td>
-	</tr>
-	</table>
+
 	
 
 	<footer>
