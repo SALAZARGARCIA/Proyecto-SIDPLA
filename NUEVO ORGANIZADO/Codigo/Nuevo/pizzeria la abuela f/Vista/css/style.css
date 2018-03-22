@@ -145,6 +145,22 @@ border: 0px solid #000000;
   
 }
 
+.tmenu{
+	margin: 0 auto;
+	border: 3px solid red;
+	width: 210px;
+	background: #fff;
+	
+}
+
+.tmenu td {
+
+border: 0px ;	
+  margin: 0px;
+  padding: 0px;
+  
+}
+
 .listar{
  margin: 0 auto;
 	border: 10px ;

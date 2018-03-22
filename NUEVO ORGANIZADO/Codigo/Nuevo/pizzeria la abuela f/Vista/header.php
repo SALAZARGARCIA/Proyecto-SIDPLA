@@ -33,7 +33,7 @@ $ruta="";
 				<li><a href="acerca.php">Acerca</a></li>
 				<li><a href="productos.php">Productos</a></li>
 				<li><a href="contactos.php">Contactos</a></li>
-				<li><a href="contactos.php"><span class="icon-shopping-basket"></a></li>
+				<li><a href="cart.php"><span class="icon-shopping-cart"></a></li>
 </div>
 <div id="headerie">
 

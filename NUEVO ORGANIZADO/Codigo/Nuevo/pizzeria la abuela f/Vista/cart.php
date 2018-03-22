@@ -20,9 +20,18 @@ include "../MODELO/conection.php";
 		include("header.php");
 		?>
 	</header>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
+	
+	<table class="reg1">
+<tr>
+<td>
+<center>
+<center>
+							<section id="principal">
+			<article id="slider">
+				<div class="flexslider">
+				<CENTER>
+					<ul class="slides">
+						<li>
 			<h1>Carrito</h1>
 			
 			<br><br>
@@ -35,7 +44,9 @@ if(isset($_SESSION["cart"]) && !empty($_SESSION["cart"])):
 ?>
 <section id="contenido">
 <section id="principal">
-<table class="table table-bordered">
+
+
+<table class="listar">
 <thead>
 	<th>Cantidad</th>
 	<th>Nombre</th>
@@ -54,7 +65,7 @@ foreach($_SESSION["cart"] as $c):
 $products = $con->query("select * from producto where Cod_producto=$c[product_id]");
 $r = $products->fetch_object();
 	?>
-<tr>
+<center>
 <th><?php echo $c["q"];?></th>
 	<td><?php echo $r->Nom_prod;?></td>
 	<td><?php echo $r->Desc_prod;?></td>
@@ -62,7 +73,7 @@ $r = $products->fetch_object();
 	<td><?php echo $r->tamaño_tamaño;?></td>
 	<td>$ <?php echo $r->Valor_unitario; ?></td>
 	<td>$ <?php echo $c["q"]*$r->Valor_unitario; ?></td>
-	<td style="width:260px;">
+	<td>
 	<?php
 	$found = false;
 	foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->Cod_producto){ $found=true; break; }}
@@ -94,13 +105,20 @@ $r = $products->fetch_object();
 </form>
 
 
+
 <?php else:?>
 	<p class="alert alert-warning">El carrito esta vacio.</p>
+	<br><br><hr>
 <?php endif;?>
-<br><br><hr>
 
-		</div>
-	</div>
-</div>
+
+
+
+</center>
+</tr>
+</td>
+</table>
+
+
 </body>
 </html>

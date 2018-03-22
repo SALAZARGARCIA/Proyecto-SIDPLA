@@ -2,7 +2,15 @@
 include("../modelo/clases.php"); //Trae el archivo clases.php en cual se creara más adelante
 
 if(isset($_POST["registrarVenta"])){
+
 session_start();
+$sessioncart= $_SESSION["cart"];
+error_reporting(0);
+$sessionidp= $_SESSION["idp"];
+$sessiontdp= $_SESSION["tdp"];
+
+if(null !== $sessioncart && null !==$sessionidp  && null !==$sessiontdp ){
+
 
 include "../MODELO/conection.php";
 if(!empty($_POST)){
@@ -13,34 +21,38 @@ $r = $products->fetch_object();
 $vs=$c["q"]*$r->Valor_unitario;
 $vt+=$vs;
 }
-
+try{
 $q1 = $con->query("insert into domicilio(Fecha_Hora,Direc_Dom,Valor_Total,Observacion_dom,estado_domicilio_Estado_dom,pizzeria_Nit_Pizzeria)
  values(NOW(),\"$_POST[Direc]\",$vt,\"$_POST[Obser]\",'EN ESPERA',801145012)");
 
 $cart_id = $con->insert_id;
 $idper = $_SESSION["idp"];
 $tdocper = $_SESSION["tdp"];
+}catch(EXEPTION $e){
+
+	echo $e.getMessage;
+}
 
 $q2 = $con->query("insert into persona_has_domicilio(persona_Num_Documento_per, persona_tipo_doc, domicilio_Cod_dom)
-	values ($idper,'$tdocper',$cart_id)");
-
-
-if($q1){
-$cart_id = $con->insert_id;
+	values ('$idper','$tdocper',$cart_id)");
 
 foreach($_SESSION["cart"] as $c){
 $products = $con->query("select * from producto where Cod_producto=$c[product_id]");
 $r = $products->fetch_object();
 $vs=$c["q"]*$r->Valor_unitario;
+
 $q3 = $con->query("insert into domicilio_has_producto(domicilio_Cod_dom,producto_Cod_producto,Cantidad,Valor_subtotal)
  values($cart_id,$c[product_id],$c[q],$vs)");
 }
 
 
 unset($_SESSION["cart"]);
-}
+
 }
 print "<script>alert('Venta procesada exitosamente');window.location='../Vista/productos.php';</script>";
+}else{
+	print "<script>alert('Regístrate or inicia sesión bebe.');window.location='../Vista/inicio_sesion.php';</script>";
+}
 }
 
 
@@ -64,7 +76,6 @@ $correo=$_REQUEST['correo'];
 $objeto= new clases; // Creación de un objeto de la clase clases del archivo clases.php
 $res=$objeto->verifica($usu); //Llamada mediante el objeto creado del método “verifica” con el parámetro usuario
 //el resultado del método se asigna a la variable $res
-echo ("Hasta aqui");
 
 if($res->num_rows == 1) //Verifica cuantos registro hay en el valor retornado $res (num_rows)
 {
@@ -100,6 +111,7 @@ session_start();
 $_SESSION["session"]= $actor["Primer_Nombre_per"]." ".$actor["Primer_Apellido_per"];
 $_SESSION["idp"]= $actor["Num_Documento_per"];
 $_SESSION["tdp"]= $actor["tipo_doc"];
+$_SESSION["rolp"]= $actor["rol_Rol"];
 if($actor["rol_Rol"]=="CLIENTE")
 {
 header("location:../VISTA/index.php"); //Redirige a página de usuario
@@ -110,7 +122,7 @@ header("location:../Vista/administrador/administrador.php"); //Redirige a págin
 }
 else if($actor["rol_Rol"]=="EMPLEADO")
 {
-echo "En construccion";
+header("location:../vista/empleado/empleado.php");
 }
 }
 else // Si el password no es correcto
