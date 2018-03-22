@@ -3,6 +3,7 @@ include("../modelo/clases.php"); //Trae el archivo clases.php en cual se creara 
 
 if(isset($_POST["registrarVenta"])){
 session_start();
+
 include "../MODELO/conection.php";
 if(!empty($_POST)){
 $vt=0;
@@ -16,11 +17,16 @@ $vt+=$vs;
 $q1 = $con->query("insert into domicilio(Fecha_Hora,Direc_Dom,Valor_Total,Observacion_dom,estado_domicilio_Estado_dom,pizzeria_Nit_Pizzeria)
  values(NOW(),\"$_POST[Direc]\",$vt,\"$_POST[Obser]\",'EN ESPERA',801145012)");
 
+$cart_id = $con->insert_id;
+$idper = $_SESSION["idp"];
+$tdocper = $_SESSION["tdp"];
+
+$q2 = $con->query("insert into persona_has_domicilio(persona_Num_Documento_per, persona_tipo_doc, domicilio_Cod_dom)
+	values ($idper,'$tdocper',$cart_id)");
+
+
 if($q1){
 $cart_id = $con->insert_id;
-
-/*$q2 = $con->query("insert into persona_has_domicilio(persona_Num_Documento_per, persona_tipo_doc, domicilio_Cod_dom)
-	values ($ndcp,$tdp,$cart_id)");*/
 
 foreach($_SESSION["cart"] as $c){
 $products = $con->query("select * from producto where Cod_producto=$c[product_id]");
@@ -93,6 +99,7 @@ if (password_verify($loginPassword,$actor["Pass_login"]))
 session_start();
 $_SESSION["session"]= $actor["Primer_Nombre_per"]." ".$actor["Primer_Apellido_per"];
 $_SESSION["idp"]= $actor["Num_Documento_per"];
+$_SESSION["tdp"]= $actor["tipo_doc"];
 if($actor["rol_Rol"]=="CLIENTE")
 {
 header("location:../VISTA/index.php"); //Redirige a página de usuario

@@ -1,24 +1,20 @@
-
+<?php
+/*
+* Este archio muestra los productos en una tabla.
+*/
+session_start();
+include "php/conection.php";
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head Content-Type: text/html; charset=utf-8>
-	<?php
-		include("llamadoestilos.php");
-		include "../Modelo/conection.php";
-		?>
-	<!-- <link rel="stylesheet" type="text/css" href="bootstrap.min.css"> -->
+	<title>Pizzeria la Abuela</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-</head> 
+</head>
 <body>
-	<header>
-	<?php
-		include("header.php");
-		?>
-	</header>
-	<section id="contenido">
-		<section id="pizzamarker">
-			<div class="container">
+<div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<h1>Productos</h1>
@@ -59,7 +55,7 @@ while($r=$products->fetch_object()):?>
 	<?php if($found):?>
 		<a href="cart.php" class="btn btn-info">Agregado</a>
 	<?php else:?>
-	<form class="form-inline" method="post" action="../Controlador/addtocart.php">
+	<form class="form-inline" method="post" action="./php/addtocart.php">
 	<input type="hidden" name="product_id" value="<?php echo $r->Cod_producto; ?>">
 	  <div class="form-group">
 	    <input type="number" name="q" value="1" style="width:100px;" min="1" class="form-control" placeholder="Cantidad">
@@ -75,25 +71,5 @@ while($r=$products->fetch_object()):?>
 		</div>
 	</div>
 </div>
-
-			<article id="multimedia-acerca">
-				<figure id="img-acerca">
-					<img src="img/oferta2.png" alt="acerca">
-					<figcaption>La mejor pizza a un precio accesible</figcaption>	
-				</figure>
-				<figure id="img-acerca">
-					<img src="img/oferta2.png" alt="acerca">
-					<figcaption>La mejor pizza a un precio accesible</figcaption>	
-				</figure>
-				
-			</article>
-			
-		</section>
-		
-	</section>
-	<footer>
-		pie de pagina
-	</footer>
-
 </body>
 </html>

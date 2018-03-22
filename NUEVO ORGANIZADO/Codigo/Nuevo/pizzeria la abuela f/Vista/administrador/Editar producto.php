@@ -76,12 +76,18 @@ if(isset($_REQUEST['action'])){
 		?>
 	</header>
 	
-	<br>	
+	<br><br><br>
 
 <table class ="reg1">
 <tr>
 <td>
+<center>
+<br>
+<br>
 
+<br>
+<br>
+ <center>
 
 <center>
 							<section id="principal">
@@ -91,7 +97,7 @@ if(isset($_REQUEST['action'])){
 					<ul class="slides">
 						<li>
 								<!-- FORMULARIO NUEVO REGISTRO -->
-<br><br><br>
+
 
 
 <div id="div_form">
@@ -151,6 +157,12 @@ if(isset($_REQUEST['action'])){
 </form>
 </div>
 
+
+
+
+
+
+
 <?php } ?>
 
 <div id="div_form">
@@ -160,8 +172,8 @@ if(isset($_REQUEST['action'])){
 <form action="#" method="post">
 
 <!--LABEL USUARIO FINAL -->
-
-<label> ID Producto por modificar:<?php echo $producto->__GET('Cod_producto'); ?></label>
+<!-- <b> es para pner en negrita en html-->
+<label> <b>ID Producto por modificar:</b> <?php echo $producto->__GET('Cod_producto'); ?></label>
 
 
 <input type="text" name="Cod_producto" value="<?php echo $producto->__GET('Cod_producto'); ?>" style="display:none" placeholder="Codigo" required>
@@ -169,44 +181,44 @@ if(isset($_REQUEST['action'])){
 <!--<br><br><label for="Cod_producto">Codigo</label>
 <input type="text" name="Cod_producto2" value="<?php echo $producto->__GET('Cod_producto'); ?>" placeholder="Codigo" required>-->
 
-<br><br><label for="Nom_prod">Nombre</label>
+<br><br><label for="Nom_prod">Nombre</label><br>
 <input type="text" name="Nom_prod" value="<?php echo $producto->__GET('Nom_prod'); ?>" placeholder="Nombre" required>
 
-<br><br><label for="Desc_prod">Descripcion</label>
+<br><br><label for="Desc_prod">Descripcion</label><br>
 <input type="text" name="Desc_prod" value="<?php echo $producto->__GET('Desc_prod'); ?>" placeholder="Descripcion" required>
 
-<br><br><label for="Foto_prod">Foto</label>
+<br><br><label for="Foto_prod">Foto</label><br>
 <input type="text" name="Foto_prod" value="<?php echo $producto->__GET('Foto_prod'); ?>" placeholder="Foto" required>
 
 <?php if($producto->__GET('tipo_producto_tipo_prod') == 'BEBIDA'){ ?>
-<br><br><label for="Stok_min">Stok Min</label>
+<br><br><label for="Stok_min">Stok Min</label><br>
 <input type="number" name="Stok_min" value="<?php echo $producto->__GET('Stok_min'); ?>" placeholder="Stok Min" required>
 <?php }else{ ?>
 <input type="number" name="Stok_min" value="1" placeholder="Stok Min" required style="display:none">
 <?php } ?>
 
 <?php if($producto->__GET('tipo_producto_tipo_prod') == 'BEBIDA'){ ?>
-<br><br><label for="Stok_min">Stok Max</label>
+<br><br><label for="Stok_min">Stok Max</label><br>
 <input type="number" name="Stok_max" value="<?php echo $producto->__GET('Stok_max'); ?>" placeholder="Stok Max" required>
 <?php }else{ ?>
 <input type="number" name="Stok_max" value="1" placeholder="Stok Max" required style="display:none">
 <?php } ?>
 
 <?php if($producto->__GET('tipo_producto_tipo_prod') == 'BEBIDA'){ ?>
-<br><br><label for="Cantidad_exist">Cantidad existente</label>
+<br><br><label for="Cantidad_exist">Cantidad existente</label><br>
 <input type="number" name="Cantidad_exist" value="<?php echo $producto->__GET('Cantidad_exist'); ?>" placeholder="Cantidad exist" required>
 <?php }else{ ?>
 <input type="number" name="Cantidad_exist" value="1" placeholder="Cantidad exist" required style="display:none">
 <?php } ?>
 
-<br><br><label>Tipo Producto: <?php echo $producto->__GET('tipo_producto_tipo_prod'); ?></label>
+<br><br><label><b>Tipo Producto: </b><?php echo $producto->__GET('tipo_producto_tipo_prod'); ?></label><br>
 <input type="text" name="tipo_producto_tipo_prod" value="<?php echo $producto->__GET('tipo_producto_tipo_prod'); ?>" placeholder="Tipo de Producto" required style="display:none">
 
-<br><br><label>Tamaño: <?php echo $producto->__GET('tamaño_tamaño'); ?></label>
+<br><br><label><b>Tamaño:  </b> <?php echo $producto->__GET('tamaño_tamaño'); ?></label><br>
 <input type="text" name="tamaño_tamaño" value="<?php echo $producto->__GET('tamaño_tamaño'); ?>" placeholder="Tamaño" required style="display:none">
 
 
-<br><br><label for="Valor_unitario">Valor</label>
+<br><br><label for="Valor_unitario">Valor</label><br>
 <input type="text" name="Valor_unitario" value="<?php echo $producto->__GET('Valor_unitario'); ?>" placeholder="Valor" required>
 
 
@@ -223,7 +235,7 @@ $query= $db->query($sq11);
 
 if($query->rowCount()>0):?>
 
-<h1>Consulta - Registros</h1><br>
+<!--	<br><h1>Consulta - Registros</h1><br>
 	<table class="listar" >
 		<thead>
 			<tr >
@@ -258,7 +270,7 @@ if($query->rowCount()>0):?>
 		<td><?php echo $r->__GET('tipo_producto_tipo_prod'); ?></td>
 
 		<td>
-		<a href="Editar producto.php?action=editar&Cod_producto=<?php echo $r->Cod_producto; ?>">Editar</a>
+		<a href="?action=editar&Cod_producto=<?php echo $r->Cod_producto; ?>">Editar</a>
 	    </td>
 
 	    <td>
@@ -274,7 +286,7 @@ if($query->rowCount()>0):?>
 
 	<h4 class="alert-danger">Señor Usuario No se Encuentran Registros!!!</h4>
 
-<?php endif;?>
+<?php endif;?>-->	
 					</ul>
 					</CENTER>
 				</div>
@@ -290,9 +302,9 @@ if($query->rowCount()>0):?>
 </tr>
 </table>
 </center>
-<br>		
+<br>	
 	<footer>
-	 <!--pie de pagina-->
+	<!-- pie de pagina-->
 	</footer>
 
 </body>

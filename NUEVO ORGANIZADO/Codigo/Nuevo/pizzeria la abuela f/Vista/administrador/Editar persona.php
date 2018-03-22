@@ -146,7 +146,7 @@ $query= $db->query($sq11);
 
 if($query->rowCount()>0):?>
 
-	<br><h1>Consulta - Registros</h1><br>
+	<!--<br><h1>Consulta - Registros</h1><br>
 	<table class="listar">
 		<thead>
 			<tr>
@@ -186,7 +186,7 @@ if($query->rowCount()>0):?>
 		<td><?php echo $r->__GET('rol_Rol'); ?></td>
 
 		<td>
-		<a href="Editar persona.php?action=editar&Num_Documento_per=<?php echo $r->Num_Documento_per; ?>">Editar</a>
+		<a href="?action=editar&Num_Documento_per=<?php echo $r->Num_Documento_per; ?>">Editar</a>
 	    </td>
 
 	    <td>
@@ -202,7 +202,7 @@ if($query->rowCount()>0):?>
 
 	<h4 class="alert-danger">Señor Usuario No se Encuentran Registros!!!</h4>
 
-<?php endif;?>
+<?php endif;?>-->
 					</ul>
 					</CENTER>
 				</div>
@@ -217,10 +217,9 @@ if($query->rowCount()>0):?>
 </td>
 </tr>
 </table>
-</center>	
-<br>	
+</center>		
 	<footer>
-	 <!--pie de pagina-->
+	 pie de pagina
 	</footer>
 
 </body>
