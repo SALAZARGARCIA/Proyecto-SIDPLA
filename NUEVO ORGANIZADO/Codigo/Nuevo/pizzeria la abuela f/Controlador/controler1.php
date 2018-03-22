@@ -1,6 +1,42 @@
 <?php
 include("../modelo/clases.php"); //Trae el archivo clases.php en cual se creara más adelante
 
+if(isset($_POST["registrarVenta"])){
+session_start();
+include "../MODELO/conection.php";
+if(!empty($_POST)){
+$vt=0;
+foreach($_SESSION["cart"] as $c){
+$products = $con->query("select * from producto where Cod_producto=$c[product_id]");
+$r = $products->fetch_object();
+$vs=$c["q"]*$r->Valor_unitario;
+$vt+=$vs;
+}
+
+$q1 = $con->query("insert into domicilio(Fecha_Hora,Direc_Dom,Valor_Total,Observacion_dom,estado_domicilio_Estado_dom,pizzeria_Nit_Pizzeria)
+ values(NOW(),\"$_POST[Direc]\",$vt,\"$_POST[Obser]\",'EN ESPERA',801145012)");
+
+if($q1){
+$cart_id = $con->insert_id;
+
+/*$q2 = $con->query("insert into persona_has_domicilio(persona_Num_Documento_per, persona_tipo_doc, domicilio_Cod_dom)
+	values ($ndcp,$tdp,$cart_id)");*/
+
+foreach($_SESSION["cart"] as $c){
+$products = $con->query("select * from producto where Cod_producto=$c[product_id]");
+$r = $products->fetch_object();
+$vs=$c["q"]*$r->Valor_unitario;
+$q3 = $con->query("insert into domicilio_has_producto(domicilio_Cod_dom,producto_Cod_producto,Cantidad,Valor_subtotal)
+ values($cart_id,$c[product_id],$c[q],$vs)");
+}
+
+
+unset($_SESSION["cart"]);
+}
+}
+print "<script>alert('Venta procesada exitosamente');window.location='../Vista/productos.php';</script>";
+}
+
 
 if(isset($_POST["registrar"])) { // Verifica si el botón oprimido es el de registro
 
@@ -34,7 +70,9 @@ $res=$objeto->registro($doc,$nom1,$nom2,$ape1,$ape2,$usu,$pass,$tel,$cel,$direc,
 header("location:../vista/registro2.php?dato=no"); //Redirige a página registro sin errores
 }
 $objeto->CloseDB(); // Cierra conexión a base de datos
-}
+}//FIN Registro
+
+
 if(isset($_POST["enviar"]))
 {
 $loginNombre = $_REQUEST["usu"];
@@ -54,14 +92,18 @@ if (password_verify($loginPassword,$actor["Pass_login"]))
 {
 session_start();
 $_SESSION["session"]= $actor["Primer_Nombre_per"]." ".$actor["Primer_Apellido_per"];
-$_SESSION["validar"]="true";
-if($actor["rol_Rol"]="CLIENTE")
+$_SESSION["idp"]= $actor["Num_Documento_per"];
+if($actor["rol_Rol"]=="CLIENTE")
 {
 header("location:../VISTA/index.php"); //Redirige a página de usuario
 }
-else
+else if($actor["rol_Rol"]=="ADMINISTRADOR")
 {
-header("location:../pagina_administrador.php"); //Redirige a página de administrador
+header("location:../Vista/administrador/administrador.php"); //Redirige a página de administrador
+}
+else if($actor["rol_Rol"]=="EMPLEADO")
+{
+echo "En construccion";
 }
 }
 else // Si el password no es correcto

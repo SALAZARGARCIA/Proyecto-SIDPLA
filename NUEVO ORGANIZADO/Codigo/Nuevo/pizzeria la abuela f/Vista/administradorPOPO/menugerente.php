@@ -33,8 +33,8 @@ $ruta="";
 <div id="navegadorg">
 <ul class="navegadorg1">
 
-				<li><a href="productos.php">Productos</a></li>
-				<li><a href="Personas.php">Personas</a></li>
+				<li><a href="Crud_producto/vista/producto.vista.php">Productos</a></li>
+				<li><a href="Crud_persona/vista/persona.vista.php">Personas</a></li>
 				<li><a href="Pizzeria.php">Pizzeria</a></li>
 				<li><a href="Tamanio.php">Tamaño</a></li>
                 <li><a href="Opiniones.php">Opiniones</a></li>
@@ -58,11 +58,11 @@ $ruta="";
 </div>
 <div id="headerie">
 
-				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../../controlador/salir.php';} else {
+				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../controlador/salir.php';} else {
 				echo $ruta.'inicio_sesion.php';}?>"><span class="glyphicon glyphicon-log-out"></span> <?php
 				if(isset($_SESSION["session"])){ echo "Salir";} else{echo "Ingresar";}?></a></li>
 				
-				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../../controlador/salir.php';} else {
+				<li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../controlador/salir.php';} else {
 				echo $ruta.'registro2.php';}?>"><span class="glyphicon glyphicon-user"></span> <?php
 				if(isset($_SESSION["session"])){ echo $_SESSION["session"];} else{echo "Registro";}?></a></li>
 </div>

@@ -1,7 +1,7 @@
 <?php
-require_once '../../CONTROLADOR/persona.control.php';
-require_once '../../Modelo/persona.model.php'; 
-require_once '../../Modelo/database.php';
+require_once '../CONTROLADOR/persona.control.php';
+require_once '../MODELO/persona.model.php';
+require_once '../MODELO/database.php';
 //logica
 $persona = new Persona();
 $model = new PersonaModel();
@@ -26,15 +26,33 @@ if(isset($_REQUEST['action'])){
 			$persona->__SET('Num_Documento_per', 				$_REQUEST['Num_Documento_per']);
 
 			$model->Actualizar_Persona($persona);
-			print "<script>alert(\"Registro Actualizado exitosamente.\");window.location='Personas.php';</script>";
+			print "<script>alert(\"Registro Actualizado exitosamente.\");window.location='persona.vista.php';</script>";
 			break;
 
+		case 'registrar':
+			$persona->__SET('Num_Documento_per', 				$_REQUEST['Num_Documento_per']);
+			$persona->__SET('Primer_Nombre_per', 				$_REQUEST['Primer_Nombre_per']);
+			$persona->__SET('Segundo_Nombre_per', 				$_REQUEST['Segundo_Nombre_per']);
+			$persona->__SET('Primer_Apellido_per', 				$_REQUEST['Primer_Apellido_per']);
+			$persona->__SET('Segundo_Apellido_per', 			$_REQUEST['Segundo_Apellido_per']);
+			$persona->__SET('Usuario_login', 				 	$_REQUEST['Usuario_login']);
+			$persona->__SET('Pass_login', 						$_REQUEST['Pass_login']);
+			$persona->__SET('Tel_per', 							$_REQUEST['Tel_per']);
+			$persona->__SET('Cel_per', 							$_REQUEST['Cel_per']);
+			$persona->__SET('Direc_per', 						$_REQUEST['Direc_per']);
+			$persona->__SET('Correo_per', 						$_REQUEST['Correo_per']);
+			$persona->__SET('tipo_doc', 						$_REQUEST['tipo_doc']);
+			$persona->__SET('rol_Rol', 							$_REQUEST['rol_Rol']);
+
+			$model->Registrar_Persona($persona);
+			print "<script>alert(\"Registro Agregado exitosamente.\");window.location='persona.vista.php';</script>";
+			break;
 
 //  		Instancia la clase a eliminar que se encuentra al final de cada registro//
 
 		case 'eliminar':
 			$model->Eliminar_Persona($_REQUEST['Num_Documento_per']);
-			print "<script>alert(\"Registro Eliminado exitosamente.\");window.location='personas.php';</script>";
+			print "<script>alert(\"Registro Eliminado exitosamente.\");window.location='persona.vista.php';</script>";
 			break;
 
 //  		Instancia la clase editar que se encuentra al final de cada registro//	
@@ -48,32 +66,24 @@ if(isset($_REQUEST['action'])){
 }
 
 ?>
-<html lang="es">
-<head>
-<?php
-		include("../llamadoestilos2.php");
-		?>
 
-</head> 
-<body>
-<center>
-	<header>
-	<?php
-		include("menugerente.php");
-		?>
-	</header>
-   <center>
-<table>
-<tr>
-<td>
-<center>
-							<section id="principal">
-			<article id="slider">
-				<div class="flexslider">
-				<CENTER>
-					<ul class="slides">
-						<li>
-							<div id="div_form">
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+	
+		<title>CRUD PERSONA LA ABUELA</title>
+		<link rel="stylesheet" href="../estilos.css">
+
+	</head>
+	<body>
+
+<!-- FORMULARIO NUEVO REGISTRO -->
+
+<!--<br><a href="?action=ver&m=1">NUEVO REGISTRO</a><br><br>-->
+
+
+
+<div id="div_form">
 
 <?php if(!empty($_GET['Num_Documento_per']) && !empty($_GET['action']) ){ ?>
 
@@ -118,7 +128,6 @@ if(isset($_REQUEST['action'])){
 <input type="text" name="Direc_per" id="Direc_per" value="<?php echo $persona->__GET('Direc_per'); ?>" placeholder="Direccion" required>
 <br><br><label>Correo</label>
 <input type="text" name="Correo_per" id="Correo_per" value="<?php echo $persona->__GET('Correo_per'); ?>" placeholder="Correo" required>
-
 
 <br><br><label>Rol</label>
 <select class="form-control" name="rol_Rol">
@@ -200,24 +209,7 @@ if($query->rowCount()>0):?>
 	<h4 class="alert-danger">Señor Usuario No se Encuentran Registros!!!</h4>
 
 <?php endif;?>
-					</ul>
-					</CENTER>
-				</div>
-				
-			</article>
-			
-		</section>
-				
-				
-				
-</center>
-</td>
-</tr>
-</table>
-</center>		
-	<footer>
-	 pie de pagina
-	</footer>
 
 </body>
 </html>
+

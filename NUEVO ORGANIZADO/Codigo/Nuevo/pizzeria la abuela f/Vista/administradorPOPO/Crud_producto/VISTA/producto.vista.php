@@ -1,7 +1,7 @@
 <?php
-require_once '../../CONTROLADOR/producto.control.php';
-require_once '../../MODELO/producto.model.php';
-require_once '../../MODELO/database.php';
+require_once '../CONTROLADOR/producto.control.php';
+require_once '../MODELO/producto.model.php';
+require_once '../MODELO/database.php';
 //logica
 $producto = new Producto();
 $model = new ProductoModel();
@@ -23,7 +23,7 @@ if(isset($_REQUEST['action'])){
 			/*$producto->__SET('Cod_producto2', 	 $_REQUEST['Cod_producto2']);*/
 
 			$model->Actualizar_Producto($producto);
-			print "<script>alert(\"Producto Actualizado exitosamente.\");window.location='productos.php';</script>";
+			print "<script>alert(\"Producto Actualizado exitosamente.\");window.location='producto.vista.php';</script>";
 			break;
 
 		case 'registrar':
@@ -39,14 +39,14 @@ if(isset($_REQUEST['action'])){
 			$producto->__SET('Valor_unitario', 		 $_REQUEST['Valor_unitario']);
  
 			$model->Registrar_Prod($producto);
-			print "<script>alert(\"Producto Agregado exitosamente.\");window.location='productos.php';</script>";
+			print "<script>alert(\"Producto Agregado exitosamente.\");window.location='producto.vista.php';</script>";
 			break;
 
 //  		Instancia la clase a eliminar que se encuentra al final de cada registro//
 
 		case 'eliminar':
 			$model->Eliminar_Producto($_REQUEST['Cod_producto']);
-			print "<script>alert(\"Producto Eliminado exitosamente.\");window.location='productos.php';</script>";
+			print "<script>alert(\"Producto Eliminado exitosamente.\");window.location='producto.vista.php';</script>";
 			break;
 
 //  		Instancia la clase editar que se encuentra al final de cada registro//	
@@ -61,32 +61,16 @@ if(isset($_REQUEST['action'])){
 
 ?>
 
+<!DOCTYPE html>
 <html lang="es">
-<head>
-<?php
-		include("../llamadoestilos2.php");
-		?>
+	<head>
+			<title>CRUD PRODUCTOS ABUELA</title>
+	<link rel="stylesheet" href="../bootstrap.min.css">
 
-</head> 
-<body>
-<center>
-	<header>
-	<?php
-		include("menugerente.php");
-		?>
-	</header>
- <center>
-<table>
-<tr>
-<td>
-<center>
-							<section id="principal">
-			<article id="slider">
-				<div class="flexslider">
-				<CENTER>
-					<ul class="slides">
-						<li>
-								<!-- FORMULARIO NUEVO REGISTRO -->
+	</head>
+	<body>
+
+<!-- FORMULARIO NUEVO REGISTRO -->
 
 <br><a href="?action=ver&m=1">NUEVO REGISTRO</a><br><br>
 
@@ -271,24 +255,7 @@ if($query->rowCount()>0):?>
 	<h4 class="alert-danger">Señor Usuario No se Encuentran Registros!!!</h4>
 
 <?php endif;?>
-					</ul>
-					</CENTER>
-				</div>
-				
-			</article>
-			
-		</section>
-				
-				
-				
-</center>
-</td>
-</tr>
-</table>
-</center>		
-	<footer>
-	 pie de pagina
-	</footer>
 
 </body>
 </html>
+
