@@ -26,6 +26,8 @@ if ($res->num_rows == 1) {
                 ?>
             </header>
 
+            <br>
+
             <table class="reg1" >
                 <tr>
                     <td>
@@ -38,18 +40,13 @@ if ($res->num_rows == 1) {
                         <tr>
 
                             <td class="pro">
-                                <a href="Opiniones.php" > <img src="../img/LogoIngresos.jpg" ><br><h2>...</h2></a>
-
-                            </td>
+                                <a href="Opiniones.php" > <img src="../img/LogoIngresos.jpg" ><br><h2>...</h2></a></td>
                             <td class="pro">
-                                <a href="Opiniones.php"> <img src="../img/LogoProductos.jpg"  ><br><h2>...</h2></a></td>
+                                <a href="productos.php"> <img src="../img/LogoProductos.jpg"  ><br><h2>lista de productos</h2></a></td>
 
                             <td class="pro">
-                                <a href="Opiniones.php"> <img src="../img/LogoPersona.jpg" ><br><h2>...</h2></a>
+                                <a href="lista opiniones.php"> <img src="../img/LogoPersona.jpg" ><br><h2>lista de opiniones</h2></a>
                             </td>	
-
-
-
 
                         </tr>
                     </table>

@@ -132,8 +132,8 @@ INSERT INTO PERSONA VALUES ("1014304616","JULIANA","GERALDIN","GARCIA","CORREDOR
 
 /*------------------------------------------------------------INSERTANDO-OPINIONES---------------------------------------------------------------------*/
 
-INSERT INTO OPINION (Opinion,persona_Num_Documento_per,persona_tipo_doc) VALUES("abc","1033815398","CEDULA DE CIUDADANIA");
-INSERT INTO OPINION (Opinion,persona_Num_Documento_per,persona_tipo_doc) VALUES("DEACUERDO CON EL DE ARRIBA","1031157939","CEDULA DE CIUDADANIA");
-INSERT INTO OPINION (Opinion,persona_Num_Documento_per,persona_tipo_doc) VALUES("EL DE ARRIBA DICE LA VERDAD","1031178887","CEDULA DE CIUDADANIA");
-INSERT INTO OPINION (Opinion,persona_Num_Documento_per,persona_tipo_doc) VALUES("abcd","9900000001","CEDULA DE CIUDADANIA");
+INSERT INTO OPINION (Opinion,persona_Num_Documento_per,persona_tipo_doc,Fecha) VALUES("abc","1033815398","CEDULA DE CIUDADANIA",NOW());
+INSERT INTO OPINION (Opinion,persona_Num_Documento_per,persona_tipo_doc,Fecha) VALUES("DEACUERDO CON EL DE ARRIBA","1031157939","CEDULA DE CIUDADANIA",NOW());
+INSERT INTO OPINION (Opinion,persona_Num_Documento_per,persona_tipo_doc,Fecha) VALUES("EL DE ARRIBA DICE LA VERDAD","1031178887","CEDULA DE CIUDADANIA",NOW());
+INSERT INTO OPINION (Opinion,persona_Num_Documento_per,persona_tipo_doc,Fecha) VALUES("abcd","9900000001","CEDULA DE CIUDADANIA",NOW());
 

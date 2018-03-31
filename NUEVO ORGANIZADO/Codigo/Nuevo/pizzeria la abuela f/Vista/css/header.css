@@ -21,7 +21,7 @@
 
     position:absolute;
     top:60px;
-    left:880px;
+    left:895px;
     border:none;
 
 
@@ -53,15 +53,15 @@ div#contenedor {
 #navegador li{
     display: inline;
     text-align: center;
-    margin: 0 26px 0 0;
+	
 }
 
 #navegador li a  {
     font-family:ArtBrush;
     color:#FFF;
-    padding: 2px 7px 2px 7px;
+    padding: 2px 6px 2px 6px;
     text-decoration: none;
-    font-size:24px;
+    font-size:23px;
 }
 
 #navegador li a:hover{

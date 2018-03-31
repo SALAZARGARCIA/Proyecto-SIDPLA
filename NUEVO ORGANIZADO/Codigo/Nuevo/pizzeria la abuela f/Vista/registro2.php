@@ -24,7 +24,7 @@
             <center>
 
                 <h1>Registro</h1>
-                
+
                 <br>
                 <br>
 
@@ -98,12 +98,15 @@
                             <td>
                                 <?PHP
                                 if (isset($_REQUEST['dato'])) {
-                                    echo "<td colspan='2' align='center'><div class='alert alert-
-success'>" . "Gracias Por Registrarse" . "</div>";
+                                    echo '<script type="text/javascript">
+                                              alert("Registro con exito gracias por registrarse");
+                                              window.location.href="inicio_sesion.php";
+                                           </script>';
                                 } if (isset($_REQUEST['dato1'])) {
-                                    echo "<td colspan='2' align='center'><div
-
-class='alert alert-warning'>" . "Este Usuario Ya Se Encuentra Registrado, Intenta De Nuevo" . "</div>";
+                                    echo '<script type="text/javascript">
+                                            alert("El usuarioya existe ");
+                                            window.location.href="registro2.php";
+                                          </script>';
                                 }
                                 ?>
                             </td>
@@ -121,7 +124,7 @@ class='alert alert-warning'>" . "Este Usuario Ya Se Encuentra Registrado, Intent
 <br>
 
 <footer>
-   <!-- pie de pagina-->
+    <!-- pie de pagina-->
 </footer>
 </div>
 </body>

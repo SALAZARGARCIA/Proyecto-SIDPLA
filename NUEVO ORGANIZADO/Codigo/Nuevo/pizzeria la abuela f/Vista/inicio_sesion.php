@@ -42,7 +42,9 @@
                             <td><div class="input-group input-group-sm">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                                     <input type="password" name="pass" class="form-control" placeholder="Contraseña" >
-                                </div></td></tr>
+                                <br><br><a href="recuperaContrasena.php">¿Olvidaste tu contraseña?</a>
+								
+								</div></td></tr>
 
 
 

@@ -25,31 +25,37 @@ if ($res->num_rows == 1) {
                 include("menugerente.php");
                 ?>
             </header>
-			
-<br>
+
+            <br>
 
             <center>
-                <table class="reg">
+                <table class="reg1">
                     <tr>
                         <td>
                     <center>
                         <table class="hola">
                             <tr>
                                 <td>
-                                    <ul class="slides">
-                                        <li>
-                                            <form method="post" action="../../Controlador/lista-por-fecha.php">
-                                                <h1>Búsqueda por Fecha</h1>
-                                                Fecha comienzo: <br/>
-                                                <input type="TEXT" id="start_date" name="start_date" placeholder="mm/dd/yyyy"> <br/>
-                                                Fecha final:<br/>
-                                                <input type="TEXT" id="end_date" name="end_date"  placeholder="mm/dd/yyyy"><br/>
 
-                                                <input type="hidden" id="form_sent" name="form_sent" value="true">
-                                                <input type="submit" id="btn_submit" value="Enviar"><br/>    
-                                            </form> 
-                                        </li>
-                                    </ul>
+                                    <form method="post" action="../../Controlador/lista-por-fecha.php">
+                                        <h1>Ver domicilios</h1>
+
+                                        <br>
+                                        <br>
+
+                                        <h4>Fecha comienzo: </h4>
+                                        <input type="TEXT" id="start_date" name="start_date" placeholder="mm/dd/yyyy"> 
+                                        <h4> <br>Fecha final:</h4>
+                                        <input type="TEXT" id="end_date" name="end_date"  placeholder="mm/dd/yyyy">
+
+                                        <input type="hidden" id="form_sent" name="form_sent" value="true">
+                                        <input type="submit" id="btn_submit" value="Enviar"> 
+                                    </form> 
+
+                                    <br>
+                                    <br>
+
+
                                 </td>
                             </tr>
                         </table>

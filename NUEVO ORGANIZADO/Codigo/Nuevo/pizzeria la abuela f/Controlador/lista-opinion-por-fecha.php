@@ -1,10 +1,7 @@
-
-
 <?php 
  
 require '../Modelo/conexion.php';
-include '../Modelo/plantilla.php';?>
-   
+include '../Modelo/plantilla opinion.php';?>
 
 <?php
 if (isset($_POST['form_sent']) && $_POST['form_sent'] == "true") {?>
@@ -21,42 +18,50 @@ if (isset($_POST['form_sent']) && $_POST['form_sent'] == "true") {?>
     $END_DATE = $EEDATE[2]."-".$EEDATE[0]."-".$EEDATE[1];
     /*echo('<h3>'.$END_DATE.'</h3>');*/
   
-    $pdf = new PDF();
-    $pdf->AliasNbPages();
-    $pdf->AddPage();
-    
+   
+
+$pdf = new PDF('L','pt');
+$pdf->AliasNbPages();
+$pdf->AddPage();
+$pdf->SetFont('Arial', '', 12);
+
+$pdf->Ln(35);
+$pdf->SetFont('Arial', 'B', 12);
+$pdf->Cell(60, 13, 'Codigo',1,0,'C',0);
+$pdf->Cell(320, 13, 'Opinion', 1);
+$pdf->Cell(150, 13, 'Numero De documento', 1);
+$pdf->Cell(150, 13, 'Tiopo de documento', 1);
+$pdf->Cell(90, 13, 'Fecha', 1);
+$pdf->Ln(13);
+$pdf->SetFont('Arial', '', 10);
+$pdf->tablewidths = array(60,320,150,150,90);
+
+$resultado=mysqli_query($mysqli,"SELECT * FROM opinion WHERE Fecha BETWEEN '$START_DATE' AND '$END_DATE' ");
+if(mysqli_num_rows($resultado)>0)
+{
+$item = 0;
 
 
-  $strsql = " SELECT  * FROM opinion WHERE Fecha BETWEEN '$START_DATE' AND '$END_DATE'";
+while($fila=mysqli_fetch_array($resultado)){
+ 
+$item =$fila['Cod_Opinion'];
+$b=$fila['Opinion'];
+$c=$fila['persona_Num_Documento_per'];
+$d=$fila['persona_tipo_doc'];
+$e=$fila['Fecha'];
 
+$data[] = array(utf8_decode($item),utf8_decode($b),utf8_decode($c),utf8_decode($d),utf8_decode($e));
 
-  $rs = mysqli_query($mysqli,$strsql);
-  $row = mysqli_fetch_assoc($rs);
-  $total_rows = mysqli_num_rows($rs);
+ 
+}
 
+$pdf->morepagestable($data);
 
-    $pdf->SetFillColor(232,232,232);
-	$pdf->SetFont('Arial','B',12);
-	$pdf->Cell(30,6,'No.Opinion',1,0,'C',1);
-  $pdf->Cell(40,6,'Opinion',1,0,'C',1);
-	$pdf->Cell(35,6,'No.Documento',1,0,'C',1);
-	$pdf->Cell(50,6,'Tipo Documento',1,0,'C',1);	
-	$pdf->Cell(23,6,'Fecha',1,1,'C',1);
+$pdf->Output();
 
-    
-    $pdf->SetFont('Arial','',10);
-    
-  
-        do {
-    $pdf->Cell(30,6,utf8_decode($row['Cod_Opinion']),1,0,'C');
-		$pdf->Cell(40,6,$row['Opinion'],1,0,'C');
-		$pdf->Cell(35,6,utf8_decode($row['persona_Num_Documento_per']),1,0,'C');		
-		$pdf->Cell(50,6,utf8_decode($row['persona_tipo_doc']),1,0,'C');
-		$pdf->Cell(23,6,utf8_decode($row['Fecha']),1,1,'C');
+}
 
-        } while ( $row = mysqli_fetch_assoc($rs) );
-        mysqli_free_result($rs);
-    $pdf->Output();
+ 
 
 ?>
     

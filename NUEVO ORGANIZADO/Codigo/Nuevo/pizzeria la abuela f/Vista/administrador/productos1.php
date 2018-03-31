@@ -1,146 +1,57 @@
-<?php
-if (!isset($_SESSION["session"])) { // Verifica si la variable de sesión creada esta activa si no la inicializa
-    session_start();
-    $ruta = "";
-}
-include("../../modelo/conection.php");
-error_reporting(0);
-$sessionidp = $_SESSION["idp"];
-$sessiontdp = $_SESSION["tdp"];
-$rol_pers = $_SESSION["rolp"];
-$res = $con->query("select * from persona where Num_Documento_per='$sessionidp' and tipo_doc='$sessiontdp' and rol_Rol= 'ADMINISTRADOR'");
-if ($res->num_rows == 1) {
-    require_once '../../CONTROLADOR/producto.control.php';
-    require_once '../../MODELO/producto.model.php';
-    require_once '../../MODELO/database.php';
-//logica
-    $producto = new Producto();
-    $model = new ProductoModel();
-    $db = database::conectar();
 
-    if (isset($_REQUEST['action'])) {
-        switch ($_REQUEST['action']) {
-
-            case 'eliminar':
-                $model->Eliminar_Producto($_REQUEST['Cod_producto']);
-                print "<script>alert(\"Producto Eliminado exitosamente.\");window.location='productos1.php';</script>";
-                break;
-
-//  		Instancia la clase editar que se encuentra al final de cada registro//	
-
-
-            case 'editar':
-                $producto = $model->Obtener_Producto($_REQUEST['Cod_producto']);
-                break;
-        }
-    }
+<!DOCTYPE html>
+<html lang="es">
+    <head Content-Type: text/html; charset=utf-8>
+    <?php
+    include("../llamadoestilos2.php");
+    include "../../Modelo/conection.php";
     ?>
-
-    <html lang="es">
-        <head>
+          <!-- <link rel="stylesheet" type="text/css" href="bootstrap.min.css"> -->
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    </head> 
+    <body>
+        <header>
             <?php
-            include("../llamadoestilos2.php");
+            include("menugerente.php");
             ?>
+        </header>
 
-        </head> 
-        <body>
-        <center>
-            <header>
-                <?php
-                include("menugerente.php");
-                ?>
-            </header>
+        <br>
 
-            <br>	
+        <table class="reg1" >
+            <tr>
+                <td>
+            <center>
 
-            <table class ="reg1">
-                <tr>
-                    <td>
+                <h1>Productos</h1>
 
+                <br>
 
-                <center>
+                <table class="pro" >
+                    <tr>
+                        <td>
+                    <center>
+                        <a href="consultar pizza.php"><img src="../img/Pizzas.jpg" ></a>
+                        <a href="consultar bebida.php"><img src="../img/Bebidas.jpg"></a> 
+                        <a href="consultar pasta.php"><img src="../img/Pastas.jpg"></a> 
+                        <a href="consultar ensalada.php"><img src="../img/Ensaladas.jpg"></a>
+                        <a href="consultar Acompaniante.php"><img src="../img/Acompañantes.jpg"></a>
+						<a href="productos.php"><img src="../img/Acompañantes.jpg"></a>
+                    </center>
+                    </td>
+                    </tr>
+                </table>
+            </center>
+        </td>
+    </tr>
+</table>
 
-                    <ul class="slides">
-                        <li>
+<br>
+<br>
 
-                            <?php
-                            $sq11 = "CALL Consulta_Producto";
-
-                            $query = $db->query($sq11);
-
-                            if ($query->rowCount() > 0):
-                                ?>
-
-                                <h1>Consulta - Registros</h1><br>
-                                <table class="listar" >
-                                    <thead>
-                                        <tr>
-                                            <th>Codigo</th>
-                                            <th>Nombre</th>
-                                            <th>Descripcion</th>
-                                            <th>Foto</th>
-                                            <th>Stok_min</th>
-                                            <th>Stok_max</th>
-                                            <th>Cantidad_exist</th>
-                                            <th>Valor_unitario</th>
-                                            <th>tamaño_tamaño</th>
-                                            <th>tipo_producto_tipo_prod</th>
-                                            <th>Editar</th>
-                                            <th>Eliminar</th>
-
-                                        </tr>
-                                    </thead>
-
-
-                                    <?php foreach ($model->Listar_Prod() as $r): ?>
-                                        <tr> 
-                                            <td><?php echo $r->__GET('Cod_producto'); ?></td>
-                                            <td><?php echo $r->__GET('Nom_prod'); ?></td>
-                                            <td><?php echo $r->__GET('Desc_prod'); ?></td>
-                                            <td><img src="../MEDIA/<?php echo $r->Foto_prod; ?>" width="120px" height="100px"></td>
-                                            <td><?php echo $r->__GET('Stok_min'); ?></td>
-                                            <td><?php echo $r->__GET('Stok_max'); ?></td>
-                                            <td><?php echo $r->__GET('Cantidad_exist'); ?></td>
-                                            <td><?php echo $r->__GET('Valor_unitario'); ?></td>
-                                            <td><?php echo $r->__GET('tamaño_tamaño'); ?></td>
-                                            <td><?php echo $r->__GET('tipo_producto_tipo_prod'); ?></td>
-
-                                            <td>
-                                                <a href="Editar producto.php?action=editar&Cod_producto=<?php echo $r->Cod_producto; ?>">Editar</a>
-                                            </td>
-
-                                            <td>
-                                                <a href="?action=eliminar&Cod_producto=<?php echo $r->Cod_producto; ?>" onclick="return confirm('¿Esta seguro de eliminar este Producto?')">Eliminar</a>
-                                            </td>
-
-                                        </tr>
-                                    <?php endforeach; ?>
-
-                                </table>
-
-                            <?php else: ?>
-
-                                <h4 class="alert-danger">Señor Usuario No se Encuentran Registros!!!</h4>
-
-                            <?php endif; ?>
-                        </li>
-                    </ul>
-                </center>
-                </td>
-                </tr>
-            </table>
-        </center>
-
-        <br>	
-
-        <footer>
-            <!--pie de pagina-->
-        </footer>
-        <!--se valida para saber si esta logeado como admin-->
-        <?php
-    }else {
-        echo "!!!!!ATENCION!!!!!  Para ver esta pagina debe iniciar sesion como ADMINISTRADOR";
-    }
-    ?>
+<footer>
+    <!--  pie de pagina-->
+</footer>
 </body>
 </html>

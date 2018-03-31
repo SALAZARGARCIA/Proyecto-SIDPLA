@@ -62,7 +62,10 @@ if ($res->num_rows == 1) {
 
             <br>
 
-            <table class ="reg">
+            <table class ="reg1">
+                <tr>
+                    <td>
+                           <table class ="hola">
                 <tr>
                     <td>
                 <center>
@@ -158,7 +161,7 @@ if ($res->num_rows == 1) {
                             <input type="text" name="Valor_unitario" placeholder="Valor" required>
 
                             <br><input type="submit" value= "Guardar" onclick = "this.form.action = '?action=registrar';" />
-                        </form>
+                        </form><br><br>
 
 
 
@@ -194,9 +197,12 @@ if ($res->num_rows == 1) {
 
 
 
+ </center>
+                </td>
+                </tr>
+            </table>
 
-
-                </center>
+              
                 </td>
                 </tr>
             </table>

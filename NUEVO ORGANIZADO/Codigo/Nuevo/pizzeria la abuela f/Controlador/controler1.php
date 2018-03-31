@@ -100,7 +100,7 @@ if (isset($_POST["enviar"])) {
         $actor = $res->fetch_array(); // Obtiene una fila de resultados como un array asociativo, numÃ©rico, o ambos
         if (password_verify($loginPassword, $actor["Pass_login"])) {
             session_start();
-            $_SESSION["session"] = $actor["Primer_Nombre_per"] . " " . $actor["Primer_Apellido_per"];
+            $_SESSION["session"] = $actor["Primer_Nombre_per"];
             $_SESSION["idp"] = $actor["Num_Documento_per"];
             $_SESSION["tdp"] = $actor["tipo_doc"];
             $_SESSION["rolp"] = $actor["rol_Rol"];
@@ -136,15 +136,63 @@ if (isset($_POST["cambio_est_dom"])) {
     $iddom = $_POST["domicilio_id"];
     $q5 = $con->query("update domicilio set estado_domicilio_Estado_dom= 'ENTREGADO' where Cod_dom= $iddom");
     print "<script>alert(\"Domicilio entregado exitosamente\");window.location='../Vista/empleado/empleado.php';</script>";
-$q5 = $con->query("select * from domicilio_has_producto where domicilio_Cod_dom=$iddom");
-foreach ($q5 as $c) {
-	$qq = $con->query("select * from producto where Cod_producto=$c[producto_Cod_producto]");
-	foreach ($qq as $row) {
-		if($row['tipo_producto_tipo_prod']=='BEBIDA'){
-		$q3 = $con->query("UPDATE PRODUCTO SET Cantidad_exist= Cantidad_exist-$c[Cantidad] WHERE Cod_producto=$c[producto_Cod_producto]");
-	}
-	
-	}
+    $q5 = $con->query("select * from domicilio_has_producto where domicilio_Cod_dom=$iddom");
+    foreach ($q5 as $c) {
+        $qq = $con->query("select * from producto where Cod_producto=$c[producto_Cod_producto]");
+        foreach ($qq as $row) {
+            if ($row['tipo_producto_tipo_prod'] == 'BEBIDA') {
+                $q3 = $con->query("UPDATE PRODUCTO SET Cantidad_exist= Cantidad_exist-$c[Cantidad] WHERE Cod_producto=$c[producto_Cod_producto]");
+            }
+        }
+    }
 }
+
+//--------------FUNCION DE RECUPERAR CONTRASEÑA------------------------
+
+if (isset($_POST["recuperar_contra"])) {
+    $usua = $_REQUEST["usu"];
+    $ndoc = $_REQUEST['numdoc'];
+    $tdoc = $_REQUEST["tdoc"];
+    $email = $_REQUEST['correo'];
+    $cel = $_REQUEST['celular'];
+    $objeto = new clases;
+    $res = $objeto->recuperacontra($usua, $ndoc, $tdoc, $email, $cel);
+    if ($res->num_rows == 0) {
+        header("location:../vista/recuperaContrasena.php?error=si");
+    } else {
+        session_start();
+        $_SESSION["numdoc"] = $ndoc;
+
+        header("location:../VISTA/recuperaContrasena2.php");
+    }
+    $objeto->CloseDB();
+}
+
+
+if (isset($_POST["recuperar_contra2"])) {
+
+    $contra1 = $_REQUEST["contra1"];
+    $contra2 = $_REQUEST['contra2'];
+    session_start();
+    $numdoc = $_SESSION["numdoc"];
+    $objeto = new clases;
+
+    if ($contra1 === $contra2) {
+        $pass = password_hash($contra2, PASSWORD_DEFAULT);
+        $q6 = $con->query("update persona set Pass_login='$pass' where Num_Documento_per='$numdoc'");
+        print "<script>alert(\"Contraseña actualizada exitosamente\");window.location='../Vista/inicio_sesion.php';</script>";
+        session_destroy();
+    } else {
+        header("location:../vista/recuperaContrasena2.php?error=si");
+    }
+
+    $objeto->CloseDB();
+}
+
+if (isset($_POST["cambio_est_dom2"])) {
+
+    $iddom = $_POST["domicilio_id"];
+    $q5 = $con->query("update domicilio set estado_domicilio_Estado_dom= 'CANCELADO' where Cod_dom= $iddom");
+    print "<script>alert(\"Domicilio cancelado exitosamente\");window.location='../Vista/misDomicilios.php';</script>";
 }
 ?>

@@ -39,11 +39,11 @@ class ProductoModel {
         }
     }
 
-    public function Listar_Prod() {
+     public function Listar_Prod() {
         try {
             $result = array();
 
-            $stm = $this->pdo->prepare("CALL Consulta_Producto");
+            $stm = $this->pdo->prepare("CALL Consulta_producto");
             $stm->execute();
 
             foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
@@ -68,6 +68,162 @@ class ProductoModel {
             die($e->getMessage());
         }
     }
+    
+    public function Listar_pizza() {
+        try {
+            $result = array();
+
+            $stm = $this->pdo->prepare("CALL Consulta_pizza");
+            $stm->execute();
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+                $producto = new Producto();
+
+                $producto->__SET('Cod_producto', $r->Cod_producto);
+                $producto->__SET('Nom_prod', $r->Nom_prod);
+                $producto->__SET('Desc_prod', $r->Desc_prod);
+                $producto->__SET('Foto_prod', $r->Foto_prod);
+                $producto->__SET('Stok_min', $r->Stok_min);
+                $producto->__SET('Stok_max', $r->Stok_max);
+                $producto->__SET('Cantidad_exist', $r->Cantidad_exist);
+                $producto->__SET('tipo_producto_tipo_prod', $r->tipo_producto_tipo_prod);
+                $producto->__SET('tamaño_tamaño', $r->tamaño_tamaño);
+                $producto->__SET('Valor_unitario', $r->Valor_unitario);
+
+                $result[] = $producto;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    
+    
+    
+    
+   public function Listar_bebida() {
+        try {
+            $result = array();
+
+            $stm = $this->pdo->prepare("CALL Consulta_bebida");
+            $stm->execute();
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+                $producto = new Producto();
+
+                $producto->__SET('Cod_producto', $r->Cod_producto);
+                $producto->__SET('Nom_prod', $r->Nom_prod);
+                $producto->__SET('Desc_prod', $r->Desc_prod);
+                $producto->__SET('Foto_prod', $r->Foto_prod);
+                $producto->__SET('Stok_min', $r->Stok_min);
+                $producto->__SET('Stok_max', $r->Stok_max);
+                $producto->__SET('Cantidad_exist', $r->Cantidad_exist);
+                $producto->__SET('tipo_producto_tipo_prod', $r->tipo_producto_tipo_prod);
+                $producto->__SET('tamaño_tamaño', $r->tamaño_tamaño);
+                $producto->__SET('Valor_unitario', $r->Valor_unitario);
+
+                $result[] = $producto;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    
+    public function Listar_acompaniante() {
+        try {
+            $result = array();
+
+            $stm = $this->pdo->prepare("CALL Consulta_acompaniante");
+            $stm->execute();
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+                $producto = new Producto();
+
+                $producto->__SET('Cod_producto', $r->Cod_producto);
+                $producto->__SET('Nom_prod', $r->Nom_prod);
+                $producto->__SET('Desc_prod', $r->Desc_prod);
+                $producto->__SET('Foto_prod', $r->Foto_prod);
+                $producto->__SET('Stok_min', $r->Stok_min);
+                $producto->__SET('Stok_max', $r->Stok_max);
+                $producto->__SET('Cantidad_exist', $r->Cantidad_exist);
+                $producto->__SET('tipo_producto_tipo_prod', $r->tipo_producto_tipo_prod);
+                $producto->__SET('tamaño_tamaño', $r->tamaño_tamaño);
+                $producto->__SET('Valor_unitario', $r->Valor_unitario);
+
+                $result[] = $producto;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function Listar_pasta() {
+        try {
+            $result = array();
+
+            $stm = $this->pdo->prepare("CALL Consulta_pasta");
+            $stm->execute();
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+                $producto = new Producto();
+
+                $producto->__SET('Cod_producto', $r->Cod_producto);
+                $producto->__SET('Nom_prod', $r->Nom_prod);
+                $producto->__SET('Desc_prod', $r->Desc_prod);
+                $producto->__SET('Foto_prod', $r->Foto_prod);
+                $producto->__SET('Stok_min', $r->Stok_min);
+                $producto->__SET('Stok_max', $r->Stok_max);
+                $producto->__SET('Cantidad_exist', $r->Cantidad_exist);
+                $producto->__SET('tipo_producto_tipo_prod', $r->tipo_producto_tipo_prod);
+                $producto->__SET('tamaño_tamaño', $r->tamaño_tamaño);
+                $producto->__SET('Valor_unitario', $r->Valor_unitario);
+
+                $result[] = $producto;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function Listar_ensalada() {
+        try {
+            $result = array();
+
+            $stm = $this->pdo->prepare("CALL Consulta_ensalada");
+            $stm->execute();
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+                $producto = new Producto();
+
+                $producto->__SET('Cod_producto', $r->Cod_producto);
+                $producto->__SET('Nom_prod', $r->Nom_prod);
+                $producto->__SET('Desc_prod', $r->Desc_prod);
+                $producto->__SET('Foto_prod', $r->Foto_prod);
+                $producto->__SET('Stok_min', $r->Stok_min);
+                $producto->__SET('Stok_max', $r->Stok_max);
+                $producto->__SET('Cantidad_exist', $r->Cantidad_exist);
+                $producto->__SET('tipo_producto_tipo_prod', $r->tipo_producto_tipo_prod);
+                $producto->__SET('tamaño_tamaño', $r->tamaño_tamaño);
+                $producto->__SET('Valor_unitario', $r->Valor_unitario);
+
+                $result[] = $producto;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    } 
+    
+    
+    
+    
+    
 
     public function Obtener_Producto($Cod_producto) {
         try {

@@ -36,8 +36,8 @@ if ($archivo == "index.php") {
                     <li><a href="">Rol</a>
                         <ul>
                             <li><a href="administrador.php">Gerente</a></li>
-                            <li><a href="empleado.php">Empleado </a></li>
-                            <li><a href="index.php">Cliente</a></li>
+                            <li><a href="../empleado/empleado.php">Empleado </a></li>
+                            <li><a href="../index.php">Cliente</a></li>
                         </ul>
                     </li>	
                     <li><a href="Tamanio.php">Tamaño</a></li>
@@ -46,9 +46,9 @@ if ($archivo == "index.php") {
 
                     <li><a href="administrador.php">mas</a>	
                         <ul>
-                            <li><a href="VerOpinion.php">Opiniones</a></li>
+                            <li><a href="Opiniones.php">Opiniones</a></li>
                             <li><a  href="Nuevo registro.php?action=ver&m=1">Nuevo producto</a></li>
-                            <li><a href="Tipo productos.php">Tipo productos</a></li>
+                            <li><a href="Tipoproductos.php">Tipo productos</a></li>
                         </ul>	
 
                     </li>
@@ -84,7 +84,7 @@ if ($archivo == "index.php") {
                         } else {
                             echo "Registro";
                         }
-                    ?></a></li>
+                        ?></a></li>
             </div>
         </div>
 

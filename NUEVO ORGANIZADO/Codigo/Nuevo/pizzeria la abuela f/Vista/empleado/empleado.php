@@ -8,8 +8,9 @@ error_reporting(0);
 $sessionidp = $_SESSION["idp"];
 $sessiontdp = $_SESSION["tdp"];
 $rol_pers = $_SESSION["rolp"];
-$res = $con->query("select * from persona where Num_Documento_per='$sessionidp' and tipo_doc='$sessiontdp' and rol_Rol= 'EMPLEADO'");
-if ($res->num_rows == 1) {
+$res = $con->query("select * from persona where Num_Documento_per='$sessionidp' and tipo_doc='$sessiontdp' and rol_Rol= 'EMPLEADO'" );
+$re = $con->query("select * from persona where Num_Documento_per='$sessionidp' and tipo_doc='$sessiontdp' and rol_Rol= 'ADMINISTRADOR'");
+if ($res->num_rows == 1 || $re->num_rows == 1 ) {
     ?>
 
     <html lang="es">

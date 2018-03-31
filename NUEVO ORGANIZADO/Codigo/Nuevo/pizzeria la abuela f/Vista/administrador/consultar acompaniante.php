@@ -64,14 +64,14 @@ if ($res->num_rows == 1) {
                         <li>
 
                             <?php
-                            $sq11 = "CALL Consulta_producto";
+                            $sq11 = "CALL Consulta_acompaniante";
 
                             $query = $db->query($sq11);
 
                             if ($query->rowCount() > 0):
                                 ?>
 
-                                <h1>Consulta producto</h1><br>
+                                <h1>Consulta acompañante</h1><br>
                                 <table class="listar" >
                                     <thead>
                                         <tr>
@@ -92,7 +92,7 @@ if ($res->num_rows == 1) {
                                     </thead>
 
 
-                                    <?php foreach ($model->Listar_prod() as $r): ?>
+                                    <?php foreach ($model->Listar_acompaniante() as $r): ?>
                                         <tr> 
                                             <td><?php echo $r->__GET('Cod_producto'); ?></td>
                                             <td><?php echo $r->__GET('Nom_prod'); ?></td>

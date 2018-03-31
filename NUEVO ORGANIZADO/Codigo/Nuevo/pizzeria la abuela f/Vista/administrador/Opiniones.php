@@ -1,14 +1,4 @@
 <?php
-require_once '../../Controlador/copinion.php';
-require_once '../../Modelo/mcomentario.php';
-require_once '../../Modelo/conexion1.php';
-
-$prod = new Opinion();
-$model = new OpinionModel();
-$db = database::conectar();
-?>
-
-<?php
 if (!isset($_SESSION["session"])) { // Verifica si la variable de sesión creada esta activa si no la inicializa
     session_start();
     $ruta = "";
@@ -38,113 +28,44 @@ if ($res->num_rows == 1) {
                 ?>
             </header>
 
+            <br>
+
             <center>
                 <table class="reg1">
                     <tr>
                         <td>
-                    <center>
 
-                        <?php
-                        $sqll = "CALL Listar_Opinion";
+                            <table class="hola">
+                                <tr>
+                                    <td>
+                                <center>
+                                    <form method="post" action="../../controlador/lista-opinion-por-fecha.php">
+                                        <h1>Opiniones</h1>
 
-                        $query = $db->query($sqll);
+                                        <br>
+                                        <br>
 
-                        if ($query->rowCount() > 0):
-                            ?>
+                                        <h4>Fecha comienzo:</h4>
+                                        <input type="TEXT" id="start_date" name="start_date" placeholder="mm/dd/yyyy"> <br/>
+                                        <h4><br>Fecha final:</h4>
+                                        <input type="TEXT" id="end_date" name="end_date"  placeholder="mm/dd/yyyy"><br/>
 
-                            <h1>contactanos</h1>
+                                        <input type="hidden" id="form_sent" name="form_sent" value="true">
+                                        <input type="submit" id="btn_submit" value="Enviar"><br/>    
+                                    </form>
 
-                            <br>
-                            <!--      
+                                    <br>
+                                    <br>
 
-                                 <form class="form-inline" method="post" action="#">
-                                        <div class="form-group">
-                                           FECHA <input type="date" name="fecha" step="1"  style="width:150px;" class="form-control" min="2018-01-01" value="<?php echo date("Y-m-d");?>">
-                                        </div>
-                                        <button type="submit" name="buscar" class="COMPRA">Buscar</button>
-                                    </form><br>
-                                     <table class="listar" >
-                                <thead>
-                                    <tr>
-                                        <th> CODIGO OPINION   </th>
-                                        <th> OPINION  </th>
-                                        <th>DOCUMENTO PERSONA</th>
-                                        <th>TIPO DE DOCUMENTO</th>
-                                        <th> FECHA  </th>
-                                    </tr>
-                                </thead>
-                            <br>
-                            
-                            <?php
-                            if (isset($_POST["buscar"])) { // Verifica si el botón oprimido es el de buscar
-                            /*
-                             * Esta es la consula para obtener todos las opiniones de la base de datos buscando la fecha.
-                             */
-                            $fecha=$_REQUEST["fecha"];
-                            
-                            $opinion = $con->query("select * from opinion where Fecha = '$fecha'");
-                            ?>
+                                </center>
 
-                            <?php
-                            /*
-                             * Apartir de aqui hacemos el recorrido de las opiniones obtenidas y los reflejamos en una tabla.
-                             */
-                            while ($r = $opinion->fetch_object()):
-                                ?>
-<tr>
-                           
-
-
-                              <td>   <?php echo "Codigo " . $r->Cod_Opinion; ?></td>
-                               <td> <?php echo "Opinion " . $r->Opinion; ?></td>
-                               <td> <?php echo "Documento " . $r->persona_Num_Documento_per; ?></td>
-                               <td> <?php echo "Tipo documento " . $r->persona_tipo_doc; ?></td>
-                               <td> <?php echo "Fecha " . $r->Fecha; ?></td>
-
-
-                               
-                               
-
-                            <?php endwhile; }?>
-                            
+                        </td>
                     </tr>
                 </table>
 
-                                    
-                          -->
-                            <table class="listar1">
-                                <thead>
-                                    <tr>
-                                        <th> CODIGO OPINION   </th>
-                                        <th> OPINION  </th>
-                                        <th>DOCUMENTO PERSONA</th>
-                                        <th>TIPO DE DOCUMENTO</th>
-                                        <th> FECHA  </th>
-                                    </tr>
-                                </thead>
 
-                                <?php foreach ($model->Listar_Opinion() as $r): ?> 
-                                    <tr>
-
-                                        <td> <?php echo $r->__GET('Cod_Opinion'); ?></td>
-                                        <td><?php echo $r->__GET('Opinion'); ?></td>
-                                        <td><?php echo $r->__GET('persona_Num_Documento_per'); ?></td>
-                                        <td><?php echo $r->__GET('persona_tipo_doc'); ?></td>
-                                        <td><?php echo $r->__GET('Fecha'); ?></td>
-
-                                    </tr>
-                                <?php endforeach; ?>
-
-
-
-                            <?php endif; ?>
-                        </table>
-
-
-
-                    </center>
-                    </td>
-                    </tr>
+                </td>
+                </tr>
                 </table>
             </center>
 
