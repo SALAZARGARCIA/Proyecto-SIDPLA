@@ -38,7 +38,7 @@ $rol_pers = $_SESSION["rolp"];
                     <h1>Lista de Domicilios Comprados</h1>
                     
                     <br>
-           <a href="domicilios en espera.php"><button class="comprar" id="myButton<?php echo $numform ?>" onclick="ShowHideElement<?php echo $numform ?>()">Verdomicilios en espera</button></a>
+          
                     <?php
                     /*
                       select t1.Cod_Dom, t1.Fecha_Hora, t1.Direc_Dom, t1.Observacion_dom, t1.estado_domicilio_Estado_dom, t2.persona_Num_Documento_per, t1.Valor_Total from domicilio as t1 inner join persona_has_domicilio as t2 on t1.Cod_Dom = t2.domicilio_Cod_dom where t1.estado_domicilio_Estado_dom= 'EN ESPERA';

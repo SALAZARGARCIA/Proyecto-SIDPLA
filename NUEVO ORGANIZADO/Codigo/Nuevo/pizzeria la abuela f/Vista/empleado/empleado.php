@@ -82,6 +82,8 @@ if ($res->num_rows == 1 || $re->num_rows == 1 ) {
                         <br>
                         <br>
                         <br>
+						
+						
 
                         <b><p>Informacion del cliente</p></b>
 
@@ -191,7 +193,7 @@ if ($res->num_rows == 1 || $re->num_rows == 1 ) {
                                 <form class="form-inline" method="post" action="../../Controlador/controler1.php">
                                     <input type="hidden" name="domicilio_id" value="<?php echo $codigo_dom; ?>">
                                     <button type="submit" name="cambio_est_dom" class="comprar" onclick="return confirm('¿Esta seguro de actualizar este Domicilio?')">Entregado</button>
-                                </form></center></td></tr></table>
+                                </form></center></td></tr></table><button type="submit" name="cancelar_dom" class="comprar" onclick="return confirm('¿Esta seguro de cancelar este Domicilio?')">Cancelar</button>
                         <hr size="1" />
                         <script type="text/javascript">
 

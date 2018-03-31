@@ -121,24 +121,15 @@ if (isset($_POST["enviar"])) {
 //Cometarios
 if (isset($_POST["comentar"])) { // Verifica si el botón oprimido es el de comentar
     session_start();
-    error_reporting(0);
 
     $com = $_REQUEST['comentario'];
     $idper = $_SESSION["idp"];
     $tdocper = $_SESSION["tdp"];
-    if (null !== $idper && null !== $tdocper) {
     $q4 = $con->query("insert into opinion(Opinion,persona_Num_Documento_per,persona_tipo_doc, Fecha)
  values('$com','$idper','$tdocper',NOW())");
 
     print "<script>alert(\"Gracias por tu opinión\");window.location='../Vista/coment.php';</script>";
-}else {
-    print "<script>alert('Regístrate o inicia sesión para dejar un comentario.');window.location='../Vista/inicio_sesion.php';</script>";
 }
-}
-
-
-
-
 
 if (isset($_POST["cambio_est_dom"])) {
 
@@ -154,13 +145,6 @@ if (isset($_POST["cambio_est_dom"])) {
             }
         }
     }
-}
-
-if(isset($_POST["cancelar_dom"])){
-	
-$iddom=$_POST["domicilio_id"];
-$q5 = $con->query("update domicilio set estado_domicilio_Estado_dom= 'CANCELADO' where Cod_dom= $iddom");
-print "<script>alert(\"Domicilio cancelado exitosamente\");window.location='../Vista/empleado/empleado.php';</script>";
 }
 
 //--------------FUNCION DE RECUPERAR CONTRASE�A------------------------

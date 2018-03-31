@@ -52,7 +52,7 @@ if ($res->num_rows == 1) {
                         if ($query->rowCount() > 0):
                             ?>
 
-                            <h1>contactanos</h1>
+                            <h1>Lista de opiniones</h1>
 
                             <br>
                             <!--      

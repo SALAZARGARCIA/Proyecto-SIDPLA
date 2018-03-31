@@ -69,9 +69,10 @@ if ($archivo == "index.php") {
                                               }
                                               ?></a></li>
 
+               
                 <li class="pull-right"><a href="<?php
                     if (isset($_SESSION['session'])) {
-                        echo $ruta . '../../controlador/salir.php';
+                        echo $ruta . '../actualizarDatos.php';
                     } else {
                         echo $ruta . 'registro2.php';
                     }
@@ -82,6 +83,7 @@ if ($archivo == "index.php") {
                             echo "Registro";
                         }
                         ?></a></li>
+            </div>
             </div>
         </div>
 

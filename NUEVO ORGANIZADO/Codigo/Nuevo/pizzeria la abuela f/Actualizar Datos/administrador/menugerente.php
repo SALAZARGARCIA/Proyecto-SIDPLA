@@ -1,4 +1,4 @@
-<?php
+<?php/*
 if (!isset($_SESSION["session"])) { // Verifica si la variable de sesión creada esta activa si no la inicializa
     session_start();
 }
@@ -24,12 +24,11 @@ if ($archivo == "index.php") {
             <img class="sobre" src="../img/rojo.png" width="740px" height="36px"/><img src="../img/principal.png" vspace="16" width="1000px" height="180px"/>
             <div id="navegador">
                 <ul class="navegadorg1">
-					<li><a href="administrador.php"><span class="icon-home"></span></a></li>
+
                     <li><a href="productos1.php">Listas</a>
                         <ul>
                             <li><a href="productos1.php">Productos</a></li>
-							  <li><a href="Personas.php">Personas</a></li>
-                            <li><a href="buscPersonas.php">Buscar persona</a></li>
+                            <li><a href="Personas.php">Personas</a></li>
                         </ul>
                     </li>
 
@@ -41,13 +40,14 @@ if ($archivo == "index.php") {
                             <li><a href="../index.php">Cliente</a></li>
                         </ul>
                     </li>	
-
+                    <li><a href="Tamanio.php">Tamaño</a></li>
                     <li><a href="Verdomicilios.php">Ver domicilios</a></li>
-                    <li><a href="Opiniones.php">Opiniones</a></li>
-                    <li><a  href="Nuevo registro.php?action=ver&m=1">Nuevo producto</a></li>
+
+
                     <li><a href="administrador.php">mas</a>	
                         <ul>
-                            <li><a href="Tamanio.php">Tamaño</a></li>
+                            <li><a href="Opiniones.php">Opiniones</a></li>
+                            <li><a  href="Nuevo registro.php?action=ver&m=1">Nuevo producto</a></li>
                             <li><a href="Tipoproductos.php">Tipo productos</a></li>
                         </ul>	
 
@@ -72,7 +72,7 @@ if ($archivo == "index.php") {
                                               }
                                               ?></a></li>
 
-                <li class="pull-right"><a href="<?php
+                <li class="pull-right"><a href="<?php*/
                     if (isset($_SESSION['session'])) {
                         echo $ruta . '../actualizarDatos.php';
                     } else {
@@ -87,10 +87,8 @@ if ($archivo == "index.php") {
                         ?></a></li>
             </div>
         </div>
+
+
     </div>
-</div>
-
-
-</div>
 </body>
 </html>

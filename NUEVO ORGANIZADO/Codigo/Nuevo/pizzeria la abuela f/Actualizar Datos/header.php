@@ -1,4 +1,4 @@
-<?php
+<?php/*
 if (!isset($_SESSION["session"])) { // Verifica si la variable de sesión creada esta activa si no la inicializa
     session_start();
     error_reporting(0);
@@ -28,13 +28,13 @@ if ($archivo == "index.php") {
                 <img src="img/principal.png" vspace="16" width="1000px" height="180px"/>
                 <div id="navegador">
                     <?php if (!isset($rol_pers)) { ?>
-                        <ul class="navegadorg1">
-                            <li><a href="index.php"><span class="icon-home"></span></a></li>
-                            <li><a href="acerca.php">Acerca</a></li>
-                            <li><a href="coment.php">Comentario</a></li>
-                            <li><a href="contactos.php">Contactos</a></li>
-                            <li><a href="productos.php">Productos</a></li>
-                            <li><a href="cart.php"><span class="icon-shopping-cart"></a></li>
+                     <ul class="navegadorg1">
+                        <li><a href="index.php"><span class="icon-home"></span></a></li>
+                        <li><a href="acerca.php">Acerca</a></li>
+                        <li><a href="coment.php">Comentario</a></li>
+                        <li><a href="contactos.php">Contactos</a></li>
+                        <li><a href="productos.php">Productos</a></li>
+                        <li><a href="cart.php"><span class="icon-shopping-cart"></a></li>
                         </ul>
                     <?php } else if ($rol_pers == "CLIENTE") {
                         ?>
@@ -104,36 +104,15 @@ if ($archivo == "index.php") {
                 <!-- parte ddelmenu donde de inicio de sesiony registro -->
                 <div id="headerie">
 
-                    <li class="pull-right">
 
-                        <a href="<?php
-                        if (isset($_SESSION['session'])) {
-                            echo $ruta . '../controlador/salir.php';
-                        } else {
-                            echo $ruta . 'inicio_sesion.php';
-                        }
-                        ?>">
-                               <?php
-                               if (isset($_SESSION["session"])) {
-                                   echo "Salir";
-                               } else {
-                                   echo "Ingresar";
-                               }
-                               ?>
-                        </a>
-                    </li>
+                    <li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'../controlador/salir.php';} else {
+                echo $ruta.'inicio_sesion.php';}?>"></span> <?php
+                if(isset($_SESSION["session"])){ echo "Salir";} else{echo "Ingresar";}?></a></li>*/
+                
+                <li class="pull-right"><a href="<?php if(isset($_SESSION['session'])){echo $ruta.'actualizarDatos.php';} else {
+                echo $ruta.'registro2.php';}?>"><span class="glyphicon glyphicon-user"></span> <?php
+                if(isset($_SESSION["session"])){ echo $_SESSION["session"];} else{echo "Registro";}?></a></li>
 
-
-                    <li class="pull-right"><a href="<?php if (isset($_SESSION['session'])) {
-                                   echo $ruta . 'actualizarDatos.php';
-                               } else {
-                                   echo $ruta . 'registro2.php';
-                               }
-                               ?>"><span class="glyphicon glyphicon-user"></span> <?php if (isset($_SESSION["session"])) {
-                                   echo $_SESSION["session"];
-                               } else {
-                                   echo "Registro";
-                               } ?></a></li>
                 </div>
             </center>
         </div>
