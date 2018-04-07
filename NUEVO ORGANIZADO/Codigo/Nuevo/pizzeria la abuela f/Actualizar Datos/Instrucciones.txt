@@ -1,2 +1,0 @@
-1. copiar y pegar actualizarDatos.php en la carpeta vista
-2. Los header solo es copiar y reemplazar en los otros lo q no esta comentado

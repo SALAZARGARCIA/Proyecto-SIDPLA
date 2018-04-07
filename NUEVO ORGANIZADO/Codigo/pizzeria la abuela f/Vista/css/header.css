@@ -1,0 +1,195 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face{
+    font-family: ArtBrush;
+    src: url(ArtBrush.ttf) format('truetype');
+}
+
+#header{
+    position: relative;
+    padding-top:0px;
+}
+.sobre {
+    position:absolute;
+    top:120px;
+    left:220px;
+    border:none;
+}
+#headerie{
+    list-style-type: none;
+    text-align: center;
+
+    position:absolute;
+    top:60px;
+    left:895px;
+    border:none;
+
+
+    font-weight:bold;
+    font-size:18px;
+
+    font-family: ArtBrush;
+
+}
+
+div#contenedor {
+    margin: 0 auto;
+    width: 1020px;
+}
+
+#navegador{
+    list-style-type: none;
+    text-align: center;
+
+    position:absolute;
+    top:125px;
+    left:245px;
+    border:none;
+
+}
+
+
+/*el margin es para acomodar la distancia que tendran las letras del menu */
+#navegador li{
+    display: inline;
+    text-align: center;
+	
+}
+
+#navegador li a  {
+    font-family:ArtBrush;
+    color:#FFF;
+    padding: 2px 6px 2px 6px;
+    text-decoration: none;
+    font-size:23px;
+}
+
+#navegador li a:hover{
+
+    color: #fff;
+
+}
+
+
+
+
+
+#navegadorg{
+
+    font-size:20px;
+    margin:auto;
+    width:650px;
+    font-family:ArtBrush;
+}
+ul, ol {
+
+    list-style:none;
+}
+
+#navegadorg{
+
+    position:absolute;
+    top:220px;
+    left:345px;
+    border:none;
+
+}
+
+
+.navegadorg1 li a {
+
+
+    color:#fff;
+    text-decoration:none;
+    padding:10px 15px;
+    display:block;
+}
+.navegadorg1 li a:hover{
+
+    background-color:#FA5C5C;
+
+}
+.navegadorg1 > li {
+    float:left;
+}
+
+
+
+.navegadorg1 li ul{
+    background-color:red;
+    display:none;
+    position:absolute;
+    
+}
+
+.navegadorg1 li:hover > ul {
+
+    display:block;
+	
+}
+
+.navegadorg1 li ul li {
+
+    position:relative;
+
+
+}
+
+.navegadorg1 li ul li ul{
+
+    right:-140px;
+    top:0;
+
+}
+
+.icon-home{
+    font-family:ArtBrush;
+    color:#FFF;
+    padding: 2px 7px 2px 7px;
+    text-decoration: none;
+    font-size:21px;
+}
+
+.icon-shopping-basket{
+
+    font-family:ArtBrush;
+    color:#FFF;
+    /* padding: 2px 145px 2px 145px;*/
+    text-decoration: none;
+    font-size:25px;
+}
+
+.icon-facebook{
+    font-size:34px;
+}
+
+.icon-twitter{
+    font-size:34px;
+}
+
+.icon-instagram{
+    font-size:34px;
+}
+
+.icon-youtube{
+    font-size:34px;
+}
+
+
+
+.icon-facebook-with-circle{
+    font-size:34px;
+}
+
+.icon-twitter-with-circle{
+    font-size:34px;
+}
+
+.icon-instagram-with-circle{
+    font-size:34px;
+}
+
+.icon-youtube-with-circle{
+    font-size:34px;
+}
+
