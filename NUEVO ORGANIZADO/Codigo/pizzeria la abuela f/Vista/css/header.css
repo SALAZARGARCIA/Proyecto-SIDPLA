@@ -89,8 +89,8 @@ ul, ol {
 #navegadorg{
 
     position:absolute;
-    top:220px;
-    left:345px;
+    top:120px;
+    left:245px;
     border:none;
 
 }
@@ -125,7 +125,6 @@ ul, ol {
 .navegadorg1 li:hover > ul {
 
     display:block;
-	
 }
 
 .navegadorg1 li ul li {
@@ -176,7 +175,6 @@ ul, ol {
 }
 
 
-
 .icon-facebook-with-circle{
     font-size:34px;
 }
@@ -192,4 +190,5 @@ ul, ol {
 .icon-youtube-with-circle{
     font-size:34px;
 }
+
 

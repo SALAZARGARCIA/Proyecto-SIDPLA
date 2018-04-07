@@ -43,12 +43,12 @@ if ($res->num_rows == 1) {
                         <tr>
 
                             <td class="pro">
-                                <a href="" > <img src="../img/LogoIngresos.jpg" ><br><h4>Los ingresos en este mes son de: $<?php echo $r->Suma;?></h4></a></td>
+                                <a href="" > <img src="../img/LogoIngresos.jpg" ><br><h3>Los ingresos en este mes son de: $<?php echo $r->Suma;?></h3></a></td>
                             <td class="pro">
-                                <a href="productos.php"> <img src="../img/LogoProductos.jpg"  ><br><h4>lista de productos</h4></a></td>
+                                <a href="productos.php"> <img src="../img/LogoProductos.jpg"><br><br><h3>lista de productos</h3></a></td>
 
                             <td class="pro">
-                                <a href="Opiniones.php"> <img src="../img/LogoPersona.jpg" ><br><h4>lista de opiniones</h4></a>
+                                <a href="Opiniones.php"> <img src="../img/LogoPersona.jpg" ><br><br><h3>lista de opiniones</h3></a>
                             </td>	
 
                         </tr>
@@ -58,17 +58,18 @@ if ($res->num_rows == 1) {
                 </tr>
             </table>
             <!--se valida para saber si esta logeado como admin-->
-            <?php
-        } else {
-            echo "!!!!!ATENCION!!!!!  Para ver esta pagina debe iniciar sesion como ADMINISTRADOR";
-        }
-        ?>
+      
 
         <br>
         <br>
 <?php
-                                include 'footer.php';
+                                include '../footer.php';
 ?>
 
+      <?php
+        } else {
+            echo "!!!!!ATENCION!!!!!  Para ver esta pagina debe iniciar sesion como ADMINISTRADOR";
+        }
+        ?>
     </body>
 </html>

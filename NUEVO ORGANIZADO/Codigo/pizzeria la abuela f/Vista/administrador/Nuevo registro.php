@@ -209,7 +209,7 @@ if ($res->num_rows == 1) {
         </center>	
         <br>
 <?php
-                                include 'footer.php';
+                                include '../footer.php';
 ?>
         <!--se valida para saber si esta logeado como admin-->
         <?php

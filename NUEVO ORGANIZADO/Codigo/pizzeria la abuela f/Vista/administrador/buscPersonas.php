@@ -147,10 +147,9 @@ if ($res->num_rows == 1) {
 
  <br>
  <br>
-        
-<footer>
-   <!-- pie de pagina-->
-</footer>
+<?php
+                                include '../footer.php';
+?>
 <?php
         }else {
             echo "!!!!!ATENCION!!!!!  Para ver esta pagina debe iniciar sesion como ADMINISTRADOR";

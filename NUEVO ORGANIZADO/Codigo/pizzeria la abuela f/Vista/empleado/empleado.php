@@ -20,7 +20,9 @@ if ($res->num_rows == 1 || $re->num_rows == 1) {
             <?php
             include("../llamadoestilos2.php");
             ?>
-
+<?php 
+header("Refresh: 30; URL='empleado.php'");
+?>
         </head> 
         <body>
         <center>
@@ -202,8 +204,8 @@ if ($res->num_rows == 1 || $re->num_rows == 1) {
                             </center></td><td><center>
                                 <form class="form-inline" method="post" action="../../Controlador/controler1.php">
                                     <input type="hidden" name="domicilio_id" value="<?php echo $codigo_dom; ?>">
-                                    <button type="submit" name="cambio_est_dom" class="comprar" onclick="return confirm('¿Esta seguro de actualizar este Domicilio?')"><span class="icon-check"></span> Entregado</button>
-                                    <button type="submit" name="cancelar_dom" class="comprar" onclick="return confirm('¿Esta seguro de cancelar este Domicilio?')"><span class="icon-circle-with-cross"></span>Cancelar</button>
+                                    <button type="submit" name="cambio_est_dom" class="comprar" onclick="return confirm('¿Esta seguro de actualizar este Domicilio?')">Entregado<span class="icon-check"></span></button>
+                                    <button type="submit" name="cancelar_dom" class="cancelar" onclick="return confirm('¿Esta seguro de cancelar este Domicilio?')">Cancelar <span class="icon-circle-with-cross"></span></button>
                                 </form></center></td></tr></table>
                         <hr size="1" />
                         <script type="text/javascript">
@@ -249,8 +251,8 @@ if ($res->num_rows == 1 || $re->num_rows == 1) {
     <br>
     <br>
 
-    <footer>
-        <!-- pie de pagina-->
-    </footer>
+<?php
+                                include '../footer.php';
+?>
 </body>
 </html>

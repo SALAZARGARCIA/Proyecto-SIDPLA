@@ -4,14 +4,14 @@
         <?php
         include("llamadoestilos.php");
         ?>
-       
+
 
     </head>
 
     <body> 
     <center>
         <header>
-            
+
             <?php
             include("header.php");
             ?>
@@ -34,22 +34,21 @@
                         <br>
 
                         <tr>
-                            <td> <h4> <span class="icon-user"></span> Nombre de Usuario</h4></td><td>
-                              
-                                    <span class="input-group-addon"><span class=""></span></span>
-                                    <input type="text" name="usu" class="form-control" placeholder="Nombre de Usuario" >
-                              </td>
+                            <td> <h4> <span class="icon-user"></span> Nombre de Usuario</h4>
+                            </td>
+                            <td>
+                                <span class="input-group-addon"></span>
+                                <input type="text" name="usu" class="form-control" placeholder="usuejemplo" required>
+                            </td>
                         </tr>
 
                         <tr><td><h4><span class="icon-key"></span> Contraseña</h4></td>
                             <td><br><br>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                    <input type="password" id="password1" name="pass" class="form-control" placeholder="Contraseña" >
-                                    <span class="icon-eye" ></span>
-                                    <input type="checkbox" onchange="document.getElementById('password1').type = this.checked ? 'text' : 'password'"> 
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" id="password1" name="pass" class="form-control" required>
                                 <br><br><a href="recuperaContrasena.php">¿Olvidaste tu contraseña?</a>
-								
-								</td></tr>
+
+                            </td></tr>
 
 
                         <tr><td align="center"><input type="submit" name="enviar" value="Iniciar Sesion" class="" width="300px"><br><br></td></tr>
@@ -101,10 +100,10 @@
 
     <br>
     <br>
-    
-<?php
-                                include 'footer.php';
-?>
+
+    <?php
+    include 'footer.php';
+    ?>
 
 </body>
 </html>

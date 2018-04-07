@@ -31,8 +31,18 @@ a:hover{
     color: #FC7C3D;
 }
 
+footer{
+    background: rgba(254, 2, 2  ,0);
+    color: #fff;
+    font-size: 0.85em;
+    padding: 0.75em 0;
+      margin: 0 auto;
+    max-width: 65%;
+    text-align: center;
+}
+
 footer a{
-     color:red;
+    color:red;
     font-weight: bold;
     text-decoration: none;   
 }
@@ -41,10 +51,10 @@ footer a:hover{
     color: #FC7C3D;
 }
 
-header,section#contenido,footer{
+header,section#contenido{
     /*background: rgba(250,150,0,0.7);*/
     margin: 0 auto;
-    max-width: 65%;
+    max-width: 80%;
     text-align: center;
 }
 
@@ -119,15 +129,6 @@ h2{
     color: #00000;
     font-family: ArtBrush;
 }
-h3{
-    background: #e2e7f1;
-    border-radius: 1em;
-    box-shadow: 0.25em 0.25em rgba(255,153,0,0.5);
-    margin-bottom: 0.5em;
-    padding-left: 0.5em;
-}
-
-
 
 hr{
     border:1px dashed #212121;
@@ -221,25 +222,16 @@ table {
 
 }
 
-.listar {
+.listar{
     margin: 0 auto;
     border: 10px ;
-	 border-radius: 10px;
-    background: #FFF;
- border-radius: 0.5em;
 
-}
+    background: #F2FFFF;
 
-.listar thead{
-    text-align: center;
-    border: 1px solid #000000;	
-    margin: 10px;
-    padding: 5px;
-	  background: #E2F4FF;
+
 }
 
 .listar th, td{
-	
     text-align: center;
     border: 1px solid #000000;	
     margin: 10px;
@@ -416,12 +408,7 @@ article#producto1,article#producto2,article#producto3{
 }
 
 
-footer{
-    background: rgba(254, 2, 2  ,0);
-    color: #fff;
-    font-size: 0.85em;
-    padding: 0.75em 0;
-}
+
 div#leermas{
     margin-top: 1em;
     text-align: right;
@@ -592,7 +579,7 @@ iframe{
 }
 
 /*cajas se texto del formulario */
-input[type="email"],input[type="text"],input[type="password"],input[type="number"],textarea{
+input[type="email"],input[type="text"],input[type="password"],input[type="number"],input[type="file"],select,textarea{
     background: #E6E6E6;
     border-radius: 0.25em;
     color: black;
@@ -601,7 +588,7 @@ input[type="email"],input[type="text"],input[type="password"],input[type="number
     width: 95%;
 }
 /*segundo color de cajas se texto del formulario */
-input[type="email"]:focus,input[type="text"]:focus,input[type="password"]:focus,input[type="number"]:focus,textarea:focus{
+input[type="email"]:focus,input[type="text"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="file"]:focus,select:focus,textarea:focus{
     background: #fff;
 }
 
@@ -879,4 +866,28 @@ span.datos-contacto{
 
 input:-moz-placeholder {
   color: #888
+}
+
+
+
+.cancelar{
+        background: white;
+    border-radius: 0.25em;
+    border:0.1em solid #CF3320;
+    font-family:ArtBrush;
+    font-size: 1.25em;
+    margin: 0 auto;
+    padding: 0.25em;
+    -webkit-transition:all 0.5s ease-in;
+    transition:all 0.5s ease-in;
+    color: red;
+}
+
+.cancelar:hover{
+    background: red;
+    border-radius: 0.25em;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition:all 0.5s ease-out;
+    transition:all 0.5s ease-out;
 }

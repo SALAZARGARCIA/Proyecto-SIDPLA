@@ -137,8 +137,8 @@ if ($res->num_rows == 1) {
                 </table>
             </center>	
             <br>	
-          <?php
-                                include 'footer.php';
+<?php
+                                include '../footer.php';
 ?>
             <?php
         }else {

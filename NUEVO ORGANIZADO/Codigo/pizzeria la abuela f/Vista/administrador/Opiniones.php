@@ -71,7 +71,9 @@ if ($res->num_rows == 1) {
 
             <br>
             <br>
-
+<?php
+                                include '../footer.php';
+?>
 
             <!--se valida para saber si esta logeado como admin-->
             <?php
@@ -79,9 +81,7 @@ if ($res->num_rows == 1) {
             echo "!!!!!ATENCION!!!!!  Para ver esta pagina debe iniciar sesion como ADMINISTRADOR";
         }
         ?>  
-  <?php
-                                include 'footer.php';
-?>
+
 
     </body>
 </html>

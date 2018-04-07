@@ -34,11 +34,11 @@
 
                     <table class="hola" >
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4><span class="icon-v-card"></span> Numero de Documento</h4></td><td>
-                                <input class="form-control input-sm" type="text" name="doc" class="form-control" placeholder="Numero de Documento" required></td></tr>
+                                <input class="form-control input-sm" type="number" name="doc" class="form-control" required></td></tr>
                         <tr><td style="padding:2px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Tipo Documento</h4></td><td>
-                                <select class="form-control" name="tdoc">
+                                <select class="form-control" name="tdoc" >
                                     <?php
                                     foreach ($con->query('SELECT * from tipo_doc where estado_tipo_doc=1') as $row) {
                                         echo '<option value="' . $row['tipo_doc'] . '">' . $row['tipo_doc'] . '</option>';
@@ -50,43 +50,43 @@
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Primer nombre</h4></td><td>
-                                <input class="form-control input-sm" type="text" name="nom1" class="form-control" placeholder="Nombre"required></td></tr>
+                                <input class="form-control input-sm" type="text" name="nom1" class="form-control" required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Segundo nombre</h4></td><td>
-                                <input class="form-control input-sm" type="text" name="nom2" class="form-control" placeholder="Nombre 2" required></td></tr>
+                                <input class="form-control input-sm" type="text" name="nom2" class="form-control" required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Primer apellido</h4></td><td>
-                                <input class="form-control input-sm" type="text" name="ape1" class="form-control" placeholder="Apellido" required></td></tr>
+                                <input class="form-control input-sm" type="text" name="ape1" class="form-control"required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4>Segundo apellido </h4></td><td>
-                                <input class="form-control input-sm" type="text" name="ape2" class="form-control" placeholder="Apellido_2" required></td></tr>
+                                <input class="form-control input-sm" type="text" name="ape2" class="form-control"required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4> <span class="icon-user"></span> Nombre de usuario</h4></td><td>
-                                <input class="form-control input-sm" type="text" name="usu" class="form-control" placeholder="Usuario"required></td></tr>
+                                <input class="form-control input-sm" type="text" name="usu" class="form-control" required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4><span class="icon-lock" ></span> Contraseña</h4></td><td>
-                                <input class="form-control input-sm" type="password" name="pass" class="form-control" placeholder="Contraseña" required></td></tr>
+                                <input class="form-control input-sm" type="password" name="pass" class="form-control"  required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4><span class="icon-old-phone"></span> Telefono</h4></td><td>
-                                <input class="form-control input-sm" type="number" name="tel" class="form-control" placeholder="Telefono" required></td></tr>
+                                <input class="form-control input-sm" type="number" name="tel" class="form-control"  required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4><span class="icon-mobile"></span> Celular</h4></td><td>
-                                <input class="form-control input-sm" type="number" name="cel" class="form-control" placeholder="Celular" required></td></tr>
+                                <input class="form-control input-sm" type="number" name="cel" class="form-control"  required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4><span class="icon-location-pin"></span> Dirección</h4></td></td><td>
-                                <input class="form-control input-sm" type="text" name="direc" class="form-control" placeholder="Dirección"required></td></tr>
+                                <input class="form-control input-sm" type="text" name="direc" class="form-control" required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td align="center" style="font-family:Tahoma, Geneva, sans-serif"><h4><span class="icon-mail"></span> Correo</h4></td><td>
-                                <input class="form-control input-sm" type="email" name="correo" class="form-control" placeholder="Correo" required></td></tr>
+                                <input class="form-control input-sm" type="email" name="correo" class="form-control" required></td></tr>
                         <tr><td style="padding:4px"></td></tr>
 
                         <tr><td colspan="2"><hr></td></tr>

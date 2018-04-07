@@ -137,7 +137,7 @@ include "../MODELO/conection.php";
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button type="submit" name="registrarVenta" 
-                                                        class="comprar" ><span class="icon-check"></span>Confirmar compra</button>
+                                                        class="comprar" >Confirmar compra <span class="icon-check"></span></button>
                                             </div>
                                         </div>
                                     </form>

@@ -121,7 +121,7 @@ $rol_pers = $_SESSION["rolp"];
                         </center></td><td><center>
                             <form class="form-inline" method="post" action="../Controlador/controler1.php">
                                 <input type="hidden" name="domicilio_id" value="<?php echo $codigo_dom; ?>">
-                                <button type="submit" name="cambio_est_dom2" class="comprar" onclick="return confirm('¿Esta seguro de cancelar este Domicilio?')"><span class="icon-circle-with-cross"></span>Cancelar Domicilio</button>
+                                <button type="submit" name="cambio_est_dom2" class="cancelar" onclick="return confirm('¿Esta seguro de cancelar este Domicilio?')">Cancelar Domicilio <span class="icon-circle-with-cross"></span></button>
                             </form></center></td></tr></table>
                     <hr size="1" />
                     <script type="text/javascript">

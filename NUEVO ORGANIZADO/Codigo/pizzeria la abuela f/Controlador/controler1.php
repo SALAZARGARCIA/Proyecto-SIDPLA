@@ -58,7 +58,11 @@ if (isset($_POST["registrarVenta"])) {
 
 
 if (isset($_POST["registrar"])) { // Verifica si el botón oprimido es el de registro
-    $doc = $_REQUEST['doc'];
+    $val= false;
+    if(strlen($_REQUEST['doc']) < 9 || strlen($_REQUEST['doc']) > 11){
+        print "<script>alert(\"Documento incorrecto\");window.location='../Vista/registro2.php';</script>"; 
+    }else{$val= true; }
+    if($val=true){
     $tdoc = $_REQUEST['tdoc'];
     $nom1 = $_REQUEST['nom1'];
     $nom2 = $_REQUEST['nom2'];
@@ -83,6 +87,7 @@ if (isset($_POST["registrar"])) { // Verifica si el botón oprimido es el de reg
         header("location:../vista/registro2.php?dato=no"); //Redirige a página registro sin errores
     }
     $objeto->CloseDB(); // Cierra conexión a base de datos
+    }
 }//FIN Registro
 
 

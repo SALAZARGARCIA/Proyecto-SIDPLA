@@ -140,7 +140,7 @@ if (isset($_REQUEST['action'])) {
         <br>
         <br>
 <?php
-                                include 'footer.php';
+                                include '../footer.php';
 ?>
 
         <!--se valida para saber si esta logeado como admin-->
