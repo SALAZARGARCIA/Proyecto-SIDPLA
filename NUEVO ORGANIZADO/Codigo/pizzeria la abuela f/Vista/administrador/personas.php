@@ -177,14 +177,14 @@
         <!-----------FIN MODAL AGREGAR persona---------->
 
         <div class="contenedor titulo admin">
-            <p>Administrador de personas</p>
+            <p>Administrador de usuarios</p>
         </div>
         <div class="contenedor blanco admin">
-          <label for="filtro" class="boton_filtro">Filtar personas <span class="icon-menu"></span></label>
+          <label for="filtro" class="boton_filtro" id="label-filtro">Filtar usuarios <span class="icon-chevron-down"></span></label>
           <input type="checkbox" id="filtro" name="filtro">
           <div class="contenedor-filtro">
             <form method="post" class="formulario-filtro">
-              <label for="opcion-filtro">Filtrar personas por</label>
+              <label for="opcion-filtro">Filtrar usuarios por</label>
                 <select name="opcion-filtro" id="opcion-filtro"">
                     <option value="todos" selected>TODOS</option>
                     <?php foreach ($model->Obtener_Roles() as $rol) { ?>
@@ -195,7 +195,7 @@
             </form>
           </div>
 
-          <button class="boton_exito btn-añadir" onclick="location.href='personas.php?Nuevo'">Agregar persona <span class="icon-add-to-list"></span></button>
+          <button class="boton_exito btn-añadir" onclick="location.href='personas.php?Nuevo'">Agregar usuario <span class="icon-add-user"></span></button>
 
           <div class="tabla_responsive">
             <table class="tabla_default">
@@ -260,5 +260,6 @@
 
      <!--JAVASCRIPT PARA VERIFICAR CONTRASEÑAS-->
      <script src="../js/form.js"></script>
+     
 </body>
 </html>

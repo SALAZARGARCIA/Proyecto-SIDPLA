@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-08-2018 a las 16:23:19
+-- Tiempo de generación: 11-08-2018 a las 20:01:48
 -- Versión del servidor: 5.7.14
--- Versión de PHP: 7.0.10
+-- Versión de PHP: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -131,19 +131,20 @@ CREATE TABLE `persona` (
   `Direc_per` varchar(60) NOT NULL COMMENT 'es la direccion de vivienda de la persona ',
   `Correo_per` varchar(45) DEFAULT NULL COMMENT 'es el correo electronico que utiliza la persona ',
   `tipo_doc` varchar(45) NOT NULL,
-  `rol_Rol` varchar(45) NOT NULL
+  `rol_Rol` varchar(45) NOT NULL,
+  `estado_per` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`Num_Documento_per`, `Nombres`, `Apellidos`, `Pass_login`, `Tel_per`, `Cel_per`, `Direc_per`, `Correo_per`, `tipo_doc`, `rol_Rol`) VALUES
-('1014304616', 'JULIANA GERALDIN', 'GARCIA CORREDOR', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 4008888, 3157301391, 'Av. Suba # 21 - 22', 'JGGARCIA176@MISENA.EDU.CO', 'CEDULA DE CIUDADANIA', 'CLIENTE'),
-('1031157939', 'ALBERT HERNAN', 'QUINTERO VALENCIA', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 4008881, 3123654823, 'Cra 4 # 35 - 25 sur', 'AQUINTERO939@MISENA.EDU.CO', 'CEDULA DE EXTRANGERIA', 'EMPLEADO'),
-('1031178887', 'JEISON ALEXANDER', 'DIAZ DAZA', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 4008888, 3203725972, 'Cra 24 # 50 - 20 sur', 'JADIAZ908@MISENA.EDU.CO', 'CEDULA DE CIUDADANIA', 'EMPLEADO'),
-('1033815398', 'JUAN SEBASTIAN', 'RUIZ CASTAÑEDA', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 400889, 3022608970, 'Cll 63 F No. 74 - 25', 'JSRUIZ241@MISENA.EDU.CO', 'CEDULA DE CIUDADANIA', 'ADMINISTRADOR'),
-('9900000001', 'FERNANDO JOSE', 'PRADA OTERO', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 4008882, 3102878826, 'Av. Calle 5 # 15 - 01 este', 'PRADA6@MISENA.EDU.CO', 'CEDULA DE CIUDADANIA', 'CLIENTE');
+INSERT INTO `persona` (`Num_Documento_per`, `Nombres`, `Apellidos`, `Pass_login`, `Tel_per`, `Cel_per`, `Direc_per`, `Correo_per`, `tipo_doc`, `rol_Rol`, `estado_per`) VALUES
+('1014304616', 'JULIANA GERALDIN', 'GARCIA CORREDOR', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 4008888, 3157301391, 'Av. Suba # 21 - 22', 'JGGARCIA176@MISENA.EDU.CO', 'CEDULA DE CIUDADANIA', 'CLIENTE', 1),
+('1031157939', 'ALBERT HERNAN', 'QUINTERO VALENCIA', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 4008881, 3123654823, 'Cra 4 # 35 - 25 sur', 'AQUINTERO939@MISENA.EDU.CO', 'CEDULA DE EXTRANGERIA', 'EMPLEADO', 1),
+('1031178887', 'JEISON ALEXANDER', 'DIAZ DAZA', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 4008888, 3203725972, 'Cra 24 # 50 - 20 sur', 'JADIAZ908@MISENA.EDU.CO', 'CEDULA DE CIUDADANIA', 'EMPLEADO', 1),
+('1033815398', 'JUAN SEBASTIAN', 'RUIZ CASTAÑEDA', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 400889, 3022608970, 'Cll 63 F No. 74 - 25', 'JSRUIZ241@MISENA.EDU.CO', 'CEDULA DE CIUDADANIA', 'ADMINISTRADOR', 1),
+('9900000001', 'FERNANDO JOSE', 'PRADA OTERO', '$2y$10$w8fUh1lLC5aeaH/C58.4yOw714GavTbQ.yN7/icOs6VZf7mlw6Liy', 4008882, 3102878826, 'Av. Calle 5 # 15 - 01 este', 'PRADA6@MISENA.EDU.CO', 'CEDULA DE CIUDADANIA', 'CLIENTE', 1);
 
 -- --------------------------------------------------------
 

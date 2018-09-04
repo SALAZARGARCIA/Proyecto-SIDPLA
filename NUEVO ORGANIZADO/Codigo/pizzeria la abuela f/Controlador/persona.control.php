@@ -131,6 +131,24 @@ if(isset($_GET['Cambio_estado'])){
         
 }
 
+if (isset($_POST["Deshabiliar_per"])){
+    
+    require_once '../Modelo/persona.model.php';
+    $model = new PersonaModel();
+    $Documento = $_POST['Num_Documento_per'];
+
+    $model->Deshabilitar_Persona($Documento);
+}
+
+if (isset($_POST["Habiliar_per"])){
+    
+    require_once '../Modelo/persona.model.php';
+    $model = new PersonaModel();
+    $Documento = $_POST['Num_Documento_per'];
+
+    $model->Habilitar_Persona($Documento);
+}
+
 
 
 

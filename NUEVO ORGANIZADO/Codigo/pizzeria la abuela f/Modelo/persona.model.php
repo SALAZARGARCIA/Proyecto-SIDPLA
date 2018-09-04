@@ -352,7 +352,31 @@ class PersonaModel {
         } catch (Exception $e) {
             die($e->getMessage());
         }
-    } 
+    }
+
+    public function Deshabilitar_Persona($Documento) {
+        try {
+            $stm = $this->pdo->prepare("UPDATE PERSONA SET estado_per = 0 WHERE Num_Documento_per = ?");
+            $result = $stm->execute(array($Documento));
+            if($result){
+                print "<script>alert(\"Persona deshabilitada exitosamente.\");window.location='../Vista/administrador/personas.php';</script>";
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function Habilitar_Persona($Documento) {
+        try {
+            $stm = $this->pdo->prepare("UPDATE PERSONA SET estado_per = 1 WHERE Num_Documento_per = ?");
+            $result = $stm->execute(array($Documento));
+            if($result){
+                print "<script>alert(\"Persona habilitada exitosamente.\");window.location='../Vista/administrador/personas.php';</script>";
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 
 
 }

@@ -161,7 +161,7 @@
             <p>Administrador de Productos</p>
         </div>
         <div class="contenedor blanco admin">
-          <label for="filtro" class="boton_filtro">Filtar Productos <span class="icon-menu"></span></label>
+          <label for="filtro" class="boton_filtro">Filtar Productos <span class="icon-chevron-down"></span></label>
           <input type="checkbox" id="filtro" name="filtro">
           <div class="contenedor-filtro">
             <form method="post" class="formulario-filtro">

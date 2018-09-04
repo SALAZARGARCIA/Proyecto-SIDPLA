@@ -908,7 +908,7 @@ div#detalleprods img{
 }
 
 .tabla_default img{
-    width: 300px;
+    width: 200px;
     max-width: 50%;
     border-radius: 2px;
     margin: 5px 0px;
@@ -1205,6 +1205,7 @@ div#detalleprods img{
     border: 1px solid gray;
     padding: 15px;
     width: 400px;
+    max-width: 100%;
     background:
     linear-gradient(
         #DADADA,
@@ -1260,7 +1261,105 @@ div#detalleprods img{
 }
 
 /*----------------------FIN ADMINISTRADOR PRODUCTOS----------------------*/
+/*---------------------PAGINA-PRINCIPAL-ADMINISTRADOR---------------------*/
 
+.tarjeta-admin{
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 25PX;
+    width: 250px;
+    max-width: 100%;
+    border-radius: 10px;
+    padding: 20px 5px 10px 5px;
+    box-shadow: inset 0px 2px 50px -1px rgba(0,0,0,0.35);
+}
+.tarjeta-admin:hover{
+  box-shadow: 0px 0px 42px 0px rgba(0,0,0,0.75);
+}
+.tarjeta-admin a{
+    display: block;
+    width: 95%;
+    margin: auto;
+    padding: 10px 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #696A69;
+}
+.tarjeta-admin p{
+  font-size: 17px;
+}
+.tarjeta-admin span{
+    font-size: 70px;
+}
+.ganancias{
+    background-color: #2ECC71;
+    border: 1px solid #27AE60;
+}
+.ganancias span{
+    color: #0A6932;
+}
+.usuarios{
+    background-color: #ECF0F1;
+    border: 1px solid #BDC3C7;
+}
+.usuarios span{
+    color: #070B0F;    
+}
+.productos{
+    background-color: #3498DB;
+    border: 1px solid #2980B9;
+    color: #fff;
+}
+.productos span{
+    color: #165781;    
+}
+.comentarios{
+    background-color: #1ABC9C;
+    border: 1px solid #16A085;
+    color: #fff;
+}
+.comentarios span{
+    color: #127561;    
+}
+.roles{
+    background-color: #E67E22;
+    border: 1px solid #D35400;
+    color: #fff;
+}
+.roles span{
+    color: #9E4001;    
+}
+.tipo_prod{
+    background-color: #34495E;
+    border: 1px solid #2C3E50;
+    color: #fff;
+}
+.tipo_prod span{
+    color: #15212C;    
+}
+.tipo_doc{
+    background-color: #95A5A6;
+    border: 1px solid #7F8C8D;
+    color: #fff;
+}
+.tipo_doc span{
+    color: #535B5B;    
+}
+.tamaños{
+    background-color: #F1C40F;
+    border: 1px solid #F39C11;
+    color: #fff;
+}
+.tamaños span{
+    color: #B4730A;    
+}
+
+
+/*---------------------FIN-PAGINA-PRINCIPAL-ADMINISTRADOR---------------------*/
+
+/*---------------------------------RESPONSIVE---------------------------------*/
 
 @media (max-width: 1500px){
     .formucontacto{
@@ -1280,6 +1379,10 @@ div#detalleprods img{
     .contenedor{
         width: 100%;
         padding: 6px;
+    }
+    .tarjeta-admin{
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
 

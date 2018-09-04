@@ -1,0 +1,12 @@
+1- Comentarios ultimo mes
+2- Reporte de comentarios por fecha
+
+3- Domicilios ultimo mes
+4- Reporte de domicilios por fecha
+
+5- CRUD susucrsales
+6- CRUD tipo de producto
+7- CRUD tamaños
+8- CRUD roles
+
+9- Mas filtros para los CRUD'S
