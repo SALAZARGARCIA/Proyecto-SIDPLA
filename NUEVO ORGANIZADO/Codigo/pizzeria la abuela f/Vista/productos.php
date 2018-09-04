@@ -1,146 +1,114 @@
-
 <!DOCTYPE html>
-<html lang="es">
-    <head Content-Type: text/html; charset=utf-8>
+<html>
+<head>
+    <title>Productos - Pizzeria la Abuela</title>
+    <meta charaset="UTF-8">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/icomoon/style.css">
+</head>
+<body>
     <?php
-    include("llamadoestilos.php");
-    include "../Modelo/conection.php";
+        include "header.php";
+        include "../Modelo/conexion.php";
+        $con = database::conectar();
+
+        
+        // Se hace esta validacion por que al momento de añadir al carrito, la URL cambia 
+        
+            $busc = $_GET['Prod'];
+            $busca = preg_replace('([^A-Za-z0-9])', '', $busc);
+        
     ?>
-          <!-- <link rel="stylesheet" type="text/css" href="bootstrap.min.css"> -->
-          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-    </head> 
-    <body>
-        <header>
-            <?php
-            include("header.php");
+    <main>
+
+    	<div class="contenedor titulo"> <!---------TITULO--------->
+    		<?php 
+                switch ($_GET['Prod']) {
+                    case 'PIZZA':
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            ?> <p>Nuestras Pizzas</p> <?php
+                        break;
+                    case 'BEBIDA':
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            ?> <p>Nuestras Bebidas</p> <?php
+                        break;
+                    case 'PASTA':
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            ?> <p>Nuestras Pastas</p> <?php
+                        break;
+                    case 'ENSALADA':
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            ?> <p>Nuestras Ensaladas</p> <?php
+                        break;
+                    case 'ACOMPAÑANTE':
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = 'ACOMPAÑANTE'");
+                            ?> <p>Nuestros Acompañantes</p> <?php
+                        break;
+                    case 'ADICIONALES':
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            ?> <p>Nuestros Adicionales</p> <?php
+                        break;
+
+                    default:
+                        $products = $con->query("select * from PRODUCTO where Nom_prod LIKE '%$busca%'");
+                        ?> <p>Resultados para  "<?php echo $busca; ?> "</p> <?php
+                        break;
+                }
             ?>
-        </header>
+    	</div>
 
-        <br>
+        <!-- COMIENZO CONTENEDORES DE PRODUCTOS -->
 
-        <table class="reg1" >
-            <tr>
-                <td>
-            <center>
+    	<div class="contenedor blanco">
+        <?php if($products->rowCount() == 0){ 
+            echo "No se encontraron rasultados, por favor verifique su busqueda.";
+            ?> <br><img src="img/error.png" style="width: 250px; height: 250px; margin: 30px 0px;"> <?php
+        }else{
+        foreach ($products->fetchAll(PDO::FETCH_OBJ) as $r): ?>
 
-                <h1>Productos</h1>
-
-                <div class="buscador">
-                    <div class="buscador--wrapper">
-                        <form class="buscador--form" action="#" method="post">
-                            <div class="buscador--input-wrapper">
-                                <input class="buscador--input" name="buscarcosa" type="search" placeholder="Buscar productos">
-                            </div>
-                            <input class="buscador--submit" type="submit" value="&#10140;" onclick = "this.form.action = '?action';"/>
-                        </form>
-                    </div>
-                </div>
-
-                <?php
-                $b = 1;
-                if (isset($_REQUEST['action'])) {
+    		<div class="contprod">
+                <p><?php echo $r->Nom_prod; ?></p>
+                <img src="MEDIA/<?php echo $r->Foto_prod; ?>">
+                <p><b>$</b><?php echo $r->Valor_unitario; ?></p>
+                <p><b>Tamaño: </b><?php echo $r->tamaño_tamaño; ?></p>
+                
+                    <!--Carrito de compras -->
+                    <?php
+                        $found = false;
+                            if (isset($_SESSION["cart"])) {
+                                foreach ($_SESSION["cart"] as $c) {
+                                    if ($c["product_id"] == $r->Cod_producto) {
+                                        $found = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        if ($found){ ?> 
+                            <a href="Cart.php">Ver en el carrito<span class="icon-shopping-cart"></span></a>
+                        <?php }else{ ?>
+                            <form method="post" action="../Controlador/cart.control.php">
+                                <input type="hidden" name="ID" value="<?php echo $r->Cod_producto; ?>">
+                                <label for="cant">Cantidad</label>
+                                <input type="number" name="Cantidad" value="1" min="1" max="20"  placeholder="Cantidad" id="cant">
+                                <button type="submit" name="Anadir">Añadir al carrito <span class="icon-shopping-cart"></span></button>
+                            </form>
+                        <?php }
                     ?>
-                    <table class="tmenu1" ><tr><td>			<br>
-                                <?php
-                                $b = 0;
-                                $busca = $_POST['buscarcosa'];
-                                /*
-                                 * Esta es la consula para obtener todos los productos de la base de datos.
-                                 */
-                                $products = $con->query("select * from producto where Nom_prod LIKE '%$busca%'");
-                                ?>
+                    <!--FIN Carrito de compras -->
+                    
+                </form> 
+            </div>
 
-                                <?php
-                                /*
-                                 * Apartir de aqui hacemos el recorrido de los productos obtenidos y los reflejamos en una tabla.
-                                 */
-                                $x = 0;
-                                while ($r = $products->fetch_object()):
-                                    ?>
-
-                                <td>
+        <?php endforeach; } ?>
 
 
-                                    <?php echo $r->Nom_prod; ?><br>
-                                    <img src="MEDIA/<?php echo $r->Foto_prod; ?>" width="190px" height="120px">
+    	</div>
 
-                                    <?php echo $r->tamaño_tamaño; ?><br>
-                                    $ <?php echo $r->Valor_unitario; ?><br>
-
-
-                                    <?php
-                                    $found = false;
-
-                                    if (isset($_SESSION["cart"])) {
-                                        foreach ($_SESSION["cart"] as $c) {
-                                            if ($c["product_id"] == $r->Cod_producto) {
-                                                $found = true;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    ?>
-                                    <?php if ($found): ?><br>
-                                        <a href="cart.php" class="comprar">Agregado</a>
-
-                                    <?php else: ?>
-                                        <form class="form-inline" method="post" action="../Controlador/addtocart.php">
-                                            <input type="hidden" name="product_id" value="<?php echo $r->Cod_producto; ?>">
-                                            <div class="form-group">
-                                                <input type="number" name="q" value="1" style="width:100px;" min="1" class="form-control" placeholder="Cantidad">
-                                            </div>
-                                            <button type="submit" class="comprar">Agregar al carrito</button>
-                                        </form>	
-
-
-
-                                    <?php
-                                    endif;
-                                    $x += 1;
-                                    if ($x == 4) {
-                                        echo "<tr><td>";
-
-
-                                        $x = 0;
-                                    }
-                                    ?>
-
-                                <?php endwhile; ?></td> </tr></table>
-
-
-                    </div>
-                    </div>
-                    </div>
-              
-            <?php
-        } if ($b === 1) {
-            ?>
-
-
-
-            <table class="pro" >
-                <tr>
-                    <td>
-                <center>
-                    <a href=productosPizza.php><img src="img/Pizzas.jpg" ></a>
-                    <a href=productosBebida.php><img src="img/Bebidas.jpg"></a> 
-                    <a href=productosPasta.php><img src="img/Pastas.jpg"></a> 
-                    <a href=productosEnsalada.php><img src="img/Ensaladas.jpg"></a>
-                    <a href=productosAcompaniante.php><img src="img/Acompañantes.jpg"></a>
-                </center>
-            </td>
-        </tr>
-    </table>
-<?php } ?>
-      </td>
-                    </tr>
-            </table>
-<br>
-<br>
-
-<?php
-                                include 'footer.php';
-?>
+    </main>
+    <?php 
+        include "footer.php";
+     ?>
 </body>
 </html>

@@ -1,171 +1,115 @@
-<?php
-/*
- * Este archio muestra los productos en una tabla.
- */
-
-include("llamadoestilos.php");
-include "../MODELO/conection.php";
-?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Pizzeria la Abuela</title>
-        <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-    </head>
-    <body>
-        <header>
-            <?php
-            include("header.php");
-            ?>
-        </header>
+<head>
+    <title>Carrito - Pizzeria la Abuela</title>
+    <meta charaset="UTF-8">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/icomoon/style.css">
+</head>
+<body>
+    <?php
+        $Total = 0;
+        include "header.php";
+        include "../Modelo/cart.model.php";
+        $model = new CarritoModel();
+    ?>
+    <main>
+    	<div class="contenedor titulo">
+    		<p>Carrito de compras</p>
+    	</div>
+    	<div class="contenedor blanco">
+            <?php if(isset($_SESSION['cart'])){ ?>
+            <table class="carrito">
+                <thead>
+                    <tr>
+                        <th>PRODUCTO</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>TAMAÑO</th>
+                        <th>CANTIDAD</th>
+                        <th>PRECIO UNITARIO</th>
+                        <th>SUBTOTAL</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            <?php 
+            foreach ($_SESSION["cart"] as $c){
 
-        <br>
-
-        <table class="reg1">
-            <tr>
-                <td>
-            <center>
-
-
-
-                <table class="listar1" >	
-
-                    <h1>Carrito</h1>
-
-
-                    <?php
-                    /*
-                     * Esta es la consula para obtener todos los productos de la base de datos.
-                     */
-                    $products = $con->query("select * from producto");
-                    if (isset($_SESSION["cart"]) && !empty($_SESSION["cart"])):
-                        ?>
-                        <thead>
-                            <tr>
-                                <th>Cantidad</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Foto</th>
-                                <th>Tamaño</th>
-                                <th>Precio Unitario</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <?php
-                        /*
-                         * Apartir de aqui hacemos el recorrido de los productos obtenidos
-                         *  y los reflejamos en una tabla.
-                         */
-                        foreach ($_SESSION["cart"] as $c):
-                            $products = $con->query("select * from producto where Cod_producto=$c[product_id]");
-                            $r = $products->fetch_object();
-                            ?>
-                            <tr>
-                                <th><?php echo $c["q"]; ?></th>
-
-                                <td><?php echo $r->Nom_prod; ?></td>
-                                <td><?php echo $r->Desc_prod; ?></td>
-                                <td><img src="MEDIA/<?php echo $r->Foto_prod; ?>" width="190px" height="120px"> <br></td>
-                                <td><?php echo $r->tamaño_tamaño; ?></td><br>
-                            <td>$ <?php echo $r->Valor_unitario; ?></td>
-                            <td>$ <?php echo $o = $c["q"] * $r->Valor_unitario; ?></td>
-                            <?php $d = $d + $o ?>
-
-                            <td>
-                                <?php
-                                $found = false;
-                                foreach ($_SESSION["cart"] as $c) {
-                                    if ($c["product_id"] == $r->Cod_producto) {
-                                        $found = true;
-                                        break;
-                                    }
-                                }
-                                ?>
-                                <a href="../Controlador/delfromcart.php?id=<?php echo $c["product_id"]; ?>" 
+                foreach ($model->Listar_Carrito($c['product_id']) as $r){ ?>               
+                <tbody>
+                    <tr>
+                        <td><img src="MEDIA/<?php echo $r->__GET('Foto_prod'); ?>"></td>
+                        <td>
+                        <b><?php echo $r->__GET('Nom_prod'); ?></b><br>
+                        <?php echo $r->__GET('Desc_prod'); ?>
+                        </td>
+                        <td><?php echo $r->__GET('tamaño_tamaño'); ?></td>
+                        <td><?php echo $c["cant"]; ?></td>
+                        <td>$<?php echo $r->__GET('Valor_unitario'); ?></td>
+                        <td>$<?php echo $c["cant"]*$r->__GET('Valor_unitario'); ?></td>
+                        <td>
+                            <!--<form action="../Controlador/cart.control.php" method="POST">
+                                <input type="hidden" name="id_prod" value="<?php echo $c['product_id']; ?>">
+                                <input type="submit" name="Eliminar" value="Eliminar">
+                                <span class="icon-trash"></span>
+                            </form>-->
+                            <a href="../Controlador/cart.control.php?id=<?php echo $c["product_id"]; ?>" 
                                    class="btn btn-danger">Eliminar <span class="icon-trash"></span></a>
-                            </td>
-
-
-
-
-                        <?php endforeach; ?>
-
-                        </tr>
-                    </table>
-                    <table class="lis">
-
-                        <tr>
-                            <td> <h2>   <?php
-                                    if ($d < 21999) {
-                                        echo "Para realizar un domicilio debe realizar una compra de $22000 como minimo ";
-                                    } else {
-                                        echo '<h2 align="right">Total a pagar: $' . $d;
-                                        ?>
-
-                                    </h2><br>
-
-                                    <form class="form-horizontal" method="post" action="../Controlador/controler1.php">
-                                        <div class="form-group">
-                                            <label for="Direc" class="col-sm-2 control-label"><span class="icon-location"></span>Direccion</label>
-                                            <div class="col-sm-5">
-                                                <input type="text" name="Direc"  value="<?php
-                                                session_start();
-                                                if (!isset($_SESSION["session"])) {
-                                                    echo "Direccion";
-                                                } else {
-                                                    $sessionidp = $_SESSION["idp"];
-                                                    $res = $con->query("select * from persona where Num_Documento_per='$sessionidp'");
-                                                    while ($rs = $res->fetch_object()):
-
-                                                        echo $rs->Direc_per;
-                                                    endwhile;
-                                                }
-                                                ?> " required class="form-control" id="Direc"
-                                                       placeholder="Direccion">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Obser" class="col-sm-2 control-label">Observaciones</label>
-                                            <div class="col-sm-5">
-                                                <input type="text" name="Obser" required class="form-control" id="Obser"
-                                                       placeholder="Escriba aqui sus preferencias del domicilio">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" name="registrarVenta" 
-                                                        class="comprar" >Confirmar compra <span class="icon-check"></span></button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                <?php } ?>
-                            <?php else: ?>
-                                <br>
-                                <h2 class="alert alert-warning">El carrito esta vacio.</h2>
-
-                                <br>
-                                <br>
-                                <hr>
-                            <?php endif; ?>
-
                         </td>
                     </tr>
-                </table>
+                </tbody>
+            
+            <?php } $Total=$Total+($c["cant"]*$r->__GET('Valor_unitario')); } ?>
+                <tfoot>
+                    <tr>
+                    <td colspan="6">Total</td>
+                    <td>$<?php echo $Total; ?></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <?php  
+                if($model->Validar_Precio($Total)){ ?>
+                    <input type="checkbox" id="detalle">
+                    <label for="detalle" id="comprar">Continuar</label>
+                <?php }else{ ?>
+                    <p><b>Para continuar la compra debe ser mayor a $20.000</b></p>
+                <?php }
+            ?>
+            
+            <div class="finaliza_compra">
+                <form method="post" action="../Controlador/persona.control.php">
+                    <label for="Direc"><span class="icon-location"></span>Direccion</label>
+                    <?php
+                        if(isset($_SESSION['session'])){
+                            $sql="SELECT Direc_per from PERSONA where Num_Documento_per = ?";
+                            include_once "../Modelo/conexion.php";
+                            $db=database::conectar();
+                            $resultado=$db->prepare($sql);
+                            $resultado->execute(array($_SESSION['session']['Documento']));
+                            $Direccion='';
+                            foreach ($resultado->fetchAll(PDO::FETCH_OBJ) as $k) {
+                                $Direccion=$k->Direc_per;
+                            }
+                            ?>
+                            <input type="text" name="Direc" id="Direc" value="<?php echo $Direccion; ?>" placeholder="Direccion">
+                    <?php } else{  ?>
+                            <input type="text" name="Direc" id="Direc" placeholder="Direccion">
+                    <?php } ?>
+                    <label for="Observaciones">Observaciones</label>
+                    <textarea name="Observaciones" id="Observaciones" placeholder="Escriba aqui sus preferencias del domicilio" required></textarea>
+                    <input type="submit" name="finalizar_compra" value="Finalizar Compra">
+                </form>
+            </div>
+        <?php }else{  ?>
+            <p>Tu carrito esta vacio</p>
+            <img src="img/carro.png" style="width: 350px;">
+        <?php } ?>
+    	</div>
 
-            </center> 
-        </td>
-    </tr>
-</table>
-
-<br>
-<br>
-<?php
-                                include 'footer.php';
-?>
-
+    </main>
+    <?php 
+        include "footer.php";
+     ?>
 </body>
 </html>

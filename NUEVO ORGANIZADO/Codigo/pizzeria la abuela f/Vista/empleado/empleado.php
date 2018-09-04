@@ -1,258 +1,92 @@
-<?php
-if (!isset($_SESSION["session"])) { // Verifica si la variable de sesión creada esta activa si no la inicializa
-    session_start();
-    $ruta = "";
-}
-include("../../modelo/conection.php");
-error_reporting(0);
-$sessionidp = $_SESSION["idp"];
-$sessiontdp = $_SESSION["tdp"];
-$rol_pers = $_SESSION["rolp"];
-$res = $con->query("select * from persona where Num_Documento_per='$sessionidp' and tipo_doc='$sessiontdp' and rol_Rol= 'EMPLEADO'");
-$re = $con->query("select * from persona where Num_Documento_per='$sessionidp' and tipo_doc='$sessiontdp' and rol_Rol= 'ADMINISTRADOR'");
-if ($res->num_rows == 1 || $re->num_rows == 1) {
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Empleado - Pizzeria la Abuela</title>
+    <meta charaset="UTF-8">
+    <link rel="shortcut icon" href="../img/favicon.ico" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/icomoon/style.css">
+</head>
+<body>
+    <?php
+        include "../header.php";
+        include "../seguridad.php";
+        $seguridad = new Seguridad;
+        $seguridad->Validar_Empleado();
+        include "../../Modelo/conexion.php";
+        $con = database::conectar();
     ?>
+    <main>
+        <div class="contenedor titulo">
+            <p>Domicilios Pendientes</p>
+        </div>
+        <div class="contenedor blanco">
+        <?php 
+        $domicilio = $con->query("select t1.*, t2.*, t3.* from DOMICILIO as t1 inner 
+                    join PERSONA_HAS_DOMICILIO 
+                    as t2 on t1.Cod_Dom = t2.domicilio_Cod_dom inner join PERSONA as t3
+                    on t2.persona_Num_Documento_per = t3.Num_Documento_per
+                    where t1.estado_domicilio_Estado_dom = 'EN ESPERA'");
+        $detalle = 0;
+        if($domicilio->rowCount() == 0){ 
+            echo "No hay domicilios pendientes.";
+            ?> <br><img src="../img/chech_green.png" style="width: 250px; height: 250px; margin: 30px 0px;"> <?php
+        }else{
+        foreach ($domicilio->fetchAll(PDO::FETCH_OBJ) as $x){  ?>
 
-    <html lang="es">
-        <head>
-            <script src="jquery-3.3.1.js"></script>
-
-            <?php
-            include("../llamadoestilos2.php");
-            ?>
-<?php 
-header("Refresh: 30; URL='empleado.php'");
-?>
-        </head> 
-        <body>
-        <center>
-            <header>
-                <?php
-                include("menuempleado.php");
-                ?>
-            </header>
-            <br>
-
-            <table class="reg1">
-                <tr>
-                    <td>
-
-                <center>
-                    <h1>Lista de Domicilios Pendientes</h1>
-                    <br>
-
-                    <?php
-                    /*
-                      select t1.Cod_Dom, t1.Fecha_Hora, t1.Direc_Dom, t1.Observacion_dom, t1.estado_domicilio_Estado_dom, t2.persona_Num_Documento_per, t1.Valor_Total from domicilio as t1 inner join persona_has_domicilio as t2 on t1.Cod_Dom = t2.domicilio_Cod_dom where t1.estado_domicilio_Estado_dom= 'EN ESPERA';
-
-                      select t1.*, t2.* from domicilio as t1 inner join persona_has_domicilio as t2 on t1.Cod_Dom = t2.domicilio_Cod_dom where t1.estado_domicilio_Estado_dom= 'EN ESPERA';
-                     */
-
-                    $domicilio_h_p = $con->query("select t1.*, t2.* from domicilio as t1 inner join persona_has_domicilio as t2 on t1.Cod_Dom = t2.domicilio_Cod_dom where t1.estado_domicilio_Estado_dom= 'EN ESPERA'");
-                    ?>
-                    <?php $numform = 0; ?>
-
-                    <?php while ($d = $domicilio_h_p->fetch_object()): ?>
-
-                        Domicilio <?php echo $d->Cod_dom; ?><br>
-
-                        <table class="lis">
-                            <thead>
-                            <th>ID</th>
-                            <th>Fecha</th>
-                            <th>Direccion</th>
-                            <th>Observaciones</th>
-                            <th>Estado</th>
-                            <th>Cliente</th>
-                            <th>Valor Total</th>
-                            </thead>
+            <div class="misdomicilios">
+               <div class="detalle__dom">
+                 <div class="detalle_domi">
+                  <p><b>Fecha:</b> <?php echo $x->Fecha; ?></p>
+                  <p>Direccion: <?php echo $x->Direc_Dom; ?></p>
+                  <p><b>Cliente</b> <?php echo $x->Nombres; ?></p>
+                  <p><b>Total:</b> $<?php echo $x->Valor_Total; ?></p>
+                 </div>
+               </div>
+               <input type="checkbox" id="detalle <?php echo $detalle; ?>">
+               <label for="detalle <?php echo $detalle; ?>">Ver Detalles</label>
+               <?php 
+               $codigo_dom2 = $x->Cod_dom;
+               $domicilioss2 = $con->query("select t1.*, t2.* from DOMICILIO_HAS_PRODUCTO as t1 inner 
+                join PRODUCTO as t2 on t1.producto_Cod_producto = t2.Cod_producto where t1.domicilio_Cod_dom= $codigo_dom2");
+               ?>
+               <div class="prod__dom">
+                   <p><b>Observaciones: </b><?php echo $x->Observacion_dom; ?></p>
+                   <?php while ($z = $domicilioss2->fetch(PDO::FETCH_OBJ)){  ?>
+                   <div id="detalleprods">
+                        <table>
                             <tr>
-                                <td><?php echo $d->Cod_dom; ?></td>
-                                <td><?php echo $d->Fecha_Hora; ?></td>
-                                <td><?php echo $d->Direc_Dom; ?></td>
-                                <td><?php echo $d->Observacion_dom; ?></td>
-                                <td><?php echo $d->estado_domicilio_Estado_dom; ?></td>
-                                <td><?php echo $d->persona_Num_Documento_per; ?></td>
-                                <td>$ <?php echo $d->Valor_Total; ?></td>
-
-                                </td>
+                                <td rowspan="5" style="padding-right: 5px;"><img src="../MEDIA/<?php echo $z->Foto_prod; ?>"></td>
+                                <td><b><?php echo $z->Nom_prod; ?></b></td>
                             </tr>
-                        </table>
-
-
-
-                        <br>
-                        <br>
-                        <br>
-
-
-
-                        <b><p>Informacion del cliente</p></b>
-
-                        <!-- INICIO DEL WHILE CLIENTE -->
-
-                        <?php $numform += 1 ?>
-                        <table class="lis myform<?php echo $numform ?>">
-                            <thead>
-                            <th>Nombre</th>
-                            <th>Telefono</th>
-                            <th>Celular</th>
-                            <th>Direccion</th>
-                            <th>Correo</th>
-                            </thead>
-
-                            <?php
-                            $codigo_dom = $d->Cod_dom;
-                            $domicilioss = $con->query("select t1.*, t2.* from persona_has_domicilio as t1 inner join persona as t2 on t1.persona_Num_Documento_per = t2.Num_Documento_per where t1.domicilio_Cod_dom= $codigo_dom");
-                            ?>
-
-
-
-                            <?php while ($s = $domicilioss->fetch_object()): ?>
-
-                                <tr>
-                                    <td><?php echo $s->Primer_Nombre_per . " " . $s->Primer_Apellido_per ?></td>
-                                    <td><?php echo $s->Tel_per; ?></td>
-                                    <td><?php echo $s->Cel_per; ?></td>
-                                    <td><?php echo $s->Direc_per; ?></td>
-                                    <td><?php echo $s->Correo_per; ?></td>
-                                    </td>
-                                </tr>
-
-                            <?php endwhile; ?>
+                            <tr>
+                                <td><?php echo $z->Desc_prod; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Tamaño: <?php echo $z->tamaño_tamaño; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Cantidad: <?php echo $z->Cantidad; ?></td>
+                            </tr>
+                            <tr>
+                                <td>$ <?php echo $z->Valor_subtotal; ?></td>
+                            </tr>
 
                         </table>
+                        </div>
+                      <?php } $detalle++ ?>
+                      <br><br>
+                      <a class="boton_exito" href="../../Controlador/empleado.control?Cambio_estado=Entregado&ID=<?php echo $x->Cod_dom; ?>">Entregar Domicilio</a>
+                      <a class="boton_peligro" href="../../Controlador/empleado.control?Cambio_estado=Cancelado&ID=<?php echo $x->Cod_dom; ?>">Cancelar Domicilio</a>
+               </div>
+            </div>
+      <?php } }?>
+        </div>
 
-                        <button class="comprar"  id="myButton<?php echo $numform ?>" onclick="ShowHideElement<?php echo $numform ?>()">Ver Informacion del cliente</button>
-
-                        <script type="text/javascript">
-
-                            $(".myform<?php echo $numform ?>").hide();
-
-                            function ShowHideElement<?php echo $numform ?>() {
-
-                                let text = "";
-
-                                if ($("#myButton<?php echo $numform ?>").text() === "Ver Informacion del cliente") {
-
-                                    $(".myform<?php echo $numform ?>").show();
-                                    text = "Ocultar informacion del cliente";
-
-                                } else {
-                                    $(".myform<?php echo $numform ?>").hide();
-                                    text = "Ver Informacion del cliente";
-                                }
-
-                                $("#myButton<?php echo $numform ?>").html(text);
-
-                            }
-
-                        </script>
-                        <br> 
-                        <br>
-                        <br>
-
-
-                        <br>Productos 
-
-                        <!-- INICIO DEL WHILE PRODUCTOS -->
-
-                        <?php $numform += 1 ?>
-                        <table class="lis myform<?php echo $numform ?>">
-                            <thead>
-                            <th>ID</th>
-                            <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Tamaño</th>
-                            <th>Cantidad</th>
-                            <th>Valor Subtotal</th>
-                            </thead>
-
-                            <?php
-                            $codigo_dom = $d->Cod_dom;
-                            $domicilioss = $con->query("select t1.*, t2.* from domicilio_has_producto as t1 inner join producto as t2 on t1.producto_Cod_producto = t2.Cod_producto where t1.domicilio_Cod_dom= $codigo_dom");
-                            ?>
-
-
-
-                            <?php while ($p = $domicilioss->fetch_object()): ?>
-
-                                <tr>
-                                    <td><?php echo $p->producto_Cod_producto; ?></td>
-                                    <td><img src="../MEDIA/<?php echo $p->Foto_prod; ?>" width="190px" height="120px"></td>
-                                    <td><?php echo $p->Nom_prod; ?></td>
-                                    <td><?php echo $p->tamaño_tamaño; ?></td>
-                                    <td><?php
-                                        if ($p->tipo_producto_tipo_prod == 'BEBIDA') {
-                                            if ($p->Cantidad < $p->Cantidad_exist) {
-                                                echo $p->Cantidad;
-                                            } else {
-                                                echo "Advertencia: No hay sufuciente stok <br> Se requieren " . $p->Cantidad . " y hay " . $p->Cantidad_exist;
-                                            }
-                                        } else {
-                                            echo $p->Cantidad;
-                                        }
-                                        ?></td>
-                                    <td><?php echo $p->Valor_subtotal; ?></td>
-                                    </td>
-                                </tr>
-        <?php endwhile; ?>
-
-                        </table>
-                        <table class="lis"><tr><td><center>
-                                <button class="comprar" id="myButton<?php echo $numform ?>" onclick="ShowHideElement<?php echo $numform ?>()">Ver Productos</button>
-                            </center></td><td><center>
-                                <form class="form-inline" method="post" action="../../Controlador/controler1.php">
-                                    <input type="hidden" name="domicilio_id" value="<?php echo $codigo_dom; ?>">
-                                    <button type="submit" name="cambio_est_dom" class="comprar" onclick="return confirm('¿Esta seguro de actualizar este Domicilio?')">Entregado<span class="icon-check"></span></button>
-                                    <button type="submit" name="cancelar_dom" class="cancelar" onclick="return confirm('¿Esta seguro de cancelar este Domicilio?')">Cancelar <span class="icon-circle-with-cross"></span></button>
-                                </form></center></td></tr></table>
-                        <hr size="1" />
-                        <script type="text/javascript">
-
-                            $(".myform<?php echo $numform ?>").hide();
-
-                            function ShowHideElement<?php echo $numform ?>() {
-
-                                let text = "";
-
-                                if ($("#myButton<?php echo $numform ?>").text() === "Ver Productos") {
-
-                                    $(".myform<?php echo $numform ?>").show();
-                                    text = "Ocultar Productos";
-
-                                } else {
-                                    $(".myform<?php echo $numform ?>").hide();
-                                    text = "Ver Productos";
-                                }
-
-                                $("#myButton<?php echo $numform ?>").html(text);
-
-                            }
-
-                        </script>
-
-                        <br>
-
-    <?php endwhile; ?> <!-- FIN DEL WHILE DOMICILIO -->
-
-                </center>
-                </td>
-                </tr>
-            </table>
-        </center> 
-
-        <!--se verifica que la cesion este iniciada como empleado-->
-        <?php
-    } else {
-        echo "!!!!!ATENCION!!!!!  Para ver esta pagina debe iniciar sesion como empleado";
-    }
-    ?>
-    <br>
-    <br>
-
-<?php
-                                include '../footer.php';
-?>
+    </main>
+    <?php 
+        include "../footer.php";
+     ?>
 </body>
 </html>

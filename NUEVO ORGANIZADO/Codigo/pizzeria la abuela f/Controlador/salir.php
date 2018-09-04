@@ -3,6 +3,6 @@
 session_start();
 if (!empty($_SESSION["session"])) {
     session_destroy();
-    header("Location:../vista/index.php");
+    header("Location:../index.php");
 }
 ?>
