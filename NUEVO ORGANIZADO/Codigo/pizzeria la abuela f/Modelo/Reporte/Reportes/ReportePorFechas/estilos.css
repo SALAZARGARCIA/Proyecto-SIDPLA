@@ -1,0 +1,61 @@
+body
+{
+	background-image: url(imagen.jpg); /*fondo*/
+	background-size:100vw 100vh;/*Ancho y laro de la imaagen*/
+	background-attachment: fixed; /*La imagen queda fija*/
+	margin: 0;
+	font-family: monospace;
+}
+form
+{
+	width: 450px;/*Ancho del formurario*/	
+	margin:auto;/*Centrar formulario*/
+	background: rgba(0,0,0,0.4);/*Color y tranparencia*/
+	padding: 10px 20px;/*Margen superior (largo formulario)*/
+	box-sizing: border-box;/*Los 20px de padding van hacia dentro del formulario*/
+	margin-top: 20px;
+	border-radius: 15px;
+}   
+
+h2
+{
+	color: #FFAB3D;	
+	text-align: center;
+	margin:0;
+	font-size: 30px;/*Taaño fuente*/
+	margin-bottom: 20px; /*Margen inferior*/
+}
+
+input, textarea
+{
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 7px;
+	box-sizing: border-box;/*Ajustar input con borde*/
+	font-size: 17px;
+	border:none;
+	border-radius: 8px;
+	background: #FED690;
+}
+textarea
+{
+	min-height: 100px;
+	max-height: 300px;
+	max-width: 100%;
+	min-width: 100%;
+}
+
+#boton
+{
+	background: #E5A730;
+	color: #FF4800;	
+}
+
+@media (max-width: 480px)
+{
+	form
+	{
+		width: 100%
+		max-height
+	}
+}

@@ -14,7 +14,7 @@ $nombre = array_pop($exploden);
                     <li><a href="administrador.php"><span class="icon-home"></span></a></li>
                     <li><a href="productos.php">Productos</a></li>
                     <li><a href="personas.php">Usuarios</a></li>
-                    <li><a href="">Sucursal</a></li>
+                    <li><a href="sucursales.php">Sucursal</a></li>
                     <li><a href="">Domicilios</a></li>
                 </ul>
             </nav>

@@ -10,3 +10,9 @@
 	<p>Sistema desarrollado por Sistemas Compumundo LF</p>
                     
 </footer>
+<?php  
+//Cerrar todas las conexiones
+$con = null;
+$db = null;
+
+?>

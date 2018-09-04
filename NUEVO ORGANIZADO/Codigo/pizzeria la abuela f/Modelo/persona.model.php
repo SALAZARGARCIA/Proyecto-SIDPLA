@@ -173,30 +173,35 @@ class PersonaModel {
             if ($resultado->rowCount() > 0){
 
                 $persona = $resultado->fetch(PDO::FETCH_ASSOC);
-                /*Verificar si el usuario esta activo*/
-                if($persona['estado_per'] == 0){
-                    header("location:../Vista/login.php?error_est=si");
-                }else{ 
+                //Verificar estado del rol 
+                if($this->Verificar_estado_rol($persona["rol_Rol"])){
+                    /*Verificar si el usuario esta activo*/
+                    if($persona['estado_per'] == 0){
+                        header("location:../Vista/login.php?error_est=si");
+                    }else{
 
-                if (password_verify($pass, $persona["Pass_login"])) {
-                    session_start();
-                    $_SESSION["session"] = array(
-                        'Nombres' => $persona["Nombres"],
-                        'Documento' => $persona["Num_Documento_per"], 
-                        'Tipo_Doc' => $persona["tipo_doc"], 
-                        'Rol' => $persona["rol_Rol"]
-                    );
-                    if ($persona["rol_Rol"] == "CLIENTE") {
-                        header("location:../index.php"); 
-                    } else if ($persona["rol_Rol"] == "ADMINISTRADOR") {
-                        header("location:../Vista/administrador/administrador.php"); 
-                    } else if ($persona["rol_Rol"] == "EMPLEADO") {
-                        header("location:../Vista/empleado/empleado.php");
+                        if (password_verify($pass, $persona["Pass_login"])) {
+                            session_start();
+                            $_SESSION["session"] = array(
+                                'Nombres' => $persona["Nombres"],
+                                'Documento' => $persona["Num_Documento_per"], 
+                                'Tipo_Doc' => $persona["tipo_doc"], 
+                                'Rol' => $persona["rol_Rol"]
+                            );
+                            if ($persona["rol_Rol"] == "CLIENTE") {
+                                header("location:../index.php"); 
+                            } else if ($persona["rol_Rol"] == "ADMINISTRADOR") {
+                                header("location:../Vista/administrador/administrador.php"); 
+                            } else if ($persona["rol_Rol"] == "EMPLEADO") {
+                                header("location:../Vista/empleado/empleado.php");
+                            }
+                        }else{ // Si el password no es correcto
+                            header("location:../Vista/login.php?error_c=si");
+                        }
                     }
-                } else { // Si el password no es correcto
-                    header("location:../Vista/login.php?error_c=si");
-                 }
-                 
+
+                }else{ //Si el rol esta deshabilitado
+                    header("location:../Vista/login.php?errorRol=si");
                 }
             }else{
                 header("location:../Vista/login.php?error=si");
@@ -354,6 +359,27 @@ class PersonaModel {
         }
     }
 
+    public function Listar_sucursales(){
+        try {
+            $result = array();
+            $stm = $this->pdo->prepare("select * from PIZZERIA");
+            $stm->execute();
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+
+                $result[] = array(
+                    "Dir_Pizzeria" => $r->Dir_Pizzeria, 
+                    "Tel_Pizzeria" => $r->Tel_Pizzeria, 
+                    "Cel_Pizzeria" => $r->Cel_Pizzeria
+                );
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function Deshabilitar_Persona($Documento) {
         try {
             $stm = $this->pdo->prepare("UPDATE PERSONA SET estado_per = 0 WHERE Num_Documento_per = ?");
@@ -374,6 +400,115 @@ class PersonaModel {
                 print "<script>alert(\"Persona habilitada exitosamente.\");window.location='../Vista/administrador/personas.php';</script>";
             }
         } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function Count($tabla, $fecha){
+        try{
+            if($fecha == NULL){ 
+                $stm = $this->pdo->prepare("SELECT COUNT(*) as count FROM $tabla");
+            }elseif($fecha == '1'){
+                $stm = $this->pdo->prepare("SELECT COUNT(*) as count FROM $tabla WHERE Fecha BETWEEN concat(year(curdate()), '-', month(curdate()), '-', '01') AND concat(year(curdate()), '-', month(curdate()), '-', '31')");
+            }
+            $stm->execute(array());
+            $r = $stm->fetch(PDO::FETCH_OBJ);
+            $result = $r->count;
+            return $result;
+        }catch(exception $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function Verificar_estado_rol($rol){
+        try {
+            $stm = $this->pdo->prepare("SELECT estado_rol FROM ROL WHERE Rol = ?");
+            $stm->execute(array($rol));
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $k) {
+                if($k->estado_rol == 1){
+                    return true;
+                }else{
+                    return false;
+                }
+            }  
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function Ventas_mes(){
+        try{
+            $stm = $this->pdo->query("SELECT SUM(Valor_Total) as Suma FROM DOMICILIO WHERE Fecha BETWEEN concat(year(curdate()), '-', month(curdate()), '-', '01') AND concat(year(curdate()), '-', month(curdate()), '-', '31') AND estado_domicilio_Estado_dom = 'ENTREGADO'");
+            $r = $stm->fetch(PDO::FETCH_OBJ);
+            $total = $r->Suma;
+            if($total == NULL){
+                $total = 0;
+            }
+            return $total;
+        }catch(exception $e){
+            die($e->getMessage());
+        }
+    } 
+
+
+    public function Reporte($data){
+        try{
+            include('Plantilla.php');
+          
+            $SDATE = $data['Fecha_Inicio'];
+            $SSDATE = explode('-', $SDATE);
+            $START_DATE = $SSDATE[2]."-".$SSDATE[0]."-".$SSDATE[1];
+           
+            
+            $EDATE = $data['Fecha_Fin'];
+            $EEDATE = explode('-', $EDATE);
+            $END_DATE = $EEDATE[2]."-".$EEDATE[0]."-".$EEDATE[1];
+            
+
+            $pdf = new PDF();
+            $pdf->AliasNbPages();
+            $pdf->AddPage();
+    
+
+
+            $strsql = "SELECT * FROM domicilio";
+   
+   
+            $rs =$this->pdo->query($strsql);
+            /*$row = mysqli_fetch_assoc($rs);
+            $total_rows = mysqli_num_rows($rs);*/
+            
+              
+              
+
+              $pdf->SetFillColor(232,232,232);
+              /*$pdf->SetFont('Arial','B',12);
+              $pdf->Cell(20,6,'No.Dom',1,0,'C',1);
+              $pdf->Cell(23,6,'Fecha',1,0,'C',1);
+              $pdf->Cell(25,6,'Direccion',1,0,'C',1);
+              $pdf->Cell(13,6,'Total',1,0,'C',1);      */       
+              $pdf->Cell(29,6,'Obvservacion',1,1,'C',1);
+              //$pdf->Cell(25,6,'Estado',1,1,'C',1);
+              
+              $pdf->SetFont('Arial','',10);
+              
+            
+              while($row=$rs->fetch(PDO::FETCH_ASSOC))
+              {
+                  /*$pdf->Cell(20,6,utf8_decode($row['Cod_dom']),1,0,'C');
+                  $pdf->Cell(35,6,$row['Fecha'],1,0,'C');
+                  $pdf->Cell(20,6,utf8_decode($row['Direc_Dom']),1,0,'C');		
+                  $pdf->Cell(23,6,utf8_decode($row['Valor_Total']),1,0,'C');*/
+                  $pdf->GetStringWidth(utf8_decode($row['Observacion_dom']));
+                  $pdf->Cell(13,6,utf8_decode($row['estado_domicilio_Estado_dom']),1,0,'C',0);		                 
+              }
+
+                  
+                  $pdf->Output();
+          
+
+        }catch(exception $e){
             die($e->getMessage());
         }
     }

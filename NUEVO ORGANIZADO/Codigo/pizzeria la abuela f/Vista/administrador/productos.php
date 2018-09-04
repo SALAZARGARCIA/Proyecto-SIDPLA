@@ -178,6 +178,11 @@
 
           <button class="boton_exito btn-añadir" onclick="location.href='productos.php?Nuevo'">Agregar Producto <span class="icon-add-to-list"></span></button>
 
+        <form method="POST" class="buscador-filtro">
+            <input type="text" name="opcion-filtro" id="busca-filtro"">
+            <input type="submit" class="boton_primario" name="aplicar_filtro" value="Buscar">
+        </form>
+        
           <div class="tabla_responsive">
             <table class="tabla_default">
                 <thead>

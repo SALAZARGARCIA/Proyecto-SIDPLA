@@ -56,7 +56,7 @@
                 <label for="direc">Direccion</label>
                    <input type="text" name="Direc_per" value="<?php echo $p->__GET('Direc_per'); ?>" id="direc" required>
                     
-                <input type="submit" name="actualizar_per"  value="Actualizar">
+                <input type="submit" class="boton_exito" name="actualizar_per"  value="Actualizar">
             </form>
         </div>
         <script src="js/form.js"></script>

@@ -47,10 +47,10 @@ class ProductoModel {
      public function Listar_Prod($tipo) {
         try {
             $result = array();
-            if($tipo=='todos'){
+            if($tipo=='' || $tipo=='todos'){
             $stm = $this->pdo->prepare("select * from PRODUCTO");
             }else{
-                $stm = $this->pdo->prepare("select * from PRODUCTO where tipo_producto_tipo_prod='$tipo'");
+                $stm = $this->pdo->prepare("select * from PRODUCTO where Nom_prod LIKE '%$tipo%' or Desc_prod LIKE '%$tipo%' or tamaño_tamaño LIKE '%$tipo%' or tipo_producto_tipo_prod LIKE '%$tipo%'");
             }
             $stm->execute();
 

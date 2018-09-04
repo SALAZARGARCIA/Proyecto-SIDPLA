@@ -107,7 +107,6 @@ if (isset($_POST["actualizar_per"])){
         $persona->__SET('Num_Documento_per',$_POST['Num_Documento_per']);
     }else{
         $persona->__SET('Num_Documento_per',$_SESSION['session']['Documento']);
-
     } 
 
     if(isset($_POST['rol_Rol'])){
@@ -117,6 +116,7 @@ if (isset($_POST["actualizar_per"])){
     }
 
     $model->Actualizar_Persona($persona);
+    
 }
 
 if(isset($_GET['Cambio_estado'])){
@@ -148,6 +148,22 @@ if (isset($_POST["Habiliar_per"])){
 
     $model->Habilitar_Persona($Documento);
 }
+
+
+
+if (isset($_POST["ReporteVentas"])){
+
+    
+    $data = array("Fecha_Inicio"=> $_POST['Fecha_inicio'],"Fecha_Fin"=>$_POST['Fecha_fin']);
+    require_once '../Modelo/persona.model.php';
+    $model = new PersonaModel();
+    $model->Reporte($data); 
+   
+    echo "Reporte";
+
+}
+
+
 
 
 

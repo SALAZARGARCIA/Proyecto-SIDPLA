@@ -102,6 +102,25 @@ header label:hover{
     padding: 3px 10px;
 }
 
+.menu ul li ul{
+    display: none;
+    position: absolute;
+}
+
+.menu ul li:hover >ul{
+    display: inline-block;
+}
+
+.menu ul li ul li{
+    display: inline-block;
+    background: red;
+    box-shadow: inset 0px 0px 39px -1px rgba(0,0,0,0.75);
+}
+
+.menu ul li ul li:hover{
+    background-color: red;
+}
+
 .login{
     position: static;
     float: right;
@@ -135,7 +154,7 @@ header label:hover{
 /*-------------------MODAL-------------------*/
 
 .modal {
-    display: block; /* Hidden by default */
+    display: block; /* Oculto por default */
     position: fixed; /* Stay in place */
     z-index: 1001; /* Sit on top */
     padding-top: 20px; /* Location of the box */
@@ -148,15 +167,13 @@ header label:hover{
     font-family: Ubuntu;
 }
 
-/* Modal Content */
+/* Modal Contenido */
 .modal-contenido {
     position: relative;
     margin: auto;
     padding: 0;
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
 }
 
 .cerrar-modal{
@@ -169,14 +186,11 @@ header label:hover{
     background: red;
     margin-right: 15px;
     margin-top: 10px;
-    font-weight: bold; 
+    font-weight: bold;
+    cursor: pointer; 
 }
 
 /* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-}
 
 @keyframes animatetop {
     from {top:-300px; opacity:0}
@@ -492,9 +506,18 @@ footer a:hover{
     width: 540px;
 }
 
-.sucursal p:first-child{
+.titulo-sucursal{
     font-weight: bold;
     font-size: 30px;
+}
+
+.item-sucursal{
+    margin: 10px;
+    padding: 10px 5px;
+    border: 1px solid #DAD9D9;
+    border-radius: 4px;
+    background: rgba(255,255,255,1);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
 }
 
 
@@ -520,7 +543,7 @@ footer a:hover{
 }
 
 .catproductos img{
-    -webkit-transition:all .9s ease;
+    transition:all .9s ease;
     width:100%;
 }
 
@@ -711,7 +734,7 @@ footer a:hover{
 /*----------------------------REGISTRO----------------------------*/
 
 .formreg{
-    width: 500px;
+    width: 400px;
     max-width: 100%;
     margin: auto;
     padding: 20px;
@@ -866,12 +889,12 @@ div#detalleprods{
     width: 500px;
     max-width: 100%;
     border: 1px solid rgba(66,139,202,0.8);
+    background: white;
     border-radius: 15px 15px;
 }
 
 div#detalleprods table{
     margin-left: 20px;
-    background: white;
     border: 0px;
 }
 div#detalleprods table tr td{
@@ -968,7 +991,7 @@ div#detalleprods img{
     max-width: 100%;
 }
 
-.finaliza_compra form input, label{
+.finaliza_compra form input, .finaliza_compra label{
     display: block;
     margin: auto;
 }
@@ -1036,6 +1059,14 @@ div#detalleprods img{
 
 .form_actualizar_per{
     display: inline-block;
+    width: 400px;
+    max-width: 100%;
+}
+
+.form_actualizar_per label{
+    width: 40%;
+    display: inline-block;
+    text-align: left
 }
 
 .form_actualizar_per input{
@@ -1043,28 +1074,22 @@ div#detalleprods img{
     margin: 8px 0px;
     border: 1px solid #428BCA;
     border-radius: 3px;
-    width: 100%;
+    width: 50%;
+    max-width: 100%;
     color: gray;
 }
 
 .form_actualizar_per input[type="submit"]{
     padding: 5px;
     width: 50%;
-    margin-top: 10px;
+    margin-top: 20px;
     color: white;
     border-radius: 5px;
     font-size: 20px;
-    background-color: #428BCA;
-    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
-    border-color: #2B669A #2B669A #2B669A;
     display: block;
-    margin: auto;
-}
-.form_actualizar_per input[type="submit"]:hover {
-    color: #ffffff;
-    background-color: #2D6CA2;
-    background-image: linear-gradient(to bottom, #2D6CA2, #2D6CA2);
-    border-color: #2B669A #2B669A #2B669A;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
 }
 
 
@@ -1121,6 +1146,15 @@ div#detalleprods img{
     color: #6D6D6D;
 }
 
+.actualizar-input[type=date]{
+    appearance: none;
+    color: #95a5a6;
+    font-size: 13px;
+    border:1px solid #ecf0f1;
+    background:#ecf0f1;
+    padding:5px;
+}
+
 .actualizar-input:focus{
     color: #181818;
 }
@@ -1131,6 +1165,7 @@ div#detalleprods img{
 
 .actualizar-label{
     padding: 10px 0px 5px 0px;
+    display: block;
 }
 
 .actualizar-label-foto{
@@ -1177,7 +1212,7 @@ div#detalleprods img{
     text-align: left;
 
 }
-.formulario-filtro select{
+.formulario-filtro select, .formulario-filtro input[type="text"]{
     margin-right: 0;
     margin-left: 0;
     width: 200px
@@ -1187,6 +1222,23 @@ div#detalleprods img{
     margin-left: 0;
     display: block;
 }
+
+.buscador-filtro{
+    width: 276px;
+    margin-bottom: 15px;
+}
+
+.buscador-filtro input[type="text"]{
+    height: 33px;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.buscador-filtro input{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 #filtro:checked ~ .contenedor-filtro{
     height: 116px;
 }
@@ -1236,15 +1288,15 @@ div#detalleprods img{
   margin-right: 5px; 
 }
 
-.form-row-item input[type="text"], input[type="number"], input[type="email"], input[type="password"]{
+.form-row-item input[type="text"], .form-row-item input[type="number"], .form-row-item input[type="email"], .form-row-item input[type="password"]{
     height: 25px;
 }
 
-.form-row-item input, label, select, textarea{
+.form-row-item input, .form-row-item label, .form-row-item select, .form-row-item textarea{
     width: 100%;
 }
 
-.form-row-item input, select, textarea{
+.form-row-item input, .form-row-item select, .form-row-item textarea{
     border: 1px solid #88A1CB;
     border-radius: 2px;
 }
@@ -1277,7 +1329,7 @@ div#detalleprods img{
 .tarjeta-admin:hover{
   box-shadow: 0px 0px 42px 0px rgba(0,0,0,0.75);
 }
-.tarjeta-admin a{
+.tarjeta-admin a, .tarjeta-admin button{
     display: block;
     width: 95%;
     margin: auto;
@@ -1286,6 +1338,10 @@ div#detalleprods img{
     background-color: #fff;
     text-decoration: none;
     color: #696A69;
+    font-size: 16px;
+}
+.tarjeta-admin button{
+    border: 0;
 }
 .tarjeta-admin p{
   font-size: 17px;
@@ -1356,10 +1412,30 @@ div#detalleprods img{
     color: #B4730A;    
 }
 
+.modal-reporte{
+    background-color: rgb(233, 233, 232);
+    border: 1px solid rgb(66, 66, 66);
+    color: rgb(24, 24, 24);
+    margin: auto;
+    width: 200px;
+    vertical-align: middle;
+}
+
 
 /*---------------------FIN-PAGINA-PRINCIPAL-ADMINISTRADOR---------------------*/
 
 /*---------------------------------RESPONSIVE---------------------------------*/
+
+@media (max-width: 450px){
+    .form_actualizar_per input{
+        width: 100%;
+    }
+    .form_actualizar_per label{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
 
 @media (max-width: 1500px){
     .formucontacto{
