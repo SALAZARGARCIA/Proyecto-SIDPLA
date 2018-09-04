@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php
-        include "../header.php";
+        include "header_empleado.php";
         include "../seguridad.php";
         $seguridad = new Seguridad;
         $seguridad->Validar_Empleado();

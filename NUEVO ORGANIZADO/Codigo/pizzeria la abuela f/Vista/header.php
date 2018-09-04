@@ -34,6 +34,8 @@
             		<li><a href="<?php echo $ruta . 'Nproductos.php'; ?>">Productos</a></li>
                     <?php if($misdom){ ?>
                     <li><a href="<?php echo $ruta . 'misdomicilios.php'; ?>">Mis Domicilios</a></li>
+                    <?php }if($_SESSION['session']['Rol'] == 'EMPLEADO' || $_SESSION['session']['Rol'] == 'ADMINISTRADOR'){ ?>
+                        <li><a href="<?php echo $ruta . 'empleado/empleado.php'; ?>">Empleado</a></li>
                     <?php } ?>
             		<li><a href="<?php echo $ruta . 'Cart.php'; ?>"><span class="icon-shopping-cart"></span></a></li>
             	</ul>
