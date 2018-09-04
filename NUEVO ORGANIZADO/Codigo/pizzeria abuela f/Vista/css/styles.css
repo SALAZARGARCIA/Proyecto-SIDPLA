@@ -1,0 +1,1121 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+	margin: 0;
+    background-image: url("../img/background.jpg");
+    background-size: 100vw;
+    background-attachment: fixed;
+    background-repeat: none;
+}
+
+@font-face{
+        font-family: Artbrush;
+        src: url(Artbrush.ttf);
+}
+
+@font-face{
+    font-family: Ubuntu;
+    src: url(Ubuntu/Ubuntu-Light.ttf);
+}
+
+header{
+	width: 100%;
+	background-image: url("../img/fondo_header2.jpg");
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-family: Artbrush;
+    font-size: 20px;
+}
+
+header div{
+    margin: auto;
+    display: block;
+	width: auto;
+	height: 120px;
+	padding: 10px 0px 0px 20px;
+}
+
+header div img:first-child{
+	width: 185px;
+}
+
+header div img:last-child{
+	width: 40px;
+	height: 40px;
+}
+
+main{
+	padding: 30px;
+	color: rgba(0,0,0,0.8);
+}
+
+main img{
+    max-width: 100%;
+}
+
+header label{
+	display: none;
+	width: 30px;
+	height: 30px;
+	padding: 10px;
+	border-right: 1px solid #fff;
+}
+
+header label:hover{
+	cursor: pointer;
+	background: rgba(0,0,0,0.3);
+}
+
+.menu{
+    max-width: 100%;
+	position: absolute;
+    top: 45px;
+	left: 220px;
+}
+
+.menu ul{
+    max-width: 100%;
+	margin: 0;
+	list-style: none;
+	padding: 0;
+	display: flex;
+}
+
+.menu li:hover{
+	background: rgba(0,0,0,0.3);
+	border-radius: 5px;
+}
+
+.menu li{
+	border-bottom: 1px solid rgba(255,255,255,0.6);
+	margin-left: 10px;
+	border-radius: 5px;
+}
+
+.menu li a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+    font-size: 25px;
+    padding: 3px 10px;
+}
+
+.login{
+    position: static;
+    float: right;
+    margin-right: 10px;
+}
+
+.login ul{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+}
+
+.login li{
+    list-style: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.login li a{
+    color: #fff;
+    padding: 2px 10px;
+    text-decoration: none;
+}
+
+.login li:first-child{
+    border-bottom: 0px;
+    margin-right: 10px;
+}
+
+/*----------------------Buscador----------------------*/
+
+.buscador input[type="search"]{
+    width: 45px; /*ancho por defecto*/
+    background: #fff url('../img/buscador.png') no-repeat 8px center; /*icono lupa*/
+    padding: 4px 10px 4px 32px;
+    border-radius: 15em;
+    border: 0;
+    -webkit-transition: all .5s; /* transiciÃ³n de .5seg a todos los elementos para chrome*/
+    -moz-transition: all .5s; /* transiciÃ³n de .5seg a todos los elementos para mozilla*/
+    -o-transition: all .5s; /* transiciÃ³n de .5seg a todos los elementos para ophera*/
+    transition: all .5s; /* transiciÃ³n de .5seg a todos los elementos*/
+    outline: none; /* ocultar el fucos automÃ¡tico de los input */
+}
+.buscador input[type="search"]:focus{
+    width: 130px; /*tamaÃ±o del boton buscar al hacer click*/
+    padding-left: 32px; /*espacio entre el icono lupa y el placeholder*/
+    color: #000;
+    background-color: #FFF;
+}
+
+/*--------------------FIN BUSCADOR--------------------*/
+
+/*---------------------- FOOTER---------------------- */
+
+footer{
+    font-size: 0.85em;
+    padding: 0.75em 0;
+    margin: auto;
+    max-width: 65%;
+    text-align: center;
+}
+
+footer a{
+    color:red;
+    font-weight: bold;
+    text-decoration: none;   
+}
+
+footer p{
+    font-family: Artbrush; 
+}
+
+footer a:hover{
+    color: #FC7C3D;
+}
+
+.icon-facebook-with-circle,.icon-twitter-with-circle,.icon-instagram-with-circle,.icon-youtube-with-circle{
+    font-size:35px;
+}
+
+/*---------------------FIN FOOTER---------------------*/
+
+/*-----------------------INDEX-----------------------*/
+
+.contenedor{
+    margin: auto;
+    margin-bottom: 30px;
+    width: 80%;
+    height: auto;
+    border: 2px solid #C40F0F;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    background: rgba(252,233,131,0.5);
+    transition: 0.6s;
+    font-family: Ubuntu;
+}
+
+.contenedor img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.contenedor iframe{
+    width: 100%;
+}
+
+.titulo{
+    text-align: center;
+    color: white;
+    font-family: Artbrush;
+    padding: 0;
+    border: 0;
+    margin-bottom: 10px;
+    background-image: url("../img/fondo_header2.jpg");
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.titulo p{
+    margin: 0;
+    font-size: 40px;
+}
+
+
+#btn-menu{
+	display: none;
+}
+
+/*----------------------------FIN INDEX----------------------------*/
+
+/*----------------------------ACERCA ----------------------------*/
+
+.ac{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.acerca{
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    padding-bottom: 30px;
+    margin-left: 15px;
+}
+
+.acerca cite{
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.acerca p{
+    width: 50%;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.acerca img{
+    position: absolute;
+}
+
+.acerca img[src="img/Historia.png"]{
+    width: 40%;
+    max-height: 100%;
+    top: 10px;
+    right: 10px;
+}
+
+.acerca img[src="img/copa.png"]{
+    width: 170px;
+    top: 10px;
+    right: 60px;
+}
+
+
+/*----------------------------FIN ACERCA---------------------------*/
+
+/*---------------------------CONTACTANOS---------------------------*/
+
+.formucontacto{
+    width: 540px;
+    max-width: 100%;
+    margin-right: 20px;
+    border-right:1px solid gray;
+    padding: 20px 20px 50px 20px;
+    box-sizing: border-box;
+}
+
+.formucontacto p{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.formucontacto form{
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid gray;
+}
+
+.formucontacto textarea{
+    width: 94%;
+    height: 95px;
+    max-width: 100%;
+    max-height: 300px;
+    background-color: rgba(0,0,0,0.1);
+    border: 1.5px solid rgba(26,75,169,0.5);
+    border-radius: 5px;
+} 
+
+.formucontacto input[type="submit"]{
+    padding: 5px;
+    width: 40%;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+.formucontacto input[type="submit"]:hover {
+    color: #ffffff;
+    background-color: #2D6CA2;
+    background-image: linear-gradient(to bottom, #2D6CA2, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+
+.formucontacto iframe{
+    margin-top: 6px;
+    border:2px solid rgba(26,75,169,0.5);
+    border-radius: 10px;
+}
+
+.sucursal{
+    width: 540px;
+}
+
+.sucursal p:first-child{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
+/*-------------------------FIN-CONTACTANOS-------------------------*/
+
+/*----------------------------N-PRODUCTOS----------------------------*/
+
+.blanco{
+    background-color: rgba(255,255,255,0.8);
+    padding: 30px 30px 30px 15px;
+    text-align:center;
+}
+
+.catproductos{
+    width: 300px;
+    max-width: 90%;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    overflow: hidden;
+    z-index: 500;
+}
+
+.catproductos img{
+    -webkit-transition:all .9s ease;
+    width:100%;
+}
+
+.catproductos:hover img{
+    -moz-transform:scale(1.25);
+    transform:scale(1.10);
+}
+
+.catproductos form{
+    display: none;
+}
+
+/*--------------------------FIN N PRODUCTOS--------------------------*/
+
+/*----------------------------PRODUCTOS----------------------------*/
+
+.contprod{
+    width: 250px;
+    border: 2px solid rgba(26,75,169,0.5);
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0px 10px 10px 0px;
+}
+
+.contprod img{
+    width: 220px;
+    height: 210px;
+    max-width: 100%;
+    border-radius: 2px;
+}
+
+.contprod p:nth-child(1){
+    font-weight: bolder;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.contprod p:nth-child(3){
+    margin: 5px 0px 10px 0px;
+    font-size: 20px;
+}
+
+
+.contprod a, form button{
+    margin: 10px 0px;
+    width: 95%;
+    font-size: 20px;
+    color: #fff;
+    background-image: url("../img/fondo_header2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 8px 0px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.contprod a{
+    display: block;
+    text-decoration: none;
+    margin-top: 66px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contprod form button:hover{
+    cursor: pointer;
+    transform:scale(1.07);
+}
+
+.contprod form input[type="number"]{
+    width: 50px;
+}
+
+/*--------------------------FIN PRODUCTOS--------------------------*/
+
+/*------------------------------LOGIN------------------------------*/
+
+.formlogin{
+    margin: auto;
+    width: 400px;
+    max-width: 100%;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.formlogin a{
+    color: #428BCA;
+    text-decoration: none;
+}
+
+.formlogin label{
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 15px;
+}
+
+.formlogin input{
+    padding: 4px 0px;
+    display: block;
+    margin: auto;
+    width: 80%;
+    border-radius: 3px;
+    border: 1px solid #428BCA;
+}
+    
+
+.formlogin input[type="submit"]{
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+.formlogin input[type="submit"]:hover {
+    color: #ffffff;
+    background-color: #2D6CA2;
+    background-image: linear-gradient(to bottom, #2D6CA2, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+
+/*----------------------------FIN LOGIN----------------------------*/
+
+/*-----------------------RECUPERAR CONTRASEÑA-----------------------*/
+
+.formrecupera{
+    margin: auto;
+    width: 400px;
+    max-width: 100%;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.formrecupera {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.formrecupera label{
+    display: block;
+    font-size: 16px;
+    margin: 15px;
+}
+
+.error{
+    color: red;
+    font-size: 20px;
+    text-align: center;
+}
+
+.formrecupera input, select{
+    padding: 4px 0px;
+    display: block;
+    margin: auto;
+    width: 80%;
+    border-radius: 3px;
+    border: 1px solid #428BCA;
+}
+    
+
+.formrecupera input[type="submit"]{
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+.formrecupera input[type="submit"]:hover {
+    color: #ffffff;
+    background-color: #2D6CA2;
+    background-image: linear-gradient(to bottom, #2D6CA2, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+
+/*---------------------FIN RECUPERAR CONTRASEÑA---------------------*/
+
+/*----------------------------REGISTRO----------------------------*/
+
+.formreg{
+    width: 500px;
+    max-width: 100%;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.select{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 30px;
+    border: 1px solid #428BCA;
+    background: rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.labelselect{
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+
+.inputt, .labell, .submit{
+    display: block;
+    width: 100%;
+    font-size: 15px;
+}
+
+.inputt{
+    padding: 5px;
+    border: 1px solid #428BCA;
+    margin-bottom: 30px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.inputt:focus{
+    outline: 1px solid rgba(0,0,0,0.5);
+}
+
+.inputt:focus + .labell{
+    margin-top: -80px;
+}
+
+.labell{
+    padding-left: 15px;
+    position: absolute;
+    margin-top: -55px;
+    text-align: left;
+    color: #414141;
+    transition: all 0.3s;
+}
+
+.submit{
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+
+.submit:hover{
+    color: #ffffff;
+    background-color: #2D6CA2;
+    background-image: linear-gradient(to bottom, #2D6CA2, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+.fijar{
+    margin-top: -80px;
+}
+
+/*--------------------------FIN REGISTRO--------------------------*/
+
+/*-------------------------Mis Domicilios-------------------------*/
+
+.misdomicilios{
+    width: 100%;
+    margin-bottom: 30px;
+    border: 2px solid rgba(0,0,0,0.4);
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: height 1s;
+    overflow: hidden;
+}
+
+.misdomicilios input[type="checkbox"]{
+    display: none;
+}
+
+.detalle__dom{
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+}
+
+.detalle_domi{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detalle_domi p{
+    flex: auto;
+    flex-shrink: 2;
+    font-size: 20px;
+    text-align: left;
+}
+
+.detalle_domi p:last-child{
+    text-align: center;
+}
+
+.misdomicilios label{
+    width: 200px;
+    padding: 7px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+    color: aliceblue;
+    float: right;
+    cursor: pointer;
+}
+
+.prod__dom{
+    clear: both;
+    height: 0px;
+    border-top: 2px solid rgba(66,139,202,0.5);
+    transform: scaleY(0);    
+    transform-origin: top;
+    text-align: left;
+}
+
+.misdomicilios input:checked ~ .prod__dom{
+    max-height: 100%;
+    height: auto;
+    transform: scaleY(1);
+    padding: 15px;
+    margin-top: 60px;
+    transition: transform 0.4s ease;
+}
+
+div#detalleprods{
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width: 500px;
+    max-width: 100%;
+    border: 1px solid rgba(66,139,202,0.8);
+    border-radius: 15px 15px;
+}
+
+div#detalleprods table{
+    margin-left: 20px;
+    background: white;
+    border: 0px;
+}
+div#detalleprods table tr td{
+    border: 0px;
+    text-align: left;
+}
+div#detalleprods img{
+    width: 130px;
+    border-radius: 5px;
+}
+
+.prod__dom a{
+    text-decoration: none;
+    display: inline-block;
+}
+
+.boton_exito{
+    width: 200px;
+    padding: 7px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    background-image: linear-gradient(to bottom, #5cb85c, #498D49);
+    color: aliceblue;
+    cursor: pointer;
+    text-align: center;
+}
+
+.boton_peligro{
+    width: 200px;
+    padding: 7px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #d9534f;
+    background-image: linear-gradient(to bottom, #d9534f, #d9534f);
+    color: aliceblue;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+/*-------------------------FIN Mis Domicilios-------------------------*/
+
+
+/*-------------------------------Carrito-------------------------------*/
+
+.carrito{
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid gray;
+    border-radius: 3px;
+    border-collapse: collapse;
+}
+
+.carrito thead{
+    background: rgba(255,255,255,1);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+}
+
+.carrito img{
+    width: 300px;
+    max-width: 50%;
+    border-radius: 2px;
+    margin: 5px 0px;
+}
+
+.carrito th, td{
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-right: 1px solid rgba(0,0,0,0.5);
+}
+
+.carrito td:last-child, th:last-child{
+    border-right: 0px solid red;
+}
+
+.carrito th{
+    padding: 7px;
+}
+
+.carrito tbody tr td a{
+    text-decoration: none;
+    color: #FF5733;
+    font-weight: bold;
+}
+
+.carrito tbody tr td a:hover{
+    color: #FF2222;
+}
+
+.carrito tbody tr td span{
+    padding: 3px;
+}
+
+.carrito tbody b{
+    font-size: 18px;
+}
+
+.carrito tfoot{
+    font-size: 20px;
+    text-align: right;
+}
+
+.carrito tfoot td:first-child{
+    padding: 8px;
+    box-sizing: border-box;
+    font-weight: bolder;
+}
+
+.finaliza_compra{
+    clear: both;
+    width: 100%;
+    height: 0px;
+    padding-top: 10px;
+    transition: 0.7s;
+    overflow: hidden;
+}
+
+.finaliza_compra textarea{
+    width: 100%;
+    height: 95px;
+    max-width: 100%;
+    max-height: 140px;
+    min-height: 20px;
+    min-width: 400px;
+    background-color: rgba(0,0,0,0.1);
+    border: 1.5px solid rgba(26,75,169,0.5);
+    border-radius: 5px;
+} 
+
+.finaliza_compra form{
+    display: inline-block;
+    max-width: 100%;
+}
+
+.finaliza_compra form input, label{
+    display: block;
+    margin: auto;
+}
+
+.finaliza_compra form input{
+    width: 400px;
+    max-width: 100%;
+    padding: 5px;
+    border: 1px solid #428BCA;
+    border-radius: 3px;
+}
+
+.finaliza_compra form input:nth-child(4){
+    height: 50px;
+}
+
+.finaliza_compra form input[type="submit"]{
+    margin: auto;
+    font-size: 17px;
+    width: 270px;
+    padding: 7px;
+    margin-top: 7px;
+    border-radius: 5px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.finaliza_compra form input[type="submit"]:hover{
+    background-color: #3178B6;
+    background-image: linear-gradient(to bottom, #3178B6, #2D6CA2);
+}
+
+.finaliza_compra form label{
+    font-size: 18px;
+    margin: 5px 0px;
+}
+
+#detalle{
+    display: none;
+}
+
+#comprar{
+    display: block;
+    width: 200px;
+    padding: 7px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+    color: aliceblue;
+    cursor: pointer;
+    float: right;
+}
+
+#detalle:checked ~ .finaliza_compra{
+    height: 300px;
+}
+
+/*-----------------------------Fin carrito-----------------------------*/
+
+/*--------------------------------PERFIL--------------------------------*/
+
+.form_actualizar_per{
+    display: inline-block;
+}
+
+.form_actualizar_per input{
+    padding: 3px;
+    margin: 8px 0px;
+    border: 1px solid #428BCA;
+    border-radius: 3px;
+    width: 100%;
+    color: gray;
+}
+
+.form_actualizar_per input[type="submit"]{
+    padding: 5px;
+    width: 50%;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+    display: block;
+    margin: auto;
+}
+.form_actualizar_per input[type="submit"]:hover {
+    color: #ffffff;
+    background-color: #2D6CA2;
+    background-image: linear-gradient(to bottom, #2D6CA2, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+
+
+/*------------------------------FIN-PERFIL------------------------------*/
+@media (max-width: 1500px){
+    .formucontacto{
+        width: 450px;
+    }
+    .sucursal{
+        width: 450px;
+    }
+}
+
+@media (max-width: 910px){
+    .menu li{
+        border-bottom: 0px;
+        border-radius: 0px;
+        margin-left: 0;
+    }
+    .contenedor{
+        width: 100%;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 1496px){
+    .formucontacto{
+        border-right: 0;
+        border-bottom: 1px solid gray;
+        width: 70%;
+    }
+}
+
+@media (max-width: 853px){
+
+    .formucontacto{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .formlogin{
+        padding: 5px;
+    }
+
+    .contprod{
+        margin: 0;
+        width: 85%;
+    }
+
+    .contenedor{
+        width: 100%;
+        padding: 6px;
+    }
+
+    .acerca img{
+        position: static;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .acerca img[src="img/Historia.png"]{
+        width: 90%;
+    }
+
+    .acerca p{
+        width: 83%;
+    }
+
+    .catproductos{
+        padding: 5px 5px 5px 0px;
+        margin-left: auto;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+    
+    .titulo p{
+    font-size: 28px;
+    }
+    
+    .login{
+    position:fixed;
+    top: 92px; 
+    right: 5px;
+    }
+
+    .login li{
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .login li a{
+        font-size: 16px;
+    }
+    
+    main{
+        padding: 3%;
+    }
+    
+    header{
+        position: sticky;
+	    top: 0;
+        z-index: 1000;
+    }
+
+    header div{
+        height: 120px;
+    }
+
+	header div img:last-child{
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	header div label{
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 20px;
+		border: 0px;
+	}
+
+	header div label:hover{
+		background: none;
+	}
+
+	.menu {
+		position: relative;
+		top: 4px;
+		left: -25px;
+		width: 80%;
+		margin-left: -100%;
+		transition: all 0.5s;
+	}
+
+	.menu ul{
+		position: static;
+		flex-direction: column;
+        background-image: url("../img/fondo_header2.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.93;
+	}
+
+	.menu li{
+        margin: 0;
+        border-radius: 0px;
+		border-top: 1px solid #fff;
+	}
+
+    .menu li:first-child{
+        border-top: 0;
+    }
+
+    .menu li a{
+        margin-left: 5%;
+    }
+
+	#btn-menu:checked ~ .menu{
+		margin: 0;
+	}
+}
