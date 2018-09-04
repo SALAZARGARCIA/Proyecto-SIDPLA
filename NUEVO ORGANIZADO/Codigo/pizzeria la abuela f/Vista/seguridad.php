@@ -10,11 +10,20 @@ class Seguridad{
 		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
 	}
 
-	public function Validar_Sesion($ruta){
+	public function Validar_Sesion($ruta,$valor){
 		try {
+			//Opcion $valor: con esto especifico si quiero verificar que la sesion este llena o vacia
+			if($valor == 'Llena'){
 
-			if(!isset($_SESSION['session'])){
-				header('location:'. $ruta .'Nproductos.php');
+				if(isset($_SESSION['session'])){
+					header('location:'. $ruta .'Nproductos.php');
+				}
+
+			}elseif($valor == 'Vacia'){
+
+				if(!isset($_SESSION['session'])){
+					header('location:'. $ruta .'Nproductos.php');
+				}
 			}
 			
 		} catch (Exception $e) {
@@ -24,7 +33,7 @@ class Seguridad{
 
 	public function Validar_Empleado(){
 
-		$this->Validar_Sesion('../');
+		$this->Validar_Sesion('../','Vacia');
 
 		try {
 			$documento = $_SESSION['session']['Documento'];
@@ -42,7 +51,7 @@ class Seguridad{
 
 	public function Validar_Administrador(){
 
-		$this->Validar_Sesion('../');
+		$this->Validar_Sesion('../','Vacia');
 		
 		try {
 			$documento = $_SESSION['session']['Documento'];
@@ -57,6 +66,7 @@ class Seguridad{
 		}
 		
 	}
+
 }
 
 

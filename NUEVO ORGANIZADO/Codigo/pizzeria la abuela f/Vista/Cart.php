@@ -21,7 +21,8 @@
     	</div>
     	<div class="contenedor blanco">
             <?php if(isset($_SESSION['cart'])){ ?>
-            <table class="carrito">
+            <div class="tabla_responsive">
+            <table class="tabla_default">
                 <thead>
                     <tr>
                         <th>PRODUCTO</th>
@@ -49,12 +50,7 @@
                         <td>$<?php echo $r->__GET('Valor_unitario'); ?></td>
                         <td>$<?php echo $c["cant"]*$r->__GET('Valor_unitario'); ?></td>
                         <td>
-                            <!--<form action="../Controlador/cart.control.php" method="POST">
-                                <input type="hidden" name="id_prod" value="<?php echo $c['product_id']; ?>">
-                                <input type="submit" name="Eliminar" value="Eliminar">
-                                <span class="icon-trash"></span>
-                            </form>-->
-                            <a href="../Controlador/cart.control.php?id=<?php echo $c["product_id"]; ?>" 
+                            <a class="a_advertencia" href="../Controlador/cart.control.php?id=<?php echo $c["product_id"]; ?>" 
                                    class="btn btn-danger">Eliminar <span class="icon-trash"></span></a>
                         </td>
                     </tr>
@@ -68,6 +64,7 @@
                     </tr>
                 </tfoot>
             </table>
+            </div>
             <?php  
                 if($model->Validar_Precio($Total)){ ?>
                     <input type="checkbox" id="detalle">

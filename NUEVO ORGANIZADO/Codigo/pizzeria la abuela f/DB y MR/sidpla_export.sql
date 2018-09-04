@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-07-2018 a las 00:41:08
+-- Tiempo de generación: 08-08-2018 a las 16:23:19
 -- Versión del servidor: 5.7.14
--- Versión de PHP: 5.6.25
+-- Versión de PHP: 7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -44,7 +44,7 @@ CREATE TABLE `domicilio` (
 
 INSERT INTO `domicilio` (`Cod_dom`, `Fecha`, `Direc_Dom`, `Valor_Total`, `Observacion_dom`, `estado_domicilio_Estado_dom`, `pizzeria_Nit_Pizzeria`) VALUES
 (1, '2018-07-23', 'Cll 63 F No. 74 - 25', '69600', 'Buenas tardes por favor la pizza en 6 porciones, gracias ', 'EN ESPERA', 801145012),
-(2, '2018-07-23', 'Cll 63 F No. 74 - 25', '19700', 'Ninguna', 'EN ESPERA', 801145012);
+(2, '2018-07-23', 'Cll 63 F No. 74 - 25', '19700', 'Ninguna', 'ENTREGADO', 801145012);
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,8 @@ INSERT INTO `opinion` (`Cod_Opinion`, `Opinion`, `persona_Num_Documento_per`, `p
 (1, 'Me  gusta la pizzeria, muy buen servicio', '1033815398', 'CEDULA DE CIUDADANIA', '2018-07-23'),
 (2, 'El tiempo que se demoro mi domicilio fue rapido, muy bien por eso.', '1031157939', 'CEDULA DE EXTRANGERIA', '2018-07-23'),
 (3, 'Excelente servicio', '1031178887', 'CEDULA DE CIUDADANIA', '2018-07-23'),
-(4, 'Me parece excelente que cuenten con el servicio web para los domicilios', '9900000001', 'CEDULA DE CIUDADANIA', '2018-07-23');
+(4, 'Me parece excelente que cuenten con el servicio web para los domicilios', '9900000001', 'CEDULA DE CIUDADANIA', '2018-07-23'),
+(5, 'Holita', '1033815398', 'CEDULA DE CIUDADANIA', '2018-07-25');
 
 -- --------------------------------------------------------
 
@@ -202,72 +203,73 @@ CREATE TABLE `producto` (
   `Cantidad_exist` int(11) DEFAULT NULL COMMENT 'Numero total de unidades existentes del producto',
   `tipo_producto_tipo_prod` varchar(50) NOT NULL,
   `tamaño_tamaño` varchar(50) NOT NULL,
-  `Valor_unitario` decimal(10,0) DEFAULT NULL
+  `Valor_unitario` decimal(10,0) DEFAULT NULL,
+  `estado_prod` tinyint(1) NOT NULL COMMENT 'Define el estado del producto, deshabilitado o habilitado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`Cod_producto`, `Nom_prod`, `Desc_prod`, `Foto_prod`, `Stok_min`, `Stok_max`, `Cantidad_exist`, `tipo_producto_tipo_prod`, `tamaño_tamaño`, `Valor_unitario`) VALUES
-(1, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAPEQ.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000'),
-(2, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAMED.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000'),
-(3, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000'),
-(4, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000'),
-(5, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000'),
-(6, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIPEQUE.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000'),
-(7, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000'),
-(8, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000'),
-(9, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIFAMILAIR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000'),
-(10, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000'),
-(11, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAPEQUENIA.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000'),
-(12, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000'),
-(13, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000'),
-(14, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000'),
-(15, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000'),
-(16, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOPEQUENIA.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000'),
-(17, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000'),
-(18, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000'),
-(19, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000'),
-(20, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000'),
-(21, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESPEQUEÑA.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000'),
-(22, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000'),
-(23, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000'),
-(24, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000'),
-(25, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000'),
-(26, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAPEQUENIA.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000'),
-(27, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000'),
-(28, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000'),
-(29, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000'),
-(30, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000'),
-(31, 'CocaCola', 'CocaCola tradicional', 'Cocacola250ml.jpg', 20, 50, 30, 'BEBIDA', '250 ML', '1100'),
-(32, 'CocaCola', 'CocaCola tradicional', 'Cocacola350ml.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '2200'),
-(33, 'CocaCola', 'CocaCola tradicional', 'Cocacola500ml.jpg', 20, 50, 30, 'BEBIDA', '500 ML', '2800'),
-(34, 'CocaCola', 'CocaCola tradicional', 'Cocacola1l.jpg', 20, 50, 30, 'BEBIDA', '1 LT', '3200'),
-(35, 'CocaCola', 'CocaCola tradicional', 'Cocacola1.5l.jpg', 20, 50, 30, 'BEBIDA', '1.25 LT', '3600'),
-(36, 'CocaCola', 'CocaCola tradicional', 'Cocacola2.5l.jpg', 20, 50, 30, 'BEBIDA', '2.5 LT', '4200'),
-(37, 'Pepsi', 'Pepsi tradicional', 'Pepsi250ml.jpg', 20, 50, 30, 'BEBIDA', '250 ML', '1100'),
-(38, 'Pepsi', 'Pepsi tradicional', 'Pepsi350ml.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '2200'),
-(39, 'Pepsi', 'Pepsi tradicional', 'Pepsi500ml.jpg', 20, 50, 30, 'BEBIDA', '500 ML', '2800'),
-(40, 'Pepsi', 'Pepsi tradicional', 'Pepsi1l.jpg', 20, 50, 30, 'BEBIDA', '1 LT', '3200'),
-(41, 'Pepsi', 'Pepsi tradicional', 'Pepsi1.25l.jpg', 20, 50, 30, 'BEBIDA', '1.25 LT', '3600'),
-(43, 'Jugo Naranja', 'Jugo de naranja natural', 'JugoDeNaranja350ml.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '1700'),
-(45, 'Jugo Naranja', 'Jugo de naranja natural', 'JugoDeNaranja1l.jpg', 20, 50, 30, 'BEBIDA', '1 LT', '2900'),
-(46, 'Cerveza Heinken', 'Cerveza Heinken', 'HEINEKEN.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '3200'),
-(47, 'Cerveza REDD\'S', 'Cerveza REDD\'S', 'redds.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '3000'),
-(48, 'Cerveza Pooker', 'Cerveza Pooker', 'poker.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '2500'),
-(49, 'Lasagna Con Carne', 'Pasta en laminas intercaladas con carne ternera', 'lasagnaDICARNE.jpg', NULL, NULL, NULL, 'PASTA', 'UNICO', '16000'),
-(50, 'Lasagna con Pollo', 'Pasta en laminas intercaladas con pollo', 'LASAGNADIPOLLO.jpg', NULL, NULL, NULL, 'PASTA', 'UNICO', '16000'),
-(51, 'Ravioli', 'Pasta con pollo, salsa a la bolognesa y queso', 'RAVIOLI.jpg', NULL, NULL, NULL, 'PASTA', 'UNICO', '10000'),
-(52, 'Spaghuetti a la Bolognesa', 'Pasta acompañada con salsa bolognesa', 'SPAGHETTIALABOLOGNESA.jpg', NULL, NULL, NULL, 'PASTA', 'UNICO', '16000'),
-(53, 'Ensalada de Pasta, Queso y Albahaca', 'Ensalada de pasta, queso y albahaca', 'ENSALADADEPASTAQUESOYALBAHACA.jpg', NULL, NULL, NULL, 'ENSALADA', 'UNICO', '8000'),
-(54, 'Ensalada de Pepino y Yogurt Griego', 'Ensalada de Pepino y Yogurt Griego', 'ENSALADAPEPINO.jpg', NULL, NULL, NULL, 'ENSALADA', 'UNICO', '8000'),
-(55, 'Palitos de Queso', 'Delicioso hojaldre superrelleeno de queso doble crema y un toque secreto', 'PALITOSDEQUESO.jpg', NULL, NULL, NULL, 'ACOMPAÑANTE', 'UNICO', '8000'),
-(56, 'Queso', 'Añade una deliciosa porcion de queso a tu Pizza', 'ADQUESO.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '1000'),
-(57, 'Piña', 'Añade una deliciosa porcion de Piña a tu Pizza', 'ADPIÑA.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '500'),
-(58, 'Tocineta', 'Añade una deliciosa Tocineta a tu Pizza', 'ADTOCINETA.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '1000'),
-(59, 'Pollo', 'Añade una deliciosa porcion de Pollo a tu Pizza', 'ADPOLLO.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '1000'),
-(60, 'Salami', 'Añade una deliciosa porcion de Salami a tu Pizza', 'ADSALAMI.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '2000');
+INSERT INTO `producto` (`Cod_producto`, `Nom_prod`, `Desc_prod`, `Foto_prod`, `Stok_min`, `Stok_max`, `Cantidad_exist`, `tipo_producto_tipo_prod`, `tamaño_tamaño`, `Valor_unitario`, `estado_prod`) VALUES
+(1, 'Pizza Hawaiana', 'Pizza con jamon, queso y piñas', 'HAWAIANAPEQ.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000', 1),
+(2, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAMED.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000', 1),
+(3, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000', 1),
+(4, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000', 1),
+(5, 'Pizza Hawaiana', 'Pizza con jamon, queso y piña', 'HAWAIANAEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000', 1),
+(6, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIPEQUE.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000', 1),
+(7, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000', 1),
+(8, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000', 1),
+(9, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIFAMILAIR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000', 1),
+(10, 'Pizza Peperoni', 'Pizza con peperoni, champiñon y queso', 'PEPPERONIEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000', 1),
+(11, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAPEQUENIA.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000', 1),
+(12, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000', 1),
+(13, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000', 1),
+(14, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000', 1),
+(15, 'Pizza Mexicana', 'Pizza con carne molida, cebolla, tomate, pimenton, jalapeños, queso y maizitos', 'MEXICANAEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000', 1),
+(16, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOPEQUENIA.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000', 1),
+(17, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000', 1),
+(18, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000', 1),
+(19, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000', 1),
+(20, 'Pizza Queso', 'Pizza rapleta de tus quesos favoritos', 'PIZZAQUESOEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000', 1),
+(21, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESPEQUEÑA.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000', 1),
+(22, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000', 1),
+(23, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000', 1),
+(24, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000', 1),
+(25, 'Pizza Pollo y Champiñones', 'Pizza con champiñones, queso y pollo', 'CHAMPINIONESEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000', 1),
+(26, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAPEQUENIA.jpg', NULL, NULL, NULL, 'PIZZA', 'PEQUEÑA', '33000', 1),
+(27, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAMEDIANA.jpg', NULL, NULL, NULL, 'PIZZA', 'MEDIANA', '38000', 1),
+(28, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'GRANDE', '41000', 1),
+(29, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAFAMILIAR.jpg', NULL, NULL, NULL, 'PIZZA', 'FAMILIAR', '42000', 1),
+(30, 'Pizza Vegetariana', 'Pizza con cabolla, pimenton, mazorca, tomate, pepereni y queso', 'VEGETARIANAEXTRAGRANDE.jpg', NULL, NULL, NULL, 'PIZZA', 'EXTRA GRANDE', '45000', 1),
+(31, 'CocaCola', 'CocaCola tradicional', 'Cocacola250ml.jpg', 20, 50, 30, 'BEBIDA', '250 ML', '1100', 1),
+(32, 'CocaCola', 'CocaCola tradicional', 'Cocacola350ml.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '2200', 1),
+(33, 'CocaCola', 'CocaCola tradicional', 'Cocacola500ml.jpg', 20, 50, 30, 'BEBIDA', '500 ML', '2800', 1),
+(34, 'CocaCola', 'CocaCola tradicional', 'Cocacola1l.jpg', 20, 50, 30, 'BEBIDA', '1 LT', '3200', 1),
+(35, 'CocaCola', 'CocaCola tradicional', 'Cocacola1.5l.jpg', 20, 50, 30, 'BEBIDA', '1.25 LT', '3600', 1),
+(36, 'CocaCola', 'CocaCola tradicional', 'Cocacola2.5l.jpg', 20, 50, 30, 'BEBIDA', '2.5 LT', '4200', 1),
+(37, 'Pepsi', 'Pepsi tradicional', 'Pepsi250ml.jpg', 20, 50, 30, 'BEBIDA', '250 ML', '1100', 1),
+(38, 'Pepsi', 'Pepsi tradicional', 'Pepsi350ml.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '2200', 1),
+(39, 'Pepsi', 'Pepsi tradicional', 'Pepsi500ml.jpg', 20, 50, 30, 'BEBIDA', '500 ML', '2800', 1),
+(40, 'Pepsi', 'Pepsi tradicional', 'Pepsi1l.jpg', 20, 50, 30, 'BEBIDA', '1 LT', '3200', 1),
+(41, 'Pepsi', 'Pepsi tradicional', 'Pepsi1.25l.jpg', 20, 50, 30, 'BEBIDA', '1.25 LT', '3600', 1),
+(43, 'Jugo Naranja', 'Jugo de naranja natural', 'JugoDeNaranja350ml.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '1700', 1),
+(45, 'Jugo Naranja', 'Jugo de naranja natural', 'JugoDeNaranja1l.jpg', 20, 50, 30, 'BEBIDA', '1 LT', '2900', 1),
+(46, 'Cerveza Heinken', 'Cerveza Heinken', 'HEINEKEN.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '3200', 1),
+(47, 'Cerveza REDD\'S', 'Cerveza REDD\'S', 'redds.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '3000', 1),
+(48, 'Cerveza Pooker', 'Cerveza Pooker', 'poker.jpg', 20, 50, 30, 'BEBIDA', '350 ML', '2500', 1),
+(49, 'Lasagna Con Carne', 'Pasta en laminas intercaladas con carne ternera', 'lasagnaDICARNE.jpg', NULL, NULL, NULL, 'PASTA', 'UNICO', '16000', 1),
+(50, 'Lasagna con Pollo', 'Pasta en laminas intercaladas con pollo', 'LASAGNADIPOLLO.jpg', NULL, NULL, NULL, 'PASTA', 'UNICO', '16000', 1),
+(51, 'Ravioli', 'Pasta con pollo, salsa a la bolognesa y queso', 'RAVIOLI.jpg', NULL, NULL, NULL, 'PASTA', 'UNICO', '10000', 1),
+(52, 'Spaghuetti a la Bolognesa', 'Pasta acompañada con salsa bolognesa', 'SPAGHETTIALABOLOGNESA.jpg', NULL, NULL, NULL, 'PASTA', 'UNICO', '16000', 1),
+(53, 'Ensalada de Pasta, Queso y Albahaca', 'Ensalada de pasta, queso y albahaca', 'ENSALADADEPASTAQUESOYALBAHACA.jpg', NULL, NULL, NULL, 'ENSALADA', 'UNICO', '8000', 1),
+(54, 'Ensalada de Pepino y Yogurt Griego', 'Ensalada de Pepino y Yogurt Griego', 'ENSALADAPEPINO.jpg', NULL, NULL, NULL, 'ENSALADA', 'UNICO', '8000', 1),
+(55, 'Palitos de Queso', 'Delicioso hojaldre superrelleeno de queso doble crema y un toque secreto', 'PALITOSDEQUESO.jpg', NULL, NULL, NULL, 'ACOMPAÑANTE', 'UNICO', '8000', 1),
+(56, 'Queso', 'Añade una deliciosa porcion de queso a tu Pizza', 'ADQUESO.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '1000', 1),
+(57, 'Piña', 'Añade una deliciosa porcion de Piña a tu Pizza', 'ADPIÑA.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '500', 1),
+(58, 'Tocineta', 'Añade una deliciosa Tocineta a tu Pizza', 'ADTOCINETA.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '1000', 1),
+(59, 'Pollo', 'Añade una deliciosa porcion de Pollo a tu Pizza', 'ADPOLLO.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '1000', 1),
+(60, 'Salami', 'Añade una deliciosa porcion de Salami a tu Pizza', 'ADSALAMI.jpg', NULL, NULL, NULL, 'ADICIONALES', 'UNICO', '2000', 1);
 
 -- --------------------------------------------------------
 
@@ -456,17 +458,17 @@ ALTER TABLE `tipo_producto`
 -- AUTO_INCREMENT de la tabla `domicilio`
 --
 ALTER TABLE `domicilio`
-  MODIFY `Cod_dom` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Es el codigo por el cual de identifica el domicilio.', AUTO_INCREMENT=3;
+  MODIFY `Cod_dom` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Es el codigo por el cual de identifica el domicilio.', AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `Cod_Opinion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'es el codigo  que identifica la opinion dada por la  persona ', AUTO_INCREMENT=5;
+  MODIFY `Cod_Opinion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'es el codigo  que identifica la opinion dada por la  persona ', AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `Cod_producto` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Es el codigo por el cual se identifica el producto.', AUTO_INCREMENT=61;
+  MODIFY `Cod_producto` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Es el codigo por el cual se identifica el producto.', AUTO_INCREMENT=72;
 --
 -- Restricciones para tablas volcadas
 --

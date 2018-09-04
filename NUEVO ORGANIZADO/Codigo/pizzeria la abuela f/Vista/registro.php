@@ -11,6 +11,9 @@
 <body>
     <?php
         include "header.php";
+        include "seguridad.php";
+        $seguridad = new Seguridad;
+        $seguridad->Validar_Sesion('','Llena');
         require_once '../Modelo/conexion.php';
         $db = database::conectar();
     ?>
@@ -56,6 +59,7 @@
                    <input type="text" name="Direc_per" id="direc" class="inputt" required>
                 <label class="labell" for="direc">Direccion</label>
                 
+                <input type="hidden" name="registro_normal">
                 <input type="submit" class="submit" name="registrar_per" value="Registrar">
             </form>
     	</div>
@@ -65,6 +69,5 @@
     <?php 
         include "footer.php";
      ?> 
-    
 </body>
 </html>

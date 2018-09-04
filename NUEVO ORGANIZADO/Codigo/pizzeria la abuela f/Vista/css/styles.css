@@ -132,6 +132,156 @@ header label:hover{
     margin-right: 10px;
 }
 
+/*-------------------MODAL-------------------*/
+
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top */
+    padding-top: 20px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    font-family: Ubuntu;
+}
+
+/* Modal Content */
+.modal-contenido {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.cerrar-modal{
+    text-decoration: none;
+    list-style: none;
+    color: #fff;
+    padding: 5px 7px;
+    border-radius: 50%;
+    float: right;
+    background: red;
+    margin-right: 15px;
+    margin-top: 10px;
+    font-weight: bold; 
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+
+/*-------------------MODAL-------------------*/
+
+/*-------------------ESTILOS-GENERICOS-------------------*/
+
+.tabla_responsive{
+    overflow-x: auto;
+}
+
+.a_advertencia{
+    text-decoration: none;
+    color: #FF5733;
+    font-weight: bold;
+}
+
+.a_advertencia:hover{
+    color: #FF2222;
+}
+
+.a_advertencia span{
+    padding: 3px;
+}
+
+.a_peligro{
+    text-decoration: none;
+    color: #DA4453;
+    font-weight: bold;
+}
+
+.a_peligro span{
+    padding: 3px;
+}
+
+.a_primario{
+    text-decoration: none;
+    color: #3BAFDA;
+    font-weight: bold;
+}
+
+.a_primario span{
+    padding: 3px;
+}
+
+.boton_primario{
+    padding: 7px 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #428BCA;
+    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+.boton_primario:hover {
+    color: #ffffff;
+    background-color: #2D6CA2;
+    background-image: linear-gradient(to bottom, #2D6CA2, #2D6CA2);
+    border-color: #2B669A #2B669A #2B669A;
+}
+
+.boton_exito{
+    padding: 7px 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    background-image: linear-gradient(to bottom, #5cb85c, #48A048);
+    border-color: #5cb85c #5cb85c #5cb85c;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+}
+
+.boton_exito:hover{
+    background-color: #51BB51;
+    background-image: linear-gradient(to bottom, #51BB51, #42AB42);
+}
+
+.boton_peligro{
+    padding: 7px 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #d9534f;
+    background-image: linear-gradient(to bottom, #F06965, #C63F3B);
+    border-color: gray;
+    cursor: pointer;
+    text-align: center;
+}
+
+.boton_peligro:hover{
+    background-color: #C63F3B;
+    background-image: linear-gradient(to bottom, #C63F3B, #C63F3B);
+}
+
 /*----------------------Buscador----------------------*/
 
 .buscador input[type="search"]{
@@ -738,93 +888,55 @@ div#detalleprods img{
     display: inline-block;
 }
 
-.boton_exito{
-    width: 200px;
-    padding: 7px;
-    margin-top: 10px;
-    border-radius: 5px;
-    background-color: #5cb85c;
-    background-image: linear-gradient(to bottom, #5cb85c, #498D49);
-    color: aliceblue;
-    cursor: pointer;
-    text-align: center;
-}
-
-.boton_peligro{
-    width: 200px;
-    padding: 7px;
-    margin-top: 10px;
-    border-radius: 5px;
-    background-color: #d9534f;
-    background-image: linear-gradient(to bottom, #d9534f, #d9534f);
-    color: aliceblue;
-    cursor: pointer;
-    text-align: center;
-}
-
 
 /*-------------------------FIN Mis Domicilios-------------------------*/
 
 
 /*-------------------------------Carrito-------------------------------*/
 
-.carrito{
-    width: 100%;
+.tabla_default{
     max-width: 100%;
     border: 1px solid gray;
     border-radius: 3px;
     border-collapse: collapse;
+    margin: auto;
 }
 
-.carrito thead{
+.tabla_default thead{
     background: rgba(255,255,255,1);
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
 }
 
-.carrito img{
+.tabla_default img{
     width: 300px;
     max-width: 50%;
     border-radius: 2px;
     margin: 5px 0px;
 }
 
-.carrito th, td{
+.tabla_default th, td{
     border-bottom: 1px solid rgba(0,0,0,0.5);
     border-right: 1px solid rgba(0,0,0,0.5);
 }
 
-.carrito td:last-child, th:last-child{
+.tabla_default td:last-child, th:last-child{
     border-right: 0px solid red;
 }
 
-.carrito th{
+.tabla_default th{
     padding: 7px;
 }
 
-.carrito tbody tr td a{
-    text-decoration: none;
-    color: #FF5733;
-    font-weight: bold;
-}
-
-.carrito tbody tr td a:hover{
-    color: #FF2222;
-}
-
-.carrito tbody tr td span{
-    padding: 3px;
-}
-
-.carrito tbody b{
+.tabla_default tbody b{
     font-size: 18px;
 }
 
-.carrito tfoot{
+.tabla_default tfoot{
     font-size: 20px;
     text-align: right;
 }
 
-.carrito tfoot td:first-child{
+.tabla_default tfoot td:first-child{
     padding: 8px;
     box-sizing: border-box;
     font-weight: bolder;
@@ -842,10 +954,10 @@ div#detalleprods img{
 .finaliza_compra textarea{
     width: 100%;
     height: 95px;
-    max-width: 100%;
     max-height: 140px;
     min-height: 20px;
-    min-width: 400px;
+    min-width: 200px;
+    max-width: 100%;
     background-color: rgba(0,0,0,0.1);
     border: 1.5px solid rgba(26,75,169,0.5);
     border-radius: 5px;
@@ -880,16 +992,15 @@ div#detalleprods img{
     padding: 7px;
     margin-top: 7px;
     border-radius: 5px;
-    background-color: #428BCA;
-    background-image: linear-gradient(to bottom, #428BCA, #2D6CA2);
-    border-color: #2B669A #2B669A #2B669A;
+    background-color: #5cb85c;
+    background-image: linear-gradient(to bottom, #5cb85c, #48A048);
     color: aliceblue;
     cursor: pointer;
 }
 
 .finaliza_compra form input[type="submit"]:hover{
-    background-color: #3178B6;
-    background-image: linear-gradient(to bottom, #3178B6, #2D6CA2);
+    background-color: #51BB51;
+    background-image: linear-gradient(to bottom, #51BB51, #42AB42);
 }
 
 .finaliza_compra form label{
@@ -958,6 +1069,199 @@ div#detalleprods img{
 
 
 /*------------------------------FIN-PERFIL------------------------------*/
+
+/*------------------------ADMINISTRADOR PRODUCTOS------------------------*/
+.admin{
+    width: 100%;
+}
+
+.formactualizar{
+    padding: 20px;
+    width: 400px;
+    max-width: 100%;
+    margin: auto;
+    background:
+    linear-gradient(
+        #DADADA,
+        transparent
+    ),
+    linear-gradient(
+        90deg,
+        #DAD9D9,
+        transparent
+    ),
+    linear-gradient(
+        -90deg,
+        #DAD9D9,
+        transparent
+    );
+    background-blend-mode: screen;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.formactualizar img{
+    width: 258px;
+    height: 258px;
+    display: block;
+    margin: auto;
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+.actualizar-input{
+    padding: 3px;
+    border: 1px solid #88A1CB;
+    border-radius: 2px;
+    width: 210px;
+    max-width: 100%;
+    color: #6D6D6D;
+}
+
+.actualizar-input:focus{
+    color: #181818;
+}
+
+.actualizar-foto{
+    display: none;
+}
+
+.actualizar-label{
+    padding: 10px 0px 5px 0px;
+}
+
+.actualizar-label-foto{
+    margin-bottom: 10px;
+}
+
+.actualizar-sub{
+    max-width: 100%;
+    width: 220px;
+    font-size: 15px;
+}
+
+/*-----FILTRO-----*/
+
+.contenedor-filtro{
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s;
+    max-width: 100%;
+}
+#filtro{
+    display: none;
+}
+.boton_filtro{
+    padding: 7px 3px;
+    border-bottom: 2px solid gray;
+    color: gray;
+    width: 170px;
+    margin-right: 0;
+    margin-left: 0;
+    display: block;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.formulario-filtro{
+    border-bottom: 2px solid #9B9B9B;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+.formulario-filtro label{
+    margin-bottom: 5px;
+    text-align: left;
+
+}
+.formulario-filtro select{
+    margin-right: 0;
+    margin-left: 0;
+    width: 200px
+}
+.btn-filtro{
+    margin-right: 0;
+    margin-left: 0;
+    display: block;
+}
+#filtro:checked ~ .contenedor-filtro{
+    height: 116px;
+}
+
+.btn-añadir{
+    margin-right: 0;
+    margin-left: 0;
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/*----FORMULARIO - ACTUALIZAR----*/
+
+.form-agregar{
+    border: 1px solid gray;
+    padding: 15px;
+    width: 400px;
+    background:
+    linear-gradient(
+        #DADADA,
+        transparent
+    ),
+    linear-gradient(
+        90deg,
+        #DAD9D9,
+        transparent
+    ),
+    linear-gradient(
+        -90deg,
+        #DAD9D9,
+        transparent
+    );
+    background-blend-mode: screen;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    margin: auto;
+    border-radius: 5px;
+}
+.form-row{
+  width: 100%;
+  padding: 10px 5px;
+}
+.form-row-item{
+  width: 170px;
+  display: inline-block;
+  margin-right: 5px; 
+}
+
+.form-row-item input[type="text"], input[type="number"], input[type="email"], input[type="password"]{
+    height: 25px;
+}
+
+.form-row-item input, label, select, textarea{
+    width: 100%;
+}
+
+.form-row-item input, select, textarea{
+    border: 1px solid #88A1CB;
+    border-radius: 2px;
+}
+
+.form-row-item label{
+    margin-bottom: 5px;
+}
+
+.form-row-item textarea{
+    height: 100px;
+    max-height: 120px;
+    max-width: 100%;
+    padding-bottom: 0;
+}
+
+/*----------------------FIN ADMINISTRADOR PRODUCTOS----------------------*/
+
+
 @media (max-width: 1500px){
     .formucontacto{
         width: 450px;

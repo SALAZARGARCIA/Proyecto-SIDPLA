@@ -42,10 +42,10 @@ class PersonaModel {
             $resultado = $this->pdo->prepare($sql);
             $resultado->execute(array($data->__GET('Num_Documento_per'),$data->__GET('Correo_per')));
             if ($resultado->rowCount() > 0){
-                 print "<script>alert('El usuario ya se encuentra registrado en el sistema');</script>";   
+                 print "<script>alert('El usuario ya se encuentra registrado en el sistema');window.location='javascript:window.history.back();';</script>";   
             }else{ 
                 
-            $sql = "insert into PERSONA values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "insert into PERSONA values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $this->pdo->prepare($sql)
                     ->execute(
                             array(
@@ -58,21 +58,28 @@ class PersonaModel {
                                 $data->__GET('Direc_per'),
                                 $data->__GET('Correo_per'),
                                 $data->__GET('tipo_doc'),
-                                $data->__GET('rol_Rol')));
-                
-                print "<script>alert(\"Gracias por registrarse.\");window.location='../index.php';</script>";
+                                $data->__GET('rol_Rol'),1));
+
+                if(isset($_POST['registro_normal'])){
+                    print "<script>alert(\"Registro exitoso.\");window.location='../index.php';</script>";
+                }
+                print "<script>alert(\"Registro exitoso.\");window.location='javascript:window.history.back();';</script>";
             }
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
 
-    public function Listar_Persona() {
+    public function Listar_Persona($rol) {
         try {
             $result = array();
-
-            $stm = $this->pdo->prepare("select * from PERSONA");
-            $stm->execute();
+            if($rol=='todos'){
+                $stm = $this->pdo->prepare("select * from PERSONA");
+                $stm->execute();
+            }else{
+                $stm = $this->pdo->prepare("select * from PERSONA where rol_Rol = ?");
+                $stm->execute(array($rol));
+            }
 
             foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
                 $persona = new Persona();
@@ -87,6 +94,7 @@ class PersonaModel {
                 $persona->__SET('Correo_per', $r->Correo_per);
                 $persona->__SET('tipo_doc', $r->tipo_doc);
                 $persona->__SET('rol_Rol', $r->rol_Rol);
+                $persona->__SET('estado_per', $r->estado_per);
 
                 $result[] = $persona;
             }
@@ -101,9 +109,8 @@ class PersonaModel {
         try {
             $stm = $this->pdo->prepare("SELECT * FROM PERSONA WHERE Num_Documento_per=?");
 
-            $stm->execute(array('1033815398'));
+            $stm->execute(array($Num_Documento_per));
             $r = $stm->fetch(PDO::FETCH_OBJ);
-            include_once '../Controlador/persona.control.php';
             $persona = new Persona();
 
             $persona->__SET('Num_Documento_per', $r->Num_Documento_per);
@@ -125,46 +132,23 @@ class PersonaModel {
 
     public function Actualizar_Persona(Persona $data) {
         try {
-            $sql = "UPDATE PERSONA SET Num_Documento_per=?, Nombres=?, Apellidos=?, Pass_login=?, Tel_per=?,Cel_per=?, Direc_per=?, Correo_per=?, tipo_doc=?, Rol_rol=? WHERE  Num_Documento_per= ?";
+            $sql = "UPDATE PERSONA SET Nombres = ?, Apellidos = ?, Tel_per = ?, Cel_per = ?, Direc_per = ?, Correo_per = ?, rol_Rol = ? WHERE Num_Documento_per = ?";
             
-
             $this->pdo->prepare($sql)
                     ->execute(
                             array(
-                                $data->__GET('Num_Documento_per'),
                                 $data->__GET('Nombres'),
                                 $data->__GET('Apellidos'),
-                                $data->__GET('Pass_login'),
                                 $data->__GET('Tel_per'),
                                 $data->__GET('Cel_per'),
                                 $data->__GET('Direc_per'),
                                 $data->__GET('Correo_per'),
-                                $data->__GET('tipo_doc'),
                                 $data->__GET('rol_Rol'),
-                                $data->__GET('Num_Documento_per2')
+                                $data->__GET('Num_Documento_per')
                             )
             );
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
 
-    public function Actualizar_Datos($Nombres,$Apellidos,$Correo,$Telefono,$Celular,$Direccion,$Documento){
-        try {
-            
-            $stm = $this->pdo->prepare('UPDATE PERSONA SET Nombres = ?, Apellidos = ?, Correo_per = ?, Tel_per = ?, Cel_per = ?, Direc_per = ? WHERE Num_Documento_per = ?');
-    
-            $stm->execute(array(
-                $Nombres,
-                $Apellidos,
-                $Correo,
-                $Telefono,
-                $Celular,
-                $Direccion,
-                $Documento
-            ));
-
-            print "<script>alert(\"Datos actualizados correctamente.\");window.location='../index.php';</script>";            
+            print "<script>alert(\"Datos actualizados exitosamente.\");window.location='javascript:window.history.back();';</script>";
 
         } catch (Exception $e) {
             die($e->getMessage());
@@ -187,7 +171,13 @@ class PersonaModel {
             $resultado = $this->pdo->prepare($sql);
             $resultado->execute(array($correo));
             if ($resultado->rowCount() > 0){
+
                 $persona = $resultado->fetch(PDO::FETCH_ASSOC);
+                /*Verificar si el usuario esta activo*/
+                if($persona['estado_per'] == 0){
+                    header("location:../Vista/login.php?error_est=si");
+                }else{ 
+
                 if (password_verify($pass, $persona["Pass_login"])) {
                     session_start();
                     $_SESSION["session"] = array(
@@ -199,12 +189,14 @@ class PersonaModel {
                     if ($persona["rol_Rol"] == "CLIENTE") {
                         header("location:../index.php"); 
                     } else if ($persona["rol_Rol"] == "ADMINISTRADOR") {
-                        header("location:../index.php"); 
+                        header("location:../Vista/administrador/administrador.php"); 
                     } else if ($persona["rol_Rol"] == "EMPLEADO") {
                         header("location:../Vista/empleado/empleado.php");
                     }
                 } else { // Si el password no es correcto
                     header("location:../Vista/login.php?error_c=si");
+                 }
+                 
                 }
             }else{
                 header("location:../Vista/login.php?error=si");
@@ -315,7 +307,52 @@ class PersonaModel {
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }
+    }//Fin funcion comentar
+
+    public function Cambio_estado_dom($Cod_dom, $Estado){
+        try {
+            $res= $this->pdo->query("UPDATE DOMICILIO SET estado_domicilio_Estado_dom ='$Estado' WHERE Cod_dom = '$Cod_dom' ");
+            if($res){
+                print "<script>alert(\"Domicilio cambiado exitosamente.\");window.location='javascript:window.history.back();';</script>";
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
+
+    public function Obtener_Roles(){
+        try {
+            $result = array();
+            $stm = $this->pdo->prepare("select Rol from ROL WHERE estado_rol = 1");
+            $stm->execute();
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+
+                $result[] = $r->Rol;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    } 
+
+    public function Obtener_tipo_doc(){
+        try {
+            $result = array();
+            $stm = $this->pdo->prepare("select tipo_doc from TIPO_DOC WHERE estado_tipo_doc = 1");
+            $stm->execute();
+
+            foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+
+                $result[] = $r->tipo_doc;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    } 
 
 
 }

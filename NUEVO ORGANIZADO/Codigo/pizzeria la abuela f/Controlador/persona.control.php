@@ -13,6 +13,7 @@ class Persona {
     private $tipo_doc;
     private $rol_Rol;
     private $Num_Documento_per2;
+    private $estado_per;
 
     public function __GET($k) {
         return $this->$k;
@@ -24,11 +25,11 @@ class Persona {
 
 }
 
-require_once '../Modelo/persona.model.php';
 
 //Registro
 if (isset($_POST["registrar_per"])){
 
+        require_once '../Modelo/persona.model.php';
         $model = new PersonaModel();
         $persona = new Persona();
 
@@ -42,6 +43,7 @@ if (isset($_POST["registrar_per"])){
         $persona->__SET('Direc_per',                        $_POST['Direc_per']);
         $persona->__SET('Correo_per',                       $_POST['Correo_per']);
         $persona->__SET('tipo_doc',                         $_POST['tipo_doc']);
+        $persona->__SET('estado_per',                       1);
         $persona->__SET('rol_Rol',                          "CLIENTE");
 
         $model->Registrar_Persona($persona);
@@ -50,6 +52,7 @@ if (isset($_POST["registrar_per"])){
 //Login
 if (isset($_REQUEST["login"])){
 
+    require_once '../Modelo/persona.model.php';
     $model = new PersonaModel();
 
     $correo = $_POST['email'];
@@ -60,6 +63,7 @@ if (isset($_REQUEST["login"])){
 //Finalizar Compra
 if (isset($_REQUEST["finalizar_compra"])){
 
+    require_once '../Modelo/persona.model.php';
     $model = new PersonaModel();
     $Direc_Dom = $_POST['Direc'];
     $Observacion = $_POST['Observaciones'];
@@ -69,6 +73,8 @@ if (isset($_REQUEST["finalizar_compra"])){
 
 //Cometario
 if (isset($_POST["Comentar"])){
+
+    require_once '../Modelo/persona.model.php';
     session_start();
     if(!isset($_SESSION['session'])){
         print "<script>alert('Por favor inicia sesión para dejar un comentario');window.location='../Vista/login.php';</script>";
@@ -84,19 +90,45 @@ if (isset($_POST["Comentar"])){
 //Actualizar Datos
 if (isset($_POST["actualizar_per"])){
 
+    require_once '../Modelo/persona.model.php';
     session_start();
     $model = new PersonaModel();
-    $Persona = new Persona();
+    $persona = new Persona();
 
-    $Nombres = $_POST['Nombres'];
-    $Apellidos = $_POST['Apellidos'];
-    $Correo = $_POST['Correo_per'];
-    $Telefono = $_POST['Tel_per'];
-    $Celular = $_POST['Cel_per'];
-    $Direccion = $_POST['Direc_per'];
-    $Documento = $_SESSION['session']['Documento'];
+    $persona->__SET('Nombres',$_POST['Nombres']);
+    $persona->__SET('Apellidos',$_POST['Apellidos']);
+    $persona->__SET('Correo_per',$_POST['Correo_per']);
+    $persona->__SET('Tel_per',$_POST['Tel_per']);
+    $persona->__SET('Cel_per',$_POST['Cel_per']);
+    $persona->__SET('Direc_per',$_POST['Direc_per']);
+    $persona->__SET('estado_per',1);
+    
+    if(isset($_POST['Num_Documento_per'])){
+        $persona->__SET('Num_Documento_per',$_POST['Num_Documento_per']);
+    }else{
+        $persona->__SET('Num_Documento_per',$_SESSION['session']['Documento']);
 
-    $model->Actualizar_Datos($Nombres,$Apellidos,$Correo,$Telefono,$Celular,$Direccion,$Documento);
+    } 
+
+    if(isset($_POST['rol_Rol'])){
+        $persona->__SET('rol_Rol',$_POST['rol_Rol']); 
+    }else{
+        $persona->__SET('rol_Rol', $_SESSION['session']['Rol']); 
+    }
+
+    $model->Actualizar_Persona($persona);
+}
+
+if(isset($_GET['Cambio_estado'])){
+
+    require_once '../Modelo/persona.model.php';
+    $model = new PersonaModel();
+    $ID_Dom = $_GET['ID'];
+
+    if ($_GET['Cambio_estado'] == 'Cancelado') {
+        $model->Cambio_estado_dom($ID_Dom,'CANCELADO');
+    }
+        
 }
 
 

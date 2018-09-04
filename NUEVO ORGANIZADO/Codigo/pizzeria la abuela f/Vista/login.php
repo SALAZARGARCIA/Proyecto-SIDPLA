@@ -11,6 +11,9 @@
 <body>
     <?php
         include "header.php";
+        include "seguridad.php";
+        $seguridad = new Seguridad;
+        $seguridad->Validar_Sesion('','Llena');
     ?>
     <main>
 
@@ -19,8 +22,9 @@
     	</div>
 
     	<div class="contenedor blanco">
-           <?php if(isset($_REQUEST['error'])) { echo "<p class='error'>El usuario no se encuentra registrado en el sistema</p>";}?>
-           <?php if(isset($_REQUEST['error_c'])) { echo "<p class='error'>Contraseña incorrecta</p>";}?>
+           <?php if(isset($_REQUEST['error'])) { echo "<p class='error'>El usuario no se encuentra registrado en el sistema</p>";}
+           if(isset($_REQUEST['error_est'])) { echo "<p class='error'>Este usuario se encuentra desactivado, contáctese con el administrador</p>";}
+           if(isset($_REQUEST['error_c'])) { echo "<p class='error'>Contraseña incorrecta</p>";}?>
             <form class="formlogin" method="POST" action="../Controlador/persona.control.php">
                 <label for="email"> <span class="icon-mail"></span> Correo</label>
                 <input type="email" name="email" id="email" placeholder="correo@correo.com">

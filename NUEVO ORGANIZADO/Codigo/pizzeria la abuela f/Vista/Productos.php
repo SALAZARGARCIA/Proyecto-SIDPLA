@@ -13,6 +13,7 @@
         include "header.php";
         include "../Modelo/conexion.php";
         $con = database::conectar();
+        include "../Modelo/producto.model.php";
 
         
         // Se hace esta validacion por que al momento de añadir al carrito, la URL cambia 
@@ -27,32 +28,32 @@
     		<?php 
                 switch ($_GET['Prod']) {
                     case 'PIZZA':
-                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca' and estado_prod = 1");
                             ?> <p>Nuestras Pizzas</p> <?php
                         break;
                     case 'BEBIDA':
-                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca' and estado_prod = 1");
                             ?> <p>Nuestras Bebidas</p> <?php
                         break;
                     case 'PASTA':
-                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca' and estado_prod = 1");
                             ?> <p>Nuestras Pastas</p> <?php
                         break;
                     case 'ENSALADA':
-                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca' and estado_prod = 1");
                             ?> <p>Nuestras Ensaladas</p> <?php
                         break;
                     case 'ACOMPAÑANTE':
-                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = 'ACOMPAÑANTE'");
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = 'ACOMPAÑANTE' and estado_prod = 1");
                             ?> <p>Nuestros Acompañantes</p> <?php
                         break;
                     case 'ADICIONALES':
-                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca'");
+                            $products = $con->query("select * from PRODUCTO where tipo_producto_tipo_prod = '$busca' and estado_prod = 1");
                             ?> <p>Nuestros Adicionales</p> <?php
                         break;
 
                     default:
-                        $products = $con->query("select * from PRODUCTO where Nom_prod LIKE '%$busca%'");
+                        $products = $con->query("select * from PRODUCTO where Nom_prod LIKE '%$busca%' and estado_prod = 1");
                         ?> <p>Resultados para  "<?php echo $busca; ?> "</p> <?php
                         break;
                 }

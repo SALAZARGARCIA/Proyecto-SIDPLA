@@ -14,12 +14,14 @@
         //Seguridad
         include "seguridad.php";
         $seguridad = new Seguridad;
-        $seguridad->Validar_Sesion('');
+        $seguridad->Validar_Sesion('','Vacia');
         //Fin Seguridad
         require_once '../Modelo/conexion.php';
         require '../Modelo/persona.model.php';
+        include_once "../Controlador/persona.control.php";
         $db = database::conectar();
         $modelo = new PersonaModel;
+        $persona = new Persona();
         $documento = $_SESSION['session']['Documento'];
         $p = $modelo->Obtener_Persona($documento);
     ?>
